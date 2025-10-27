@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Providers from "./providers";
 import TopNav from "@/components/layout/TopNav";
-import Sidebar from "@/components/layout/Sidebar";
 
 export const metadata: Metadata = {
   title: "Campus Dirasa - إدارة الحرم الجامعي",
@@ -18,8 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="font-sans antialiased">
         <Providers>
           <TopNav />
-          <Sidebar />
-          <main className="transition-all duration-300 lg:mr-72">
+          <main className="min-h-screen pb-20 lg:pb-0">
             {children}
           </main>
         </Providers>

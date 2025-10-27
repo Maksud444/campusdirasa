@@ -39,13 +39,7 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-500 via-green-500 to-teal-500 flex items-center justify-center p-4" dir="rtl">
-      <Link
-        href="/"
-        className="absolute top-4 right-4 inline-flex items-center gap-2 bg-white/90 backdrop-blur px-3 py-2.5 rounded-lg shadow-lg z-50 border border-white/50"
-      >
-        <span className="text-gray-800 text-lg">←</span>
-        <span className="text-gray-800 font-medium text-sm sm:text-base sm:text-white sm:font-medium">العودة للرئيسية</span>
-      </Link>
+     
 
       <div className="bg-white rounded-2xl shadow-2xl p-6 sm:p-8 w-full max-w-[420px] mx-4">
         <div className="text-center mb-8">

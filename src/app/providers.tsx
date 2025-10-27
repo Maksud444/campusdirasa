@@ -2,7 +2,6 @@
 
 import { SessionProvider } from 'next-auth/react';
 import React from 'react';
-import { SidebarProvider } from '@/context/SidebarContext';
 
 export default function Providers({
   children,
@@ -13,7 +12,7 @@ export default function Providers({
 }) {
   return (
     <SessionProvider session={session}>
-      <SidebarProvider>{children}</SidebarProvider>
+      {children}
     </SessionProvider>
   );
 }

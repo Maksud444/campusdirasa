@@ -1,17 +1,9 @@
 "use client";
 
-import React, { use, useState } from 'react';
-import { Menu, X, Download, FileText, Building2, Hospital, Globe, BookOpen, GraduationCap, MessageSquare, Video, ChevronDown, ChevronLeft, User, Settings, LogOut, Upload, Bell, ArrowLeft, Search, Home } from 'lucide-react';
+import React, { useState } from 'react';
+import { Download, FileText, Building2, Hospital, Globe, BookOpen, GraduationCap, MessageSquare, Video, ArrowLeft } from 'lucide-react';
 
 const CampusDirasa = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [userMenuOpen, setUserMenuOpen] = useState(false);
-  const [pdfMenuOpen, setPdfMenuOpen] = useState(false);
-  const [servicesMenuOpen, setServicesMenuOpen] = useState(false);
-  const [libraryMenuOpen, setLibraryMenuOpen] = useState(false);
-  const [userRole, setUserRole] = useState('user'); // 'user', 'teacher', 'admin'
-
   const pdfCategories = [
     { id: 1, title: 'قوائم الإقامة', href: '/pdf/iqama', icon: FileText },
     { id: 2, title: 'أرقام الغرف', href: '/pdf/rooms', icon: Building2 },
@@ -28,12 +20,6 @@ const CampusDirasa = () => {
     { id: 6, title: 'أرشيف متقدم ثاني', href: '/archive', icon: BookOpen },
   ];
 
-  const libraryMenu = [
-    { id: 1, title: 'دراسة خاصة', href: '/books/dirasa-khassa', icon: BookOpen },
-    { id: 2, title: 'كتب إعدادي', href: '/books/iedadi', icon: BookOpen },
-    { id: 3, title: 'كتب ثانوي', href: '/books/thanawi', icon: BookOpen },
-  ];
-
   const features = [
     { 
       id: 1, 
@@ -41,7 +27,7 @@ const CampusDirasa = () => {
       icon: FileText, 
       color: 'from-emerald-500 to-emerald-600',
       desc: 'إقامات، غرف، امتحانات',
-      link: '/pdf'
+      link: '/pdf/iqama'
     },
     { 
       id: 2, 
@@ -73,7 +59,7 @@ const CampusDirasa = () => {
       icon: BookOpen, 
       color: 'from-emerald-600 to-green-600',
       desc: 'كتب دراسية شاملة',
-      link: '/library'
+      link: '/library/dirasa-khassa'
     },
     { 
       id: 6, 
@@ -94,11 +80,8 @@ const CampusDirasa = () => {
 
   return (
     <div className="min-h-screen bg-gray-50" dir="rtl">
-      {/* Top Navigation Bar */}
-     
-
-      {/* Main Content */}
-      <div className={`transition-all duration-300 ${sidebarOpen ? 'lg:mr-72' : 'lg:mr-0'}`}>
+      {/* Main Content - NO MARGIN/GAP */}
+      <div className="w-full">
         {/* Hero Section */}
         <div className="relative bg-gradient-to-br from-emerald-500 via-green-500 to-teal-500 py-20 px-4 overflow-hidden">
           <div className="absolute top-10 right-10 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
@@ -112,7 +95,7 @@ const CampusDirasa = () => {
               كل ما تحتاجه في مكان واحد - إقامات، نماذج، مستشفيات، سفارات، ومكتبة شاملة
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <a href="/services" className="bg-white text-emerald-600 px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl transition-all transform hover:scale-105">
+              <a href="/hospitals" className="bg-white text-emerald-600 px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl transition-all transform hover:scale-105">
                 استكشف الخدمات
               </a>
               <a href="/verification" className="bg-white/20 backdrop-blur-sm text-white border-2 border-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/30 transition-all">
@@ -203,7 +186,7 @@ const CampusDirasa = () => {
                   <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center">
                     <BookOpen className="text-white" size={24} />
                   </div>
-                  <span className="text-xl font-bold">كامبوس دراسة</span>
+                  <span className="text-xl p-2 font-bold">كامبوس دراسة</span>
                 </div>
                 <p className="text-gray-400">
                   منصة شاملة لخدمات الطلاب في مصر

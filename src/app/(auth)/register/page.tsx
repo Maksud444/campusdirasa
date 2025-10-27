@@ -56,13 +56,6 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-500 via-green-500 to-teal-500 flex items-center justify-center p-4" dir="rtl">
-      <Link
-        href="/"
-        className="absolute top-4 right-4 inline-flex items-center gap-2 bg-white/90 backdrop-blur px-4 py-2.5 rounded-lg hover:bg-white transition-all shadow-lg z-50 border border-white/50"
-      >
-        <span className="text-gray-800 text-lg">←</span>
-        <span className="text-gray-800 font-medium text-sm sm:text-base">العودة للرئيسية</span>
-      </Link>
 
       <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md">
         <div className="text-center mb-8">
