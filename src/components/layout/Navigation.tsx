@@ -24,7 +24,7 @@ export function Navigation({ onMenuClick }: { onMenuClick: () => void }) {
               <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center shadow-lg">
                 <BookOpen className="text-white" size={24} />
               </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+              <span className="text-xl font-bold  bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
                 كامبوس دراسة
               </span>
             </Link>

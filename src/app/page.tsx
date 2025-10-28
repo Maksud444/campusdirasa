@@ -27,7 +27,7 @@ const CampusDirasa = () => {
       icon: FileText, 
       color: 'from-emerald-500 to-emerald-600',
       desc: 'إقامات، غرف، امتحانات',
-      link: '/pdf/iqama'
+      link: '/qawaaim'
     },
     { 
       id: 2, 
