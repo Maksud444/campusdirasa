@@ -129,7 +129,7 @@ export default function TopNav() {
                 onMouseEnter={() => setLibraryMenuOpen(true)}
               >
                 <BookOpen size={18} />
-                <span className="font-medium">المكتبة</span>
+                <span className="font-medium">كتب</span>
                 <ChevronDown size={14} />
               </button>
               
@@ -258,7 +258,7 @@ export default function TopNav() {
           </Link>
           <Link href="/library/dirasa-khassa" className="flex flex-col items-center gap-1 py-2 text-gray-600 hover:text-emerald-600">
             <BookOpen size={20} />
-            <span className="text-xs">المكتبة</span>
+            <span className="text-xs">كتب</span>
           </Link>
           <Link href="/feedback" className="flex flex-col items-center gap-1 py-2 text-gray-600 hover:text-emerald-600">
             <MessageSquare size={20} />

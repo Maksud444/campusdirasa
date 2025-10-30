@@ -12,7 +12,7 @@ export default function Sidebar() {
     { id: 1, title: 'قوائم PDF', href: '/pdf/iqama', icon: FileText },
     { id: 2, title: 'المستشفيات', href: '/hospitals', icon: Hospital },
     { id: 3, title: 'السفارات', href: '/embassies', icon: Globe },
-    { id: 4, title: 'المكتبة', href: '/library/dirasa-khassa', icon: BookOpen },
+    { id: 4, title: 'كتب', href: '/library/dirasa-khassa', icon: BookOpen },
   ];
 
   return (

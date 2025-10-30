@@ -1,92 +1,154 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { BookOpen, ExternalLink, ArrowRight, CheckCircle, Clock, ChevronLeft, Award, Users } from 'lucide-react';
+import { BookOpen, ExternalLink, ArrowRight, CheckCircle, Clock, ChevronLeft, Calendar, AlertCircle, Lock, Unlock } from 'lucide-react';
 
 export default function TadarusFormsPage() {
-  // Class-wise Tadarus forms with Google Form links
+  const [currentDate, setCurrentDate] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentDate(new Date());
+    }, 60000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   const tadarusForms = [
     {
       id: 1,
-      class: 'الصف الأول الإعدادي',
-      classEn: 'Grade 7',
-      formLink: 'https://forms.google.com/tadarus-form-1', // Replace with actual Google Form link
-      description: 'نموذج التقديم لبرنامج تدارس للصف الأول الإعدادي',
-      color: 'blue',
-      status: 'متاح',
-      deadline: '2025-12-15',
-      seats: 30
+      class: 'متقدم ثاني',
+      classEn: 'Advanced Level 2',
+      formLink: 'https://forms.google.com/tadarus-mutaqadim-2',
+      description: 'نموذج التقديم لبرنامج تدارس للمستوى المتقدم الثاني',
+      colorClass: 'emerald',
+      bgGradient: 'bg-gradient-to-r from-emerald-500 to-emerald-600',
+      bgLight: 'bg-emerald-50',
+      textColor: 'text-emerald-700',
+      borderColor: 'border-emerald-300',
+      ringColor: 'ring-emerald-500',
+      allowedDays: ['الأحد', 'الاثنين'],
+      dayNumbers: [0, 1],
+      startTime: '09:00',
+      endTime: '17:00',
+      requirements: ['رقم الجواز', 'الاسم الكامل', 'اسم الصف']
     },
     {
       id: 2,
-      class: 'الصف الثاني الإعدادي',
-      classEn: 'Grade 8',
-      formLink: 'https://forms.google.com/tadarus-form-2',
-      description: 'نموذج التقديم لبرنامج تدارس للصف الثاني الإعدادي',
-      color: 'indigo',
-      status: 'متاح',
-      deadline: '2025-12-15',
-      seats: 30
+      class: 'متقدم أول',
+      classEn: 'Advanced Level 1',
+      formLink: 'https://forms.google.com/tadarus-mutaqadim-1',
+      description: 'نموذج التقديم لبرنامج تدارس للمستوى المتقدم الأول',
+      colorClass: 'green',
+      bgGradient: 'bg-gradient-to-r from-green-500 to-green-600',
+      bgLight: 'bg-green-50',
+      textColor: 'text-green-700',
+      borderColor: 'border-green-300',
+      ringColor: 'ring-green-500',
+      allowedDays: ['الثلاثاء', 'الأربعاء'],
+      dayNumbers: [2, 3],
+      startTime: '09:00',
+      endTime: '17:00',
+      requirements: ['رقم الجواز', 'الاسم الكامل', 'اسم الصف']
     },
     {
       id: 3,
-      class: 'الصف الثالث الإعدادي',
-      classEn: 'Grade 9',
-      formLink: 'https://forms.google.com/tadarus-form-3',
-      description: 'نموذج التقديم لبرنامج تدارس للصف الثالث الإعدادي',
-      color: 'purple',
-      status: 'متاح',
-      deadline: '2025-12-15',
-      seats: 25
+      class: 'متوسط ثاني',
+      classEn: 'Intermediate Level 2',
+      formLink: 'https://forms.google.com/tadarus-mutawasit-2',
+      description: 'نموذج التقديم لبرنامج تدارس للمستوى المتوسط الثاني',
+      colorClass: 'teal',
+      bgGradient: 'bg-gradient-to-r from-teal-500 to-teal-600',
+      bgLight: 'bg-teal-50',
+      textColor: 'text-teal-700',
+      borderColor: 'border-teal-300',
+      ringColor: 'ring-teal-500',
+      allowedDays: ['الخميس', 'الجمعة'],
+      dayNumbers: [4, 5],
+      startTime: '09:00',
+      endTime: '17:00',
+      requirements: ['رقم الجواز', 'الاسم الكامل', 'اسم الصف']
     },
     {
       id: 4,
-      class: 'الصف الأول الثانوي',
-      classEn: 'Grade 10',
-      formLink: 'https://forms.google.com/tadarus-form-4',
-      description: 'نموذج التقديم لبرنامج تدارس للصف الأول الثانوي',
-      color: 'violet',
-      status: 'متاح',
-      deadline: '2025-12-15',
-      seats: 25
+      class: 'متوسط أول',
+      classEn: 'Intermediate Level 1',
+      formLink: 'https://forms.google.com/tadarus-mutawasit-1',
+      description: 'نموذج التقديم لبرنامج تدارس للمستوى المتوسط الأول',
+      colorClass: 'blue',
+      bgGradient: 'bg-gradient-to-r from-blue-500 to-blue-600',
+      bgLight: 'bg-blue-50',
+      textColor: 'text-blue-700',
+      borderColor: 'border-blue-300',
+      ringColor: 'ring-blue-500',
+      allowedDays: ['السبت', 'الأحد'],
+      dayNumbers: [6, 0],
+      startTime: '09:00',
+      endTime: '17:00',
+      requirements: ['رقم الجواز', 'الاسم الكامل', 'اسم الصف']
     },
     {
       id: 5,
-      class: 'الصف الثاني الثانوي',
-      classEn: 'Grade 11',
-      formLink: 'https://forms.google.com/tadarus-form-5',
-      description: 'نموذج التقديم لبرنامج تدارس للصف الثاني الثانوي',
-      color: 'fuchsia',
-      status: 'متاح',
-      deadline: '2025-12-15',
-      seats: 20
+      class: 'مبتدئ ثاني',
+      classEn: 'Beginner Level 2',
+      formLink: 'https://forms.google.com/tadarus-mubtadi-2',
+      description: 'نموذج التقديم لبرنامج تدارس للمستوى المبتدئ الثاني',
+      colorClass: 'indigo',
+      bgGradient: 'bg-gradient-to-r from-indigo-500 to-indigo-600',
+      bgLight: 'bg-indigo-50',
+      textColor: 'text-indigo-700',
+      borderColor: 'border-indigo-300',
+      ringColor: 'ring-indigo-500',
+      allowedDays: ['الاثنين', 'الثلاثاء'],
+      dayNumbers: [1, 2],
+      startTime: '09:00',
+      endTime: '17:00',
+      requirements: ['رقم الجواز', 'الاسم الكامل', 'اسم الصف']
     },
     {
       id: 6,
-      class: 'الصف الثالث الثانوي',
-      classEn: 'Grade 12',
-      formLink: 'https://forms.google.com/tadarus-form-6',
-      description: 'نموذج التقديم لبرنامج تدارس للصف الثالث الثانوي',
-      color: 'pink',
-      status: 'متاح',
-      deadline: '2025-12-15',
-      seats: 20
+      class: 'مبتدئ أول',
+      classEn: 'Beginner Level 1',
+      formLink: 'https://forms.google.com/tadarus-mubtadi-1',
+      description: 'نموذج التقديم لبرنامج تدارس للمستوى المبتدئ الأول',
+      colorClass: 'purple',
+      bgGradient: 'bg-gradient-to-r from-purple-500 to-purple-600',
+      bgLight: 'bg-purple-50',
+      textColor: 'text-purple-700',
+      borderColor: 'border-purple-300',
+      ringColor: 'ring-purple-500',
+      allowedDays: ['الأربعاء', 'الخميس'],
+      dayNumbers: [3, 4],
+      startTime: '09:00',
+      endTime: '17:00',
+      requirements: ['رقم الجواز', 'الاسم الكامل', 'اسم الصف']
     }
   ];
 
-  const programFeatures = [
-    'تعليم منهجي للقرآن الكريم',
-    'حلقات تحفيظ مع معلمين مؤهلين',
-    'مراجعة وتسميع دوري',
-    'شهادات تقدير للمتميزين'
-  ];
+  const isFormAvailable = (form: typeof tadarusForms[0]) => {
+    const currentDay = currentDate.getDay();
+    const currentHour = currentDate.getHours();
+    const currentMinute = currentDate.getMinutes();
+    const currentTimeInMinutes = currentHour * 60 + currentMinute;
 
-  const requiredDocuments = [
-    'صورة شخصية حديثة',
-    'صورة بطاقة الطالب',
-    'موافقة ولي الأمر',
-    'إثبات الالتحاق بالمدرسة'
-  ];
+    const [startHour, startMinute] = form.startTime.split(':').map(Number);
+    const [endHour, endMinute] = form.endTime.split(':').map(Number);
+    const startTimeInMinutes = startHour * 60 + startMinute;
+    const endTimeInMinutes = endHour * 60 + endMinute;
+
+    const isDayAllowed = form.dayNumbers.includes(currentDay);
+    const isTimeAllowed = currentTimeInMinutes >= startTimeInMinutes && currentTimeInMinutes <= endTimeInMinutes;
+
+    return isDayAllowed && isTimeAllowed;
+  };
+
+  const getArabicDayName = (dayNumber: number) => {
+    const days = ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
+    return days[dayNumber];
+  };
+
+  const currentDayName = getArabicDayName(currentDate.getDay());
 
   return (
     <div className="min-h-screen bg-gray-50" dir="rtl">
@@ -112,15 +174,31 @@ export default function TadarusFormsPage() {
             <span>العودة للنماذج</span>
           </Link>
 
-          <div className="flex items-center gap-4 mb-4">
-            <div className="text-6xl">📚</div>
-            <div>
-              <h1 className="text-4xl font-bold text-white mb-2">
-                برنامج تدارس
-              </h1>
-              <p className="text-white/90 text-lg">
-                التقديم لبرنامج تدارس لحفظ القرآن الكريم - اختر صفك الدراسي
-              </p>
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <div className="text-6xl">📚</div>
+              <div>
+                <h1 className="text-4xl font-bold text-white mb-2">
+                  برنامج تدارس
+                </h1>
+                <p className="text-white/90 text-lg">
+                  نماذج التقديم لبرنامج تدارس - متاح في أيام محددة
+                </p>
+              </div>
+            </div>
+
+            {/* Current Date & Time Display */}
+            <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4 border border-white/30">
+              <div className="text-white text-center">
+                <div className="text-sm opacity-90 mb-1">اليوم والتاريخ</div>
+                <div className="text-lg font-bold">{currentDayName}</div>
+                <div className="text-sm font-mono">
+                  {currentDate.toLocaleDateString('ar-EG')}
+                </div>
+                <div className="text-2xl font-bold font-mono mt-2">
+                  {currentDate.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' })}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -128,167 +206,170 @@ export default function TadarusFormsPage() {
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 py-12">
-        {/* Program Info Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
-          {/* Program Features */}
-          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-8">
-            <h2 className="text-2xl font-bold text-blue-900 mb-4 flex items-center gap-3">
-              <Award className="text-blue-600" size={28} />
-              مميزات البرنامج
-            </h2>
-            <div className="space-y-3">
-              {programFeatures.map((feature, idx) => (
-                <div key={idx} className="flex items-start gap-3 bg-white/80 p-4 rounded-lg">
-                  <CheckCircle className="text-green-600 flex-shrink-0 mt-1" size={20} />
-                  <span className="text-gray-800 font-medium">{feature}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Required Documents */}
-          <div className="bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-200 rounded-xl p-8">
-            <h2 className="text-2xl font-bold text-purple-900 mb-4 flex items-center gap-3">
-              <BookOpen className="text-purple-600" size={28} />
-              المستندات المطلوبة
-            </h2>
-            <div className="space-y-3">
-              {requiredDocuments.map((doc, idx) => (
-                <div key={idx} className="flex items-start gap-3 bg-white/80 p-4 rounded-lg">
-                  <CheckCircle className="text-purple-600 flex-shrink-0 mt-1" size={20} />
-                  <span className="text-gray-800 font-medium">{doc}</span>
-                </div>
-              ))}
-            </div>
-            <div className="mt-6 bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-              <p className="text-yellow-900 text-sm">
-                <strong>تنبيه:</strong> يجب رفع جميع المستندات بصيغة PDF أو صور واضحة. حجم الملف الواحد لا يتجاوز 5 MB.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Forms Section Title */}
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-3">
-            اختر صفك الدراسي
+        {/* Instructions Card */}
+        <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-xl p-8 mb-12">
+          <h2 className="text-2xl font-bold text-blue-900 mb-4 flex items-center gap-3">
+            <AlertCircle className="text-blue-600" size={28} />
+            تعليمات مهمة
           </h2>
-          <p className="text-gray-600 text-lg">
-            اضغط على الصف المناسب لبدء عملية التقديم
-          </p>
+          <div className="space-y-3 text-blue-900">
+            <div className="flex items-start gap-3">
+              <CheckCircle className="text-blue-600 flex-shrink-0 mt-1" size={20} />
+              <p>كل صف له أيام محددة للتقديم - يرجى التحقق من الأيام المتاحة أسفله</p>
+            </div>
+            <div className="flex items-start gap-3">
+              <CheckCircle className="text-blue-600 flex-shrink-0 mt-1" size={20} />
+              <p>النموذج يفتح فقط في الأيام والأوقات المحددة (من 9 صباحاً إلى 5 مساءً)</p>
+            </div>
+            <div className="flex items-start gap-3">
+              <CheckCircle className="text-blue-600 flex-shrink-0 mt-1" size={20} />
+              <p>يجب إدخال: <strong>رقم الجواز + الاسم الكامل + اسم الصف</strong></p>
+            </div>
+            <div className="flex items-start gap-3">
+              <CheckCircle className="text-blue-600 flex-shrink-0 mt-1" size={20} />
+              <p>تأكد من صحة البيانات قبل الإرسال - لا يمكن التعديل بعد الإرسال</p>
+            </div>
+          </div>
         </div>
 
         {/* Forms Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {tadarusForms.map((form) => (
-            <div
-              key={form.id}
-              className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all border border-gray-100 overflow-hidden group"
-            >
-              {/* Card Header */}
-              <div className={`bg-gradient-to-r from-${form.color}-500 to-${form.color}-600 p-6 text-center relative overflow-hidden`}>
-                <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full -mr-10 -mt-10"></div>
-                <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full -ml-12 -mb-12"></div>
-                
-                <div className="relative z-10">
-                  <h3 className="text-xl font-bold text-white mb-1">
-                    {form.class}
-                  </h3>
-                  <p className="text-white/80 text-sm">{form.classEn}</p>
-                </div>
-              </div>
-
-              {/* Card Body */}
-              <div className="p-6">
-                <p className="text-gray-600 mb-4 text-sm leading-relaxed min-h-[60px]">
-                  {form.description}
-                </p>
-
-                {/* Status, Deadline & Seats */}
-                <div className="space-y-3 mb-4 pb-4 border-b border-gray-200">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <div className={`w-2 h-2 bg-${form.color}-500 rounded-full animate-pulse`}></div>
-                      <span className={`text-${form.color}-600 font-medium text-sm`}>
-                        {form.status}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-500 text-xs">
-                      <Clock size={14} />
-                      <span>{form.deadline}</span>
-                    </div>
-                  </div>
+          {tadarusForms.map((form) => {
+            const isAvailable = isFormAvailable(form);
+            
+            return (
+              <div
+                key={form.id}
+                className={`bg-white rounded-xl shadow-lg transition-all border-2 overflow-hidden ${
+                  isAvailable 
+                    ? 'border-green-400 shadow-green-200' 
+                    : 'border-gray-200 opacity-80'
+                }`}
+              >
+                {/* Card Header */}
+                <div className={`${form.bgGradient} p-6 text-center relative overflow-hidden`}>
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full -mr-10 -mt-10"></div>
                   
-                  <div className="flex items-center gap-2 bg-gray-50 px-3 py-2 rounded-lg">
-                    <Users size={16} className="text-gray-600" />
-                    <span className="text-gray-700 text-sm">
-                      <strong>{form.seats}</strong> مقعد متاح
-                    </span>
+                  {/* Availability Badge */}
+                  <div className="absolute top-3 left-3">
+                    {isAvailable ? (
+                      <div className="flex items-center gap-1 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold animate-pulse shadow-lg">
+                        <Unlock size={14} />
+                        <span>متاح الآن</span>
+                      </div>
+                    ) : (
+                      <div className="flex items-center gap-1 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                        <Lock size={14} />
+                        <span>مغلق</span>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="relative z-10 mt-6">
+                    <h3 className="text-2xl font-bold text-white mb-1">
+                      {form.class}
+                    </h3>
+                    <p className="text-white/90 text-sm">{form.classEn}</p>
                   </div>
                 </div>
 
-                {/* Action Button */}
-                <a
-                  href={form.formLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`flex items-center justify-center gap-2 bg-gradient-to-r from-${form.color}-500 to-${form.color}-600 text-white px-6 py-3 rounded-lg hover:shadow-lg transition-all font-medium group-hover:scale-105 transform`}
-                >
-                  <span>ملء النموذج</span>
-                  <ExternalLink size={18} />
-                </a>
+                {/* Card Body */}
+                <div className="p-6">
+                  <p className="text-gray-600 mb-4 text-sm leading-relaxed min-h-[50px]">
+                    {form.description}
+                  </p>
+
+                  {/* Allowed Days */}
+                  <div className={`mb-4 p-4 ${form.bgLight} rounded-lg border ${form.borderColor}`}>
+                    <div className="flex items-center gap-2 mb-3">
+                      <Calendar className={form.textColor} size={18} />
+                      <h4 className={`font-bold ${form.textColor} text-sm`}>الأيام المتاحة:</h4>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {form.allowedDays.map((day, idx) => {
+                        const isDayToday = form.dayNumbers[idx] === currentDate.getDay();
+                        return (
+                          <span
+                            key={idx}
+                            className={`px-3 py-1.5 rounded-full text-xs font-bold ${
+                              isDayToday
+                                ? `${form.bgLight} ${form.textColor} ring-2 ${form.ringColor}`
+                                : 'bg-gray-100 text-gray-600'
+                            }`}
+                          >
+                            {day}
+                          </span>
+                        );
+                      })}
+                    </div>
+                    <div className="flex items-center gap-2 mt-3 text-gray-600 text-xs">
+                      <Clock size={14} />
+                      <span className="font-medium">من {form.startTime} إلى {form.endTime}</span>
+                    </div>
+                  </div>
+
+                  {/* Required Info */}
+                  <div className="mb-4 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+                    <h4 className="font-bold text-yellow-900 text-sm mb-2">البيانات المطلوبة:</h4>
+                    <ul className="space-y-1.5">
+                      {form.requirements.map((req, idx) => (
+                        <li key={idx} className="flex items-center gap-2 text-yellow-800 text-xs">
+                          <div className="w-1.5 h-1.5 bg-yellow-600 rounded-full"></div>
+                          <span className="font-medium">{req}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Action Button */}
+                  {isAvailable ? (
+                    <a
+                      href={form.formLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`flex items-center justify-center gap-2 ${form.bgGradient} text-white px-6 py-3 rounded-lg hover:shadow-xl transition-all font-bold transform hover:scale-105`}
+                    >
+                      <span>ملء النموذج</span>
+                      <ExternalLink size={18} />
+                    </a>
+                  ) : (
+                    <button
+                      disabled
+                      className="w-full flex items-center justify-center gap-2 bg-gray-300 text-gray-500 px-6 py-3 rounded-lg cursor-not-allowed font-bold opacity-60"
+                    >
+                      <Lock size={18} />
+                      <span>النموذج مغلق حالياً</span>
+                    </button>
+                  )}
+
+                  {/* Next Available Info */}
+                  {!isAvailable && (
+                    <div className="mt-3 text-center p-2 bg-gray-50 rounded">
+                      <p className="text-xs text-gray-600 font-medium">
+                        سيفتح في: <span className={form.textColor}>{form.allowedDays.join(' أو ')}</span>
+                      </p>
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Additional Info Cards */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-white rounded-xl p-6 shadow-md text-center border border-gray-100">
-            <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <BookOpen className="text-blue-600" size={24} />
-            </div>
-            <h3 className="font-bold text-gray-800 mb-2 text-lg">برنامج متميز</h3>
-            <p className="text-gray-600 text-sm">
-              برنامج معتمد لتحفيظ القرآن الكريم
-            </p>
-          </div>
-
-          <div className="bg-white rounded-xl p-6 shadow-md text-center border border-gray-100">
-            <div className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Award className="text-indigo-600" size={24} />
-            </div>
-            <h3 className="font-bold text-gray-800 mb-2 text-lg">معلمون مؤهلون</h3>
-            <p className="text-gray-600 text-sm">
-              مدرسون متخصصون في تحفيظ القرآن
-            </p>
-          </div>
-
-          <div className="bg-white rounded-xl p-6 shadow-md text-center border border-gray-100">
-            <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Users className="text-purple-600" size={24} />
-            </div>
-            <h3 className="font-bold text-gray-800 mb-2 text-lg">مجموعات صغيرة</h3>
-            <p className="text-gray-600 text-sm">
-              حلقات محدودة العدد لضمان الجودة
-            </p>
-          </div>
+            );
+          })}
         </div>
 
         {/* Help Section */}
-        <div className="mt-16 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 rounded-2xl p-10 text-center shadow-xl">
+        <div className="mt-16 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 rounded-2xl p-10 text-center shadow-2xl">
           <BookOpen className="text-white mx-auto mb-4" size={48} />
           <h2 className="text-3xl font-bold text-white mb-4">
-            هل واجهت مشكلة في التقديم؟
+            هل تحتاج مساعدة؟
           </h2>
           <p className="text-white/90 text-lg mb-6 max-w-2xl mx-auto">
-            نحن هنا لمساعدتك! تواصل معنا للحصول على الدعم في عملية التقديم
+            إذا واجهت أي مشكلة في ملء النموذج أو لديك استفسار، تواصل معنا
           </p>
           <Link
             href="/feedback"
             className="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg font-bold hover:shadow-xl transition-all transform hover:scale-105"
           >
-            تواصل للمساعدة
+            تواصل معنا
           </Link>
         </div>
       </div>

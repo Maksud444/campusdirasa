@@ -55,11 +55,11 @@ const CampusDirasa = () => {
     },
     { 
       id: 5, 
-      title: 'المكتبة', 
+      title: 'الكتب', 
       icon: BookOpen, 
       color: 'from-emerald-600 to-green-600',
       desc: 'كتب دراسية شاملة',
-      link: '/library/dirasa-khassa'
+      link: '/library'
     },
     { 
       id: 6, 

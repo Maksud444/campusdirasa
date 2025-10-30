@@ -22,7 +22,7 @@ const CATEGORIES = [
   'المستشفيات',
   'السفارات',
   'النماذج الرسمية',
-  'المكتبة',
+  'كتب',
 ];
 
 export default function PDFUpload() {
