@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Download, FileText, Building2, Hospital, Globe, BookOpen, GraduationCap, MessageSquare, Video, ArrowLeft } from 'lucide-react';
+import { Download, FileText, Building2, Hospital, Globe, BookOpen, GraduationCap, MessageSquare, Video, ArrowLeft, Newspaper } from 'lucide-react';
 
 const CampusDirasa = () => {
   const pdfCategories = [
@@ -15,7 +15,7 @@ const CampusDirasa = () => {
     { id: 1, title: 'المستشفيات', href: '/hospitals', icon: Hospital },
     { id: 2, title: 'السفارات', href: '/embassies', icon: Globe },
     { id: 3, title: 'النماذج الرسمية', href: '/forms', icon: FileText },
-    { id: 4, title: 'المنح الدراسية', href: '/scholarships', icon: GraduationCap },
+    { id: 4, title: 'الأخبار', href: '/news', icon: Newspaper },
     { id: 5, title: 'الفيديوهات التعليمية', href: '/videos', icon: Video },
     { id: 6, title: 'أرشيف متقدم ثاني', href: '/archive', icon: BookOpen },
   ];
@@ -31,6 +31,15 @@ const CampusDirasa = () => {
     },
     { 
       id: 2, 
+      title: 'الأخبار', 
+      icon: Newspaper, 
+      color: 'from-blue-500 to-indigo-600',
+      desc: 'آخر الأخبار والإعلانات المهمة',
+      link: '/news',
+      priority: 1 // Will show first on mobile
+    },
+    { 
+      id: 3, 
       title: 'المستشفيات', 
       icon: Hospital, 
       color: 'from-green-500 to-green-600',
@@ -38,7 +47,7 @@ const CampusDirasa = () => {
       link: '/hospitals'
     },
     { 
-      id: 3, 
+      id: 4, 
       title: 'السفارات', 
       icon: Globe, 
       color: 'from-teal-500 to-teal-600',
@@ -46,7 +55,7 @@ const CampusDirasa = () => {
       link: '/embassies'
     },
     { 
-      id: 4, 
+      id: 5, 
       title: 'النماذج الرسمية', 
       icon: FileText, 
       color: 'from-lime-500 to-lime-600',
@@ -54,28 +63,27 @@ const CampusDirasa = () => {
       link: '/forms'
     },
     { 
-      id: 5, 
+      id: 6, 
       title: 'الكتب', 
       icon: BookOpen, 
       color: 'from-emerald-600 to-green-600',
       desc: 'كتب دراسية شاملة',
       link: '/library'
     },
-    { 
-      id: 6, 
-      title: 'المنح الدراسية', 
-      icon: GraduationCap, 
-      color: 'from-teal-600 to-emerald-600',
-      desc: 'فرص دراسية مجانية',
-      link: '/scholarships'
-    },
   ];
+
+  // Sort features to show news first on mobile
+  const sortedFeatures = [...features].sort((a, b) => {
+    if (a.priority && !b.priority) return -1;
+    if (!a.priority && b.priority) return 1;
+    return a.id - b.id;
+  });
 
   const quickLinks = [
     { title: 'التحقق من طلب جديد', link: '/verification', color: 'emerald' },
     { title: 'أرشيف متقدم ثاني', link: '/archive', color: 'green' },
     { title: 'الفيديوهات التعليمية', link: '/videos', color: 'teal' },
-    { title: 'إرسال ملاحظة', link: '/feedback', color: 'lime' },
+    { title: 'المنح الدراسية', link: '/scholarships', color: 'lime' },
   ];
 
   return (
@@ -113,7 +121,7 @@ const CampusDirasa = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((feature) => (
+            {sortedFeatures.map((feature) => (
               <a
                 key={feature.id}
                 href={feature.link}
