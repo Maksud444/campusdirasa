@@ -1,25 +1,9 @@
 "use client";
 
-import React, { useState } from 'react';
-import { Download, FileText, Building2, Hospital, Globe, BookOpen, GraduationCap, MessageSquare, Video, ArrowLeft, Newspaper } from 'lucide-react';
+import React from 'react';
+import { FileText, Building2, Hospital, Globe, BookOpen, Newspaper, ArrowLeft } from 'lucide-react';
 
 const CampusDirasa = () => {
-  const pdfCategories = [
-    { id: 1, title: 'قوائم الإقامة', href: '/pdf/iqama', icon: FileText },
-    { id: 2, title: 'أرقام الغرف', href: '/pdf/rooms', icon: Building2 },
-    { id: 3, title: 'إعلانات الامتحانات', href: '/pdf/exams', icon: BookOpen },
-    { id: 4, title: 'المستبعدين', href: '/pdf/removed', icon: FileText },
-  ];
-
-  const servicesMenu = [
-    { id: 1, title: 'المستشفيات', href: '/hospitals', icon: Hospital },
-    { id: 2, title: 'السفارات', href: '/embassies', icon: Globe },
-    { id: 3, title: 'النماذج الرسمية', href: '/forms', icon: FileText },
-    { id: 4, title: 'الأخبار', href: '/news', icon: Newspaper },
-    { id: 5, title: 'الفيديوهات التعليمية', href: '/videos', icon: Video },
-    { id: 6, title: 'أرشيف متقدم ثاني', href: '/archive', icon: BookOpen },
-  ];
-
   const features = [
     { 
       id: 1, 
@@ -36,7 +20,7 @@ const CampusDirasa = () => {
       color: 'from-blue-500 to-indigo-600',
       desc: 'آخر الأخبار والإعلانات المهمة',
       link: '/news',
-      priority: 1 // Will show first on mobile
+      priority: 1
     },
     { 
       id: 3, 
@@ -72,7 +56,6 @@ const CampusDirasa = () => {
     },
   ];
 
-  // Sort features to show news first on mobile
   const sortedFeatures = [...features].sort((a, b) => {
     if (a.priority && !b.priority) return -1;
     if (!a.priority && b.priority) return 1;
@@ -88,7 +71,6 @@ const CampusDirasa = () => {
 
   return (
     <div className="min-h-screen bg-gray-50" dir="rtl">
-      {/* Main Content - NO MARGIN/GAP */}
       <div className="w-full">
         {/* Hero Section */}
         <div className="relative bg-gradient-to-br from-emerald-500 via-green-500 to-teal-500 py-20 px-4 overflow-hidden">
@@ -184,57 +166,6 @@ const CampusDirasa = () => {
             </div>
           </div>
         </div>
-
-        {/* Footer */}
-        <footer className="bg-gray-900 text-white py-12">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-              <div>
-                <div className="flex items-center space-x-reverse space-x-3 mb-4">
-                  <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center">
-                    <BookOpen className="text-white" size={24} />
-                  </div>
-                  <span className="text-xl p-2 font-bold">كامبوس دراسة</span>
-                </div>
-                <p className="text-gray-400">
-                  منصة شاملة لخدمات الطلاب في مصر
-                </p>
-              </div>
-              
-              <div>
-                <h3 className="text-lg font-bold mb-4">قوائم PDF</h3>
-                <ul className="space-y-2 text-gray-400">
-                  {pdfCategories.slice(0, 3).map((item) => (
-                    <li key={item.id}>
-                      <a href={item.href} className="hover:text-emerald-400 transition-colors">{item.title}</a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              
-              <div>
-                <h3 className="text-lg font-bold mb-4">الخدمات</h3>
-                <ul className="space-y-2 text-gray-400">
-                  {servicesMenu.slice(0, 4).map((item) => (
-                    <li key={item.id}>
-                      <a href={item.href} className="hover:text-emerald-400 transition-colors">{item.title}</a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              
-              <div>
-                <h3 className="text-lg font-bold mb-4">تواصل معنا</h3>
-                <p className="text-gray-400 mb-2">support@campusdirasa.com</p>
-                <p className="text-gray-400 mb-4">+20 123 456 7890</p>
-              </div>
-            </div>
-            
-            <div className="border-t border-gray-800 pt-8 text-center">
-              <p className="text-gray-400">© 2025 كامبوس دراسة. جميع الحقوق محفوظة.</p>
-            </div>
-          </div>
-        </footer>
       </div>
     </div>
   );
