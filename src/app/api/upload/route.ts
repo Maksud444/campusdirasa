@@ -70,10 +70,5 @@ export async function POST(req: NextRequest) {
     console.error('Upload error:', err);
     return NextResponse.json({ error: 'خطأ في الخادم' }, { status: 500 });
   }
-}
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+}

@@ -1,13 +1,20 @@
-import NextAuth, { NextAuthOptions } from "next-auth";
+import NextAuth from "next-auth";
+import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import { readFile } from "node:fs/promises";
 import path from "path";
 
+declare module "next-auth" {
+  interface User {
+    role?: string;
+  }
+}
+
 type UserRecord = {
   id: string;
   email: string;
-  password: string; // either bcrypt hash or plaintext for dev
+  password: string;
   name?: string;
   role?: "admin" | "teacher" | "user";
 };
@@ -23,7 +30,7 @@ async function readUsers(): Promise<UserRecord[]> {
   }
 }
 
-export const authOptions: NextAuthOptions = {
+const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: "credentials",
@@ -33,28 +40,27 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
-          throw new Error("البريد الإلكتروني وكلمة المرور مطلوبان");
+          return null;
         }
 
         const users = await readUsers();
         const user = users.find((u) => u.email === credentials.email);
 
         if (!user) {
-          throw new Error("المستخدم غير موجود");
+          return null;
         }
 
-        // Support both hashed and plaintext passwords for dev convenience:
         const stored = user.password ?? "";
         let isValid = false;
+        
         if (stored.startsWith("$2a$") || stored.startsWith("$2b$") || stored.startsWith("$2y$")) {
-          isValid = await bcrypt.compare(credentials.password, stored);
+          isValid = await bcrypt.compare(credentials.password as string, stored);
         } else {
-          // plaintext fallback (NOT for production)
           isValid = credentials.password === stored;
         }
 
         if (!isValid) {
-          throw new Error("كلمة المرور غير صحيحة");
+          return null;
         }
 
         return {
@@ -81,14 +87,13 @@ export const authOptions: NextAuthOptions = {
       }
       return session;
     },
-    async redirect({ url, baseUrl }) {
-      // Redirect to dashboard after sign in
-      if (url.startsWith(baseUrl)) return url;
-      return `${baseUrl}/dashboard`;
-    },
   },
-  pages: { signIn: "/login" },
-  session: { strategy: "jwt" },
+  pages: {
+    signIn: "/login",
+  },
+  session: {
+    strategy: "jwt",
+  },
   secret: process.env.NEXTAUTH_SECRET,
 };
 
