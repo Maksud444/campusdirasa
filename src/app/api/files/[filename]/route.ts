@@ -1,26 +1,57 @@
-import { NextResponse } from 'next/server';
-import fs from 'fs';
+import { NextRequest, NextResponse } from 'next/server';
+import { readFile } from 'fs/promises';
+import { existsSync } from 'fs';
 import path from 'path';
 
-const UPLOAD_DIR = path.join(process.cwd(), 'uploads');
+type RouteParams = {
+  params: Promise<{
+    filename: string;
+  }>;
+};
 
-export async function GET(req: Request, { params }: { params: Promise<{ filename: string }> }) {
+export async function GET(req: NextRequest, { params }: RouteParams) {
   try {
     const { filename } = await params;
-    const filePath = path.join(UPLOAD_DIR, filename);
-    if (!fs.existsSync(filePath)) return NextResponse.json({ error: 'not_found' }, { status: 404 });
+    const decodedFilename = decodeURIComponent(filename);
+    
+    // Check announcements directory
+    const announcementPath = path.join(
+      process.cwd(),
+      'public',
+      'uploads',
+      'announcements',
+      decodedFilename
+    );
 
-    const download = new URL(req.url).searchParams.get('download');
+    if (existsSync(announcementPath)) {
+      const fileBuffer = await readFile(announcementPath);
+      const ext = path.extname(decodedFilename).toLowerCase();
+      
+      let contentType = 'application/octet-stream';
+      if (ext === '.jpg' || ext === '.jpeg') contentType = 'image/jpeg';
+      else if (ext === '.png') contentType = 'image/png';
+      else if (ext === '.gif') contentType = 'image/gif';
+      else if (ext === '.webp') contentType = 'image/webp';
 
-    const file = fs.readFileSync(filePath);
-    const headers = new Headers();
-    headers.set('Content-Type', 'application/pdf');
-    if (download) {
-      headers.set('Content-Disposition', `attachment; filename="${filename}"`);
+      return new NextResponse(fileBuffer, {
+        headers: {
+          'Content-Type': contentType,
+          'Cache-Control': 'public, max-age=31536000',
+        },
+      });
     }
 
-    return new NextResponse(file, { status: 200, headers });
+    return NextResponse.json({ error: 'File not found' }, { status: 404 });
   } catch (err) {
-    return NextResponse.json({ error: 'server_error' }, { status: 500 });
+    console.error('File serve error:', err);
+    return NextResponse.json({ error: 'Server error' }, { status: 500 });
   }
 }
+
+
+
+
+
+
+
+

@@ -1,28 +1,263 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
-import { GraduationCap } from 'lucide-react';
 import Link from 'next/link';
+import { GraduationCap, Calendar, Users, MapPin, Award, Clock, ArrowLeft, TrendingUp } from 'lucide-react';
 
 export default function ScholarshipsPage() {
-  const { data: session } = useSession();
+  // Scholarship data
+  const scholarships = [
+    {
+      id: 1,
+      title: 'منحة التفوق الأكاديمي',
+      titleEn: 'Academic Excellence Scholarship',
+      provider: 'جامعة الأزهر',
+      country: 'مصر',
+      flag: '🇪🇬',
+      amount: '5000 جنيه / سنة',
+      deadline: '2025-03-15',
+      startDate: '2025-02-01',
+      duration: '4 سنوات',
+      level: 'بكالوريوس',
+      eligibleFor: ['الطلاب المتفوقون', 'معدل 85% فأعلى', 'جميع التخصصات'],
+      description: 'منحة مخصصة للطلاب المتفوقين أكاديمياً في جميع التخصصات',
+      bgGradient: 'from-blue-500 to-indigo-600',
+      spots: 50,
+      requirements: ['معدل 85% فأعلى', 'شهادة حسن سير وسلوك', 'رسالة تحفيزية']
+    },
+    {
+      id: 2,
+      title: 'منحة البحث العلمي',
+      titleEn: 'Scientific Research Scholarship',
+      provider: 'وزارة التعليم العالي',
+      country: 'مصر',
+      flag: '🇪🇬',
+      amount: '8000 جنيه / سنة',
+      deadline: '2025-04-30',
+      startDate: '2025-03-01',
+      duration: '2-3 سنوات',
+      level: 'ماجستير / دكتوراه',
+      eligibleFor: ['طلاب الدراسات العليا', 'الباحثون', 'تخصصات علمية'],
+      description: 'منحة مقدمة للباحثين في مجالات العلوم والتكنولوجيا',
+      bgGradient: 'from-emerald-500 to-teal-600',
+      spots: 30,
+      requirements: ['مشروع بحثي معتمد', 'معدل 80% فأعلى', 'خطاب توصية']
+    },
+    {
+      id: 3,
+      title: 'منحة الطلاب الدوليين',
+      titleEn: 'International Students Scholarship',
+      provider: 'المجلس الأعلى للجامعات',
+      country: 'مصر',
+      flag: '🇪🇬',
+      amount: '6000 جنيه / سنة',
+      deadline: '2025-05-20',
+      startDate: '2025-04-01',
+      duration: '4 سنوات',
+      level: 'بكالوريوس',
+      eligibleFor: ['الطلاب الوافدون', 'من خارج مصر', 'جميع الجنسيات'],
+      description: 'منحة دراسية للطلاب الدوليين القادمين للدراسة في مصر',
+      bgGradient: 'from-purple-500 to-pink-600',
+      spots: 100,
+      requirements: ['جواز سفر ساري', 'شهادة الثانوية العامة', 'إثبات إتقان اللغة العربية']
+    },
+    {
+      id: 4,
+      title: 'منحة الأيتام والمحتاجين',
+      titleEn: 'Orphans & Needy Students Scholarship',
+      provider: 'الجمعيات الخيرية',
+      country: 'مصر',
+      flag: '🇪🇬',
+      amount: '4000 جنيه / سنة',
+      deadline: '2025-06-10',
+      startDate: '2025-05-01',
+      duration: '4 سنوات',
+      level: 'جميع المراحل',
+      eligibleFor: ['الطلاب الأيتام', 'الأسر المحتاجة', 'ذوي الدخل المحدود'],
+      description: 'منحة اجتماعية لدعم الطلاب من الفئات المحتاجة',
+      bgGradient: 'from-orange-500 to-red-600',
+      spots: 200,
+      requirements: ['شهادة يتم', 'بحث اجتماعي', 'إثبات الحالة المادية']
+    },
+    {
+      id: 5,
+      title: 'منحة التميز الرياضي',
+      titleEn: 'Sports Excellence Scholarship',
+      provider: 'وزارة الشباب والرياضة',
+      country: 'مصر',
+      flag: '🇪🇬',
+      amount: '3500 جنيه / سنة',
+      deadline: '2025-07-15',
+      startDate: '2025-06-01',
+      duration: '4 سنوات',
+      level: 'بكالوريوس',
+      eligibleFor: ['الرياضيون المتميزون', 'حاملو الميداليات', 'أعضاء المنتخبات'],
+      description: 'منحة للرياضيين المتميزين في مختلف الألعاب الرياضية',
+      bgGradient: 'from-green-500 to-lime-600',
+      spots: 40,
+      requirements: ['شهادة رياضية معتمدة', 'إنجازات رياضية موثقة', 'لياقة بدنية']
+    },
+    {
+      id: 6,
+      title: 'منحة الإبداع والابتكار',
+      titleEn: 'Innovation & Creativity Scholarship',
+      provider: 'أكاديمية البحث العلمي',
+      country: 'مصر',
+      flag: '🇪🇬',
+      amount: '7000 جنيه / سنة',
+      deadline: '2025-08-30',
+      startDate: '2025-07-01',
+      duration: '3-4 سنوات',
+      level: 'بكالوريوس / ماجستير',
+      eligibleFor: ['المخترعون', 'المبدعون', 'أصحاب المشاريع'],
+      description: 'منحة لدعم الطلاب المبدعين وأصحاب الأفكار الابتكارية',
+      bgGradient: 'from-cyan-500 to-blue-600',
+      spots: 25,
+      requirements: ['مشروع ابتكاري', 'براءة اختراع أو فكرة مميزة', 'عرض تقديمي']
+    },
+  ];
 
   return (
-    <div className="container mx-auto py-8 px-4">
-      <h1 className="text-3xl font-bold mb-6">المنح الدراسية</h1>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Example scholarship card */}
-        <div className="p-6 bg-white rounded-lg shadow-lg">
-          <GraduationCap className="w-12 h-12 text-emerald-600 mb-4" />
-          <h2 className="text-xl font-semibold mb-2">منحة دراسية</h2>
-          <p className="text-gray-600 mb-4">تفاصيل المنحة الدراسية ستظهر هنا</p>
-          <Link 
-            href="#"
-            className="text-emerald-600 hover:text-emerald-700 font-medium"
-          >
-            مزيد من التفاصيل →
-          </Link>
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50" dir="rtl">
+      {/* Page Header */}
+      <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 py-16 px-4">
+        <div className="max-w-7xl mx-auto text-center">
+          <div className="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-6 backdrop-blur-sm">
+            <GraduationCap className="text-white" size={40} />
+          </div>
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">
+            المنح الدراسية
+          </h1>
+          <p className="text-xl text-white/90 max-w-2xl mx-auto">
+            اكتشف جميع المنح الدراسية المتاحة وقدم طلبك الآن
+          </p>
+        </div>
+      </div>
+
+      {/* Stats Banner */}
+      <div className="max-w-7xl mx-auto px-4 -mt-8 mb-8">
+        <div className="bg-white rounded-2xl shadow-xl p-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+            <div>
+              <div className="text-3xl font-bold text-blue-600">{scholarships.length}</div>
+              <div className="text-sm text-gray-600">منحة متاحة</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-emerald-600">
+                {scholarships.reduce((sum, s) => sum + s.spots, 0)}
+              </div>
+              <div className="text-sm text-gray-600">مقعد متاح</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-purple-600">100%</div>
+              <div className="text-sm text-gray-600">مجاني</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-orange-600">24/7</div>
+              <div className="text-sm text-gray-600">متاح للتقديم</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        
+        {/* Scholarships Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {scholarships.map((scholarship) => (
+            <Link
+              key={scholarship.id}
+              href={`/scholarships/${scholarship.id}`}
+              className="group bg-white border-2 border-gray-200 rounded-2xl overflow-hidden hover:shadow-2xl transition-all transform hover:-translate-y-2"
+            >
+              {/* Card Header */}
+              <div className={`bg-gradient-to-br ${scholarship.bgGradient} p-6 text-white relative overflow-hidden`}>
+                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
+                <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full -ml-12 -mb-12"></div>
+                
+                <div className="relative z-10">
+                  <div className="flex items-start justify-between mb-3">
+                    <Award className="text-white/90" size={32} />
+                    <span className="text-4xl">{scholarship.flag}</span>
+                  </div>
+                  <h3 className="text-xl font-bold mb-1 line-clamp-2 min-h-[3.5rem]">
+                    {scholarship.title}
+                  </h3>
+                  <p className="text-white/80 text-sm">{scholarship.titleEn}</p>
+                </div>
+              </div>
+
+              {/* Card Content */}
+              <div className="p-6">
+                {/* Provider */}
+                <div className="flex items-center gap-2 mb-4 pb-4 border-b border-gray-200">
+                  <GraduationCap size={18} className="text-blue-600" />
+                  <span className="text-gray-700 font-medium text-sm">{scholarship.provider}</span>
+                </div>
+
+                {/* Key Info */}
+                <div className="space-y-3 mb-4">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-gray-600">المبلغ:</span>
+                    <span className="font-bold text-emerald-600">{scholarship.amount}</span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-gray-600">المقاعد:</span>
+                    <span className="font-bold text-blue-600">{scholarship.spots} مقعد</span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-gray-600">المستوى:</span>
+                    <span className="font-medium text-gray-800">{scholarship.level}</span>
+                  </div>
+                </div>
+
+                {/* Deadline Badge */}
+                <div className="bg-red-50 border border-red-200 rounded-xl p-3 mb-4">
+                  <div className="flex items-center gap-2">
+                    <Clock size={16} className="text-red-600" />
+                    <div className="flex-1">
+                      <p className="text-xs text-red-600 font-medium">آخر موعد للتقديم</p>
+                      <p className="text-sm font-bold text-red-700">
+                        {new Date(scholarship.deadline).toLocaleDateString('ar-EG', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric'
+                        })}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Eligible Tags */}
+                <div className="mb-4">
+                  <div className="flex flex-wrap gap-2">
+                    {scholarship.eligibleFor.slice(0, 2).map((item, idx) => (
+                      <span
+                        key={idx}
+                        className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-medium"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                    {scholarship.eligibleFor.length > 2 && (
+                      <span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-medium">
+                        +{scholarship.eligibleFor.length - 2}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {/* View Details Button */}
+                <div className="flex items-center justify-between pt-4 border-t border-gray-200">
+                  <span className="text-blue-600 font-bold group-hover:gap-2 flex items-center gap-1 transition-all">
+                    <span>التفاصيل الكاملة</span>
+                    <ArrowLeft size={18} className="group-hover:translate-x-[-4px] transition-transform" />
+                  </span>
+                  <TrendingUp size={20} className="text-emerald-600" />
+                </div>
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
     </div>

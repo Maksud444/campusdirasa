@@ -1,9 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { FileText, BookOpen, ArrowLeft, CheckCircle, Clock, Calendar } from 'lucide-react';
+import { FileText, BookOpen, Download, FileDown, Calendar, FileUser } from 'lucide-react';
 
 export default function FormsPage() {
+  // Existing online forms
   const formCategories = [
     {
       id: 1,
@@ -31,6 +32,53 @@ export default function FormsPage() {
     }
   ];
 
+  // NEW: PDF Download Forms
+  const pdfForms = [
+    {
+      id: 1,
+      title: 'استمارة القبول والتسجيل',
+      titleEn: 'Admission & Registration Form',
+      description: 'نموذج التقديم للقبول في المعهد - للطلاب الجدد',
+      icon: FileDown,
+      pdfLink: '/forms/pdfs/admission-form.pdf',
+      bgGradient: 'from-orange-500 to-red-500',
+      image: '📝',
+      fileSize: '2 MB'
+    },
+    {
+      id: 2,
+      title: 'طلب تجديد الإقامة',
+      titleEn: 'Iqama Renewal Application',
+      description: 'استمارة تجديد الإقامة للطلاب الأجانب',
+      icon: FileUser,
+      pdfLink: '/forms/pdfs/iqama-renewal.pdf',
+      bgGradient: 'from-cyan-500 to-blue-600',
+      image: '🛂',
+      fileSize: '1.5 MB'
+    },
+    {
+      id: 3,
+      title: 'طلب إجازة',
+      titleEn: 'Leave Application',
+      description: 'استمارة طلب إجازة أو غياب',
+      icon: Calendar,
+      pdfLink: '/forms/pdfs/leave-application.pdf',
+      bgGradient: 'from-purple-500 to-pink-500',
+      image: '📅',
+      fileSize: '1 MB'
+    }
+  ];
+
+  const handleDownload = (pdfLink: string, title: string) => {
+    // Create a temporary link and trigger download
+    const link = document.createElement('a');
+    link.href = pdfLink;
+    link.download = title + '.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50" dir="rtl">
       {/* Page Header */}
@@ -43,141 +91,136 @@ export default function FormsPage() {
             النماذج الرسمية
           </h1>
           <p className="text-xl text-white/90 max-w-2xl mx-auto">
-            جميع نماذج الطلبات متاحة هنا - املأ النموذج في الأيام والأوقات المحددة
+            جميع نماذج الطلبات متاحة هنا - املأ النموذج أو قم بتحميل النماذج القابلة للطباعة
           </p>
         </div>
       </div>
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 py-16">
-        {/* Info Banner */}
-        <div className="bg-gradient-to-r from-blue-50 to-cyan-50 border border-blue-200 rounded-xl p-8 mb-12">
-          <div className="flex items-start gap-4">
-            <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
-              <span className="text-white text-xl">ℹ</span>
+        
+        {/* PDF Download Forms Section */}
+        <div className="mb-16">
+          <div className="flex items-center gap-3 mb-8">
+            <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center shadow-lg">
+              <Download className="text-white" size={24} />
             </div>
-            <div className="flex-1">
-              <h3 className="font-bold text-blue-900 text-xl mb-3">إرشادات مهمة</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <div className="flex items-start gap-2">
-                  <CheckCircle className="text-blue-600 flex-shrink-0 mt-0.5" size={18} />
-                  <p className="text-blue-800 text-sm">كل صف له أيام محددة للتقديم</p>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Clock className="text-blue-600 flex-shrink-0 mt-0.5" size={18} />
-                  <p className="text-blue-800 text-sm">النماذج متاحة من 9 صباحاً إلى 5 مساءً</p>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Calendar className="text-blue-600 flex-shrink-0 mt-0.5" size={18} />
-                  <p className="text-blue-800 text-sm">تحقق من الأيام المتاحة لصفك</p>
-                </div>
-                <div className="flex items-start gap-2">
-                  <FileText className="text-blue-600 flex-shrink-0 mt-0.5" size={18} />
-                  <p className="text-blue-800 text-sm">املأ البيانات بدقة (رقم الجواز، الاسم، الصف)</p>
-                </div>
-              </div>
+            <div>
+              <h2 className="text-3xl font-bold text-gray-800">نماذج قابلة للتحميل</h2>
+              <p className="text-gray-600">حمّل النماذج واملأها يدوياً</p>
             </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {pdfForms.map((form) => {
+              const Icon = form.icon;
+              return (
+                <div
+                  key={form.id}
+                  className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all overflow-hidden border border-gray-100"
+                >
+                  {/* Header */}
+                  <div className={`bg-gradient-to-br ${form.bgGradient} p-6 text-center relative overflow-hidden`}>
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
+                    <div className="text-6xl mb-3 relative z-10">{form.image}</div>
+                    <h3 className="text-xl font-bold text-white relative z-10 drop-shadow-lg">
+                      {form.title}
+                    </h3>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-6">
+                    <p className="text-gray-600 mb-4 text-sm leading-relaxed">
+                      {form.description}
+                    </p>
+
+                    {/* File Size */}
+                    <div className="flex items-center gap-2 text-sm text-gray-500 mb-4">
+                      <FileText size={16} />
+                      <span>حجم الملف: {form.fileSize}</span>
+                    </div>
+
+                    {/* Download Button */}
+                    <button
+                      onClick={() => handleDownload(form.pdfLink, form.title)}
+                      className={`w-full flex items-center justify-center gap-2 bg-gradient-to-r ${form.bgGradient} text-white px-6 py-3 rounded-xl hover:shadow-xl transition-all font-bold group-hover:scale-105 transform`}
+                    >
+                      <Download size={20} />
+                      <span>تحميل النموذج</span>
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
 
-        {/* Form Categories Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {formCategories.map((category) => (
-            <Link
-              key={category.id}
-              href={category.href}
-              className="group bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-2 overflow-hidden border-2 border-gray-100 hover:border-green-300"
-            >
-              {/* Card Header with Gradient */}
-              <div className={`bg-gradient-to-r ${category.bgGradient} p-8 text-center relative overflow-hidden`}>
-                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
-                <div className="absolute bottom-0 left-0 w-40 h-40 bg-white/10 rounded-full -ml-20 -mb-20"></div>
-                
-                <div className="relative z-10">
-                  <div className="text-7xl mb-4">{category.image}</div>
-                  <h2 className="text-3xl font-bold text-white mb-2">
-                    {category.title}
-                  </h2>
-                  <p className="text-white/90 text-sm font-medium">{category.titleEn}</p>
-                </div>
-              </div>
+        {/* Divider */}
+        <div className="my-16 border-t-2 border-gray-200"></div>
 
-              {/* Card Body */}
-              <div className="p-8">
-                <p className="text-gray-700 text-base mb-6 leading-relaxed min-h-[60px]">
-                  {category.description}
-                </p>
+        {/* Online Forms Section */}
+        <div>
+          <div className="flex items-center gap-3 mb-8">
+            <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center shadow-lg">
+              <FileText className="text-white" size={24} />
+            </div>
+            <div>
+              <h2 className="text-3xl font-bold text-gray-800">النماذج الإلكترونية</h2>
+              <p className="text-gray-600">املأ النماذج أونلاين مباشرة</p>
+            </div>
+          </div>
 
-                {/* Classes List */}
-                <div className="mb-6">
-                  <h4 className="font-bold text-gray-800 mb-3 text-sm">المستويات المتاحة:</h4>
-                  <div className="grid grid-cols-2 gap-2">
-                    {category.classes.map((cls, idx) => (
-                      <div key={idx} className="flex items-center gap-2 bg-gray-50 px-3 py-2 rounded-lg">
-                        <div className="w-1.5 h-1.5 bg-emerald-600 rounded-full"></div>
-                        <span className="text-gray-700 text-sm font-medium">{cls}</span>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {formCategories.map((category) => {
+              const Icon = category.icon;
+              return (
+                <Link
+                  key={category.id}
+                  href={category.href}
+                  className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all overflow-hidden border border-gray-100"
+                >
+                  {/* Header */}
+                  <div className={`bg-gradient-to-r ${category.bgGradient} p-8 text-center relative overflow-hidden`}>
+                    <div className="absolute inset-0 bg-black/5 group-hover:bg-black/10 transition-colors"></div>
+                    <div className="text-7xl mb-4 relative z-10">{category.image}</div>
+                    <h3 className="text-3xl font-bold text-white mb-2 relative z-10 drop-shadow-lg">
+                      {category.title}
+                    </h3>
+                    <p className="text-white/90 relative z-10 drop-shadow-md">
+                      {category.totalForms} نماذج متاحة
+                    </p>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-8">
+                    <p className="text-gray-600 mb-6 text-lg leading-relaxed">
+                      {category.description}
+                    </p>
+
+                    {/* Classes List */}
+                    <div className="mb-6">
+                      <p className="text-sm font-medium text-gray-700 mb-3">الصفوف المتاحة:</p>
+                      <div className="flex flex-wrap gap-2">
+                        {category.classes.map((cls, idx) => (
+                          <span
+                            key={idx}
+                            className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium"
+                          >
+                            {cls}
+                          </span>
+                        ))}
                       </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Stats */}
-                <div className="flex items-center justify-between mb-6 pb-6 border-t border-gray-200 pt-6">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center">
-                      <category.icon className="text-emerald-600" size={22} />
                     </div>
-                    <div>
-                      <p className="text-xs text-gray-500">عدد النماذج</p>
-                      <p className="text-2xl font-bold text-gray-800">{category.totalForms}</p>
+
+                    {/* Button */}
+                    <div className={`flex items-center justify-center gap-2 bg-gradient-to-r ${category.bgGradient} text-white px-6 py-3 rounded-xl font-bold group-hover:shadow-lg transition-all`}>
+                      <span>عرض النماذج</span>
+                      <Icon size={20} />
                     </div>
                   </div>
-                  <div className="bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2">
-                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                    <span>متاح الآن</span>
-                  </div>
-                </div>
-
-                {/* Action Button */}
-                <div className={`flex items-center justify-between bg-gradient-to-r ${category.bgGradient} text-white px-6 py-4 rounded-xl group-hover:shadow-lg transition-all`}>
-                  <span className="font-bold text-lg">عرض النماذج</span>
-                  <ArrowLeft className="group-hover:translate-x-[-8px] transition-transform" size={24} />
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-
-        {/* Features Section */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100 text-center">
-            <div className="w-14 h-14 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Calendar className="text-emerald-600" size={26} />
-            </div>
-            <h3 className="font-bold text-gray-800 mb-2 text-lg">أيام محددة</h3>
-            <p className="text-gray-600 text-sm">
-              كل صف له أيام معينة للتقديم
-            </p>
-          </div>
-
-          <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100 text-center">
-            <div className="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Clock className="text-blue-600" size={26} />
-            </div>
-            <h3 className="font-bold text-gray-800 mb-2 text-lg">مواعيد محددة</h3>
-            <p className="text-gray-600 text-sm">
-              من 9 صباحاً إلى 5 مساءً
-            </p>
-          </div>
-
-          <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100 text-center">
-            <div className="w-14 h-14 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <FileText className="text-teal-600" size={26} />
-            </div>
-            <h3 className="font-bold text-gray-800 mb-2 text-lg">نماذج Google</h3>
-            <p className="text-gray-600 text-sm">
-              ملء مباشر ورفع المستندات
-            </p>
+                </Link>
+              );
+            })}
           </div>
         </div>
 
@@ -201,3 +244,11 @@ export default function FormsPage() {
     </div>
   );
 }
+
+
+
+
+
+
+
+
