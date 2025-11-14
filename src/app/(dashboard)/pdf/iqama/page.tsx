@@ -1,230 +1,273 @@
-import { Download, Eye, Search, Filter, Calendar, Users, FileText } from 'lucide-react';
+'use client';
 
-export default function PDFIqamaPage() {
-  // Demo data for Iqama lists
-  const pdfList = [
+import { useState } from 'react';
+import Link from 'next/link';
+import { FileText, Eye, Download, ChevronLeft, Calendar, User, Hash } from 'lucide-react';
+
+// PDF Viewer Component (Simple version - আপনার বিদ্যমান PDFViewer component ব্যবহার করুন)
+function PDFViewer({ pdfUrl, title, onClose }: { pdfUrl: string; title: string; onClose: () => void }) {
+  return (
+    <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4" onClick={onClose}>
+      <div className="bg-white rounded-2xl w-full max-w-6xl h-[90vh] flex flex-col" onClick={(e) => e.stopPropagation()}>
+        {/* Header */}
+        <div className="flex items-center justify-between p-4 border-b border-gray-200">
+          <h2 className="text-xl font-bold text-gray-800">{title}</h2>
+          <button
+            onClick={onClose}
+            className="text-gray-500 hover:text-gray-700 text-2xl font-bold w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100"
+          >
+            ×
+          </button>
+        </div>
+        {/* PDF Iframe */}
+        <div className="flex-1 overflow-hidden">
+          <iframe
+            src={pdfUrl}
+            className="w-full h-full"
+            title={title}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+type PDF = {
+  id: number;
+  title: string;
+  titleEn: string;
+  date: string;
+  level: string;
+  students: number;
+  pdfUrl: string;
+  coverEmoji: string;
+};
+
+export default function IqamaPDFPage() {
+  const [selectedPDF, setSelectedPDF] = useState<PDF | null>(null);
+
+  // PDF data - قوائم الإقامة
+  const pdfList: PDF[] = [
     {
       id: 1,
-      title: 'قائمة الإقامة - يناير 2025',
+      title: 'قائمة إقامة - المبتدئ الأول',
+      titleEn: 'Iqama List - Beginner 1',
       date: '2025-01-15',
-      students: 245,
-      fileUrl: '/uploads/iqama-jan-2025.pdf',
-      status: 'جديد',
-      downloads: 1234,
-      views: 3456
+      level: 'المبتدئ الأول',
+      students: 120,
+      pdfUrl: 'https://azharguideline.com/sixbook/rutinurdu.pdf',
+      coverEmoji: '📄'
     },
     {
       id: 2,
-      title: 'قائمة الإقامة - ديسمبر 2024',
-      date: '2024-12-20',
-      students: 238,
-      fileUrl: '/uploads/iqama-dec-2024.pdf',
-      downloads: 2345,
-      views: 4567
+      title: 'قائمة إقامة - المبتدئ الثاني',
+      titleEn: 'Iqama List - Beginner 2',
+      date: '2025-01-15',
+      level: 'المبتدئ الثاني',
+      students: 115,
+      pdfUrl: 'https://azharguideline.com/sixbook/rutinurdu.pdf',
+      coverEmoji: '📄'
     },
     {
       id: 3,
-      title: 'قائمة الإقامة - نوفمبر 2024',
-      date: '2024-11-18',
-      students: 232,
-      fileUrl: '/uploads/iqama-nov-2024.pdf',
-      downloads: 1987,
-      views: 3987
+      title: 'قائمة إقامة - المتوسط الأول',
+      titleEn: 'Iqama List - Intermediate 1',
+      date: '2025-01-15',
+      level: 'المتوسط الأول',
+      students: 105,
+      pdfUrl: 'https://azharguideline.com/sixbook/rutinurdu.pdf',
+      coverEmoji: '📄'
     },
     {
       id: 4,
-      title: 'قائمة الإقامة - أكتوبر 2024',
-      date: '2024-10-15',
-      students: 228,
-      fileUrl: '/uploads/iqama-oct-2024.pdf',
-      downloads: 1765,
-      views: 3421
+      title: 'قائمة إقامة - المتوسط الثاني',
+      titleEn: 'Iqama List - Intermediate 2',
+      date: '2025-01-15',
+      level: 'المتوسط الثاني',
+      students: 98,
+      pdfUrl: 'https://azharguideline.com/sixbook/rutinurdu.pdf',
+      coverEmoji: '📄'
     },
     {
       id: 5,
-      title: 'قائمة الإقامة - سبتمبر 2024',
-      date: '2024-09-20',
-      students: 225,
-      fileUrl: '/uploads/iqama-sep-2024.pdf',
-      downloads: 1543,
-      views: 3210
+      title: 'قائمة إقامة - المتقدم الأول',
+      titleEn: 'Iqama List - Advanced 1',
+      date: '2025-01-15',
+      level: 'المتقدم الأول',
+      students: 87,
+      pdfUrl: 'https://azharguideline.com/sixbook/rutinurdu.pdf',
+      coverEmoji: '📄'
     },
     {
       id: 6,
-      title: 'قائمة الإقامة - أغسطس 2024',
-      date: '2024-08-18',
-      students: 220,
-      fileUrl: '/uploads/iqama-aug-2024.pdf',
-      downloads: 1432,
-      views: 2987
+      title: 'قائمة إقامة - المتقدم الثاني',
+      titleEn: 'Iqama List - Advanced 2',
+      date: '2025-01-15',
+      level: 'المتقدم الثاني',
+      students: 92,
+      pdfUrl: 'https://azharguideline.com/sixbook/rutinurdu.pdf',
+      coverEmoji: '📄'
     },
   ];
 
-  // Statistics
-  const stats = [
-    { label: 'إجمالي الطلاب', value: '1,388', icon: Users, color: 'emerald' },
-    { label: 'ملفات PDF', value: '6', icon: FileText, color: 'green' },
-    { label: 'التحميلات', value: '10,306', icon: Download, color: 'teal' },
-    { label: 'المشاهدات', value: '21,628', icon: Eye, color: 'lime' },
-  ];
+  const handleViewPDF = (pdf: PDF) => {
+    setSelectedPDF(pdf);
+  };
+
+  const handleCloseViewer = () => {
+    setSelectedPDF(null);
+  };
+
+  const handleDownload = (pdf: PDF) => {
+    const link = document.createElement('a');
+    link.href = pdf.pdfUrl;
+    link.download = `${pdf.title}.pdf`;
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50" dir="rtl">
+      {/* Breadcrumb */}
+      <div className="bg-white border-b border-gray-200 py-4 px-4">
+        <div className="max-w-7xl mx-auto flex items-center gap-2 text-sm">
+          <Link href="/qawaaim" className="text-emerald-600 hover:underline">
+            القوائم
+          </Link>
+          <ChevronLeft size={16} className="text-gray-400" />
+          <span className="text-gray-600">قوائم الإقامة</span>
+        </div>
+      </div>
+
       {/* Page Header */}
       <div className="bg-gradient-to-r from-emerald-500 to-teal-500 py-12 px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-center space-x-reverse space-x-3 mb-4">
-            <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
-              <FileText className="text-white" size={24} />
-            </div>
+          <div className="flex items-center gap-4">
+            <div className="text-6xl">📄</div>
             <div>
-              <h1 className="text-3xl md:text-4xl font-bold text-white">قوائم الإقامة</h1>
-              <p className="text-white/90 text-sm md:text-base">تحميل ومعاينة جميع قوائم الإقامة الخاصة بالطلاب</p>
+              <h1 className="text-4xl font-bold text-white mb-2">
+                قوائم الإقامة
+              </h1>
+              <p className="text-white/90 text-lg">
+                جميع قوائم الإقامة الخاصة بالطلاب لجميع المستويات
+              </p>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        {/* Statistics Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 -mt-16">
-          {stats.map((stat, idx) => (
-            <div key={idx} className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
-              <div className={`w-10 h-10 bg-${stat.color}-100 rounded-lg flex items-center justify-center mb-3`}>
-                <stat.icon className={`text-${stat.color}-600`} size={20} />
-              </div>
-              <div className="text-2xl font-bold text-gray-800 mb-1">{stat.value}</div>
-              <div className="text-gray-600 text-sm">{stat.label}</div>
-            </div>
-          ))}
-        </div>
-
-        {/* Search and Filter Section */}
-        <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className="flex-1 relative">
-              <input 
-                type="text" 
-                placeholder="ابحث باسم الطالب، رقم الإقامة، أو التاريخ..."
-                className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
-              />
-              <Search className="absolute right-4 top-3.5 text-gray-400" size={20} />
-            </div>
-            <button className="flex items-center justify-center space-x-reverse space-x-2 bg-gray-100 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-200 transition-colors">
-              <Filter size={20} />
-              <span>تصفية</span>
-            </button>
-            <button className="flex items-center justify-center space-x-reverse space-x-2 bg-emerald-500 text-white px-6 py-3 rounded-lg hover:bg-emerald-600 transition-colors font-semibold">
-              <Search size={20} />
-              <span>بحث</span>
-            </button>
-          </div>
-        </div>
-
-        {/* Info Alert */}
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-8">
-          <div className="flex items-start space-x-reverse space-x-3">
-            <div className="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-              <span className="text-white text-xs">ℹ</span>
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        {/* Info Banner */}
+        <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-6 mb-8">
+          <div className="flex items-start gap-4">
+            <div className="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center flex-shrink-0">
+              <span className="text-white text-lg">ℹ</span>
             </div>
             <div>
-              <p className="text-blue-800 text-sm">
-                <span className="font-semibold">ملاحظة:</span> يتم تحديث قوائم الإقامة شهرياً. في حالة عدم العثور على اسمك، يرجى التواصل مع الإدارة.
+              <h3 className="font-bold text-emerald-900 text-lg mb-2">معلومات القراءة</h3>
+              <p className="text-emerald-800 text-sm">
+                يمكنك قراءة القوائم مباشرة في المتصفح أو تحميلها. إذا لم تجد اسمك، يرجى التواصل مع الإدارة.
               </p>
             </div>
           </div>
         </div>
 
-        {/* PDF List Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* PDF Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {pdfList.map((pdf) => (
-            <div 
-              key={pdf.id} 
-              className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all p-6 border border-gray-100 group"
+            <div
+              key={pdf.id}
+              className="bg-white rounded-xl shadow-md hover:shadow-2xl transition-all border border-gray-100 group overflow-hidden"
             >
-              {/* Header */}
-              <div className="flex items-start justify-between mb-4">
-                <div className="flex items-center space-x-reverse space-x-3">
-                  <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <FileText className="text-white" size={24} />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-gray-800">{pdf.title}</h3>
-                    <div className="flex items-center space-x-reverse space-x-2 text-sm text-gray-500 mt-1">
-                      <Calendar size={14} />
-                      <span>{pdf.date}</span>
-                    </div>
-                  </div>
-                </div>
-                {pdf.status && (
-                  <span className="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-semibold animate-pulse">
-                    {pdf.status}
-                  </span>
-                )}
+              {/* Card Header - Gradient */}
+              <div className="bg-gradient-to-br from-emerald-500 to-teal-500 p-6 text-center relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
+                <div className="text-6xl mb-3 relative z-10">{pdf.coverEmoji}</div>
+                <h3 className="text-lg font-bold text-white relative z-10 drop-shadow-lg">
+                  {pdf.level}
+                </h3>
               </div>
 
-              {/* Stats */}
-              <div className="grid grid-cols-3 gap-3 mb-4 p-4 bg-gray-50 rounded-lg">
-                <div className="text-center">
-                  <div className="flex items-center justify-center space-x-reverse space-x-1 text-emerald-600 mb-1">
-                    <Users size={16} />
-                  </div>
-                  <div className="text-lg font-bold text-gray-800">{pdf.students}</div>
-                  <div className="text-xs text-gray-600">طالب</div>
-                </div>
-                <div className="text-center border-x border-gray-200">
-                  <div className="flex items-center justify-center space-x-reverse space-x-1 text-blue-600 mb-1">
-                    <Download size={16} />
-                  </div>
-                  <div className="text-lg font-bold text-gray-800">{pdf.downloads}</div>
-                  <div className="text-xs text-gray-600">تحميل</div>
-                </div>
-                <div className="text-center">
-                  <div className="flex items-center justify-center space-x-reverse space-x-1 text-purple-600 mb-1">
-                    <Eye size={16} />
-                  </div>
-                  <div className="text-lg font-bold text-gray-800">{pdf.views}</div>
-                  <div className="text-xs text-gray-600">مشاهدة</div>
-                </div>
-              </div>
+              {/* Card Content */}
+              <div className="p-6">
+                <h4 className="text-lg font-bold text-gray-800 mb-3 line-clamp-2">
+                  {pdf.title}
+                </h4>
+                <p className="text-sm text-gray-500 mb-4">{pdf.titleEn}</p>
 
-              {/* Action Buttons */}
-              <div className="flex space-x-reverse space-x-2">
-                <button className="flex-1 flex items-center justify-center space-x-reverse space-x-2 bg-emerald-50 text-emerald-600 px-4 py-3 rounded-lg hover:bg-emerald-100 transition-colors text-sm font-medium">
-                  <Eye size={18} />
-                  <span>معاينة</span>
-                </button>
-                <button className="flex-1 flex items-center justify-center space-x-reverse space-x-2 bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-4 py-3 rounded-lg hover:shadow-lg transition-all text-sm font-medium">
-                  <Download size={18} />
-                  <span>تحميل PDF</span>
-                </button>
+                {/* Stats */}
+                <div className="grid grid-cols-2 gap-3 mb-4">
+                  <div className="flex items-center gap-2 text-sm">
+                    <Calendar size={16} className="text-emerald-600" />
+                    <span className="text-gray-600">
+                      {new Date(pdf.date).toLocaleDateString('ar-EG')}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <User size={16} className="text-emerald-600" />
+                    <span className="text-gray-600">{pdf.students} طالب</span>
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => handleViewPDF(pdf)}
+                    className="flex-1 flex items-center justify-center gap-2 bg-emerald-500 text-white px-4 py-3 rounded-lg hover:bg-emerald-600 transition-colors font-medium"
+                  >
+                    <Eye size={18} />
+                    <span>عرض</span>
+                  </button>
+                  <button
+                    onClick={() => handleDownload(pdf)}
+                    className="flex items-center justify-center gap-2 bg-gray-100 text-gray-700 px-4 py-3 rounded-lg hover:bg-gray-200 transition-colors"
+                  >
+                    <Download size={18} />
+                  </button>
+                </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Pagination */}
-        <div className="mt-8 flex items-center justify-center space-x-reverse space-x-2">
-          <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-            السابق
-          </button>
-          <button className="px-4 py-2 bg-emerald-500 text-white rounded-lg font-semibold">1</button>
-          <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">2</button>
-          <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">3</button>
-          <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-            التالي
-          </button>
-        </div>
+        {/* No PDFs Message */}
+        {pdfList.length === 0 && (
+          <div className="text-center py-16">
+            <FileText className="text-gray-400 mx-auto mb-4" size={64} />
+            <h3 className="text-xl font-bold text-gray-700 mb-2">لا توجد قوائم متاحة حالياً</h3>
+            <p className="text-gray-500">سيتم إضافة القوائم قريباً</p>
+          </div>
+        )}
 
         {/* Help Section */}
-        <div className="mt-12 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-2xl p-8 text-center">
-          <h3 className="text-2xl font-bold text-white mb-3">هل تحتاج مساعدة؟</h3>
-          <p className="text-white/90 mb-6">إذا لم تجد اسمك في القائمة أو لديك أي استفسار</p>
-          <button className="bg-white text-emerald-600 px-8 py-3 rounded-lg font-semibold hover:shadow-xl transition-all">
+        <div className="mt-16 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-2xl p-10 text-center shadow-xl">
+          <FileText className="text-white mx-auto mb-4" size={48} />
+          <h2 className="text-3xl font-bold text-white mb-4">
+            لم تجد اسمك في القائمة؟
+          </h2>
+          <p className="text-white/90 text-lg mb-6 max-w-2xl mx-auto">
+            تواصل مع الإدارة للحصول على المساعدة أو التأكد من بياناتك
+          </p>
+          <Link
+            href="/feedback"
+            className="inline-block bg-white text-emerald-600 px-8 py-3 rounded-lg font-bold hover:shadow-xl transition-all transform hover:scale-105"
+          >
             تواصل معنا
-          </button>
+          </Link>
         </div>
       </div>
+
+      {/* PDF Viewer Modal */}
+      {selectedPDF && (
+        <PDFViewer
+          pdfUrl={selectedPDF.pdfUrl}
+          title={selectedPDF.title}
+          onClose={handleCloseViewer}
+        />
+      )}
     </div>
   );
 }
