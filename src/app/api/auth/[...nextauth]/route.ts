@@ -51,13 +51,14 @@ const authOptions: NextAuthOptions = {
         }
 
         const stored = user.password ?? "";
-        let isValid = false;
-        
-        if (stored.startsWith("$2a$") || stored.startsWith("$2b$") || stored.startsWith("$2y$")) {
-          isValid = await bcrypt.compare(credentials.password as string, stored);
-        } else {
-          isValid = credentials.password === stored;
+
+        // Only accept bcrypt hashed passwords for security
+        if (!stored.startsWith("$2a$") && !stored.startsWith("$2b$") && !stored.startsWith("$2y$")) {
+          console.error("Security: Plaintext password detected for user:", user.email);
+          return null;
         }
+
+        const isValid = await bcrypt.compare(credentials.password as string, stored);
 
         if (!isValid) {
           return null;
