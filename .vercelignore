@@ -1,0 +1,8 @@
+node_modules
+.turbo
+.next
+.vercel
+dist
+coverage
+*.log
+campus*.zip

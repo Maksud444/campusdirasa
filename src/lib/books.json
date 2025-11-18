@@ -1,0 +1,80 @@
+[
+  {
+    "id": 1,
+    "title": "كتاب الرياضيات - الصف الأول الإعدادي",
+    "titleEn": "Mathematics - Grade 7",
+    "category": "iedadi",
+    "subject": "الرياضيات",
+    "grade": "الصف الأول الإعدادي",
+    "pdfUrl": " https://azharguideline.com/sixbook/rutinurdu.pdf",
+    "coverImage": "📗",
+    "author": "وزارة التربية والتعليم",
+    "pages": 250,
+    "publishYear": "2024"
+  },
+  {
+    "id": 2,
+    "title": "كتاب العلوم - الصف الأول الإعدادي",
+    "titleEn": "Science - Grade 7",
+    "category": "iedadi",
+    "subject": "العلوم",
+    "grade": "الصف الأول الإعدادي",
+    "pdfUrl": " https://azharguideline.com/sixbook/rutinurdu.pdf",
+    "coverImage": "📘",
+    "author": "وزارة التربية والتعليم",
+    "pages": 180,
+    "publishYear": "2024"
+  },
+  {
+    "id": 3,
+    "title": "كتاب اللغة العربية - الصف الثاني الإعدادي",
+    "titleEn": "Arabic Language - Grade 8",
+    "category": "iedadi",
+    "subject": "اللغة العربية",
+    "grade": "الصف الثاني الإعدادي",
+    "pdfUrl": " https://azharguideline.com/sixbook/rutinurdu.pdf",
+    "coverImage": "📕",
+    "author": "وزارة التربية والتعليم",
+    "pages": 200,
+    "publishYear": "2024"
+  },
+  {
+    "id": 4,
+    "title": "كتاب الفيزياء - الصف الأول الثانوي",
+    "titleEn": "Physics - Grade 10",
+    "category": "thanawi",
+    "subject": "الفيزياء",
+    "grade": "الصف الأول الثانوي",
+    "pdfUrl": " https://azharguideline.com/sixbook/rutinurdu.pdf",
+    "coverImage": "📙",
+    "author": "وزارة التربية والتعليم",
+    "pages": 300,
+    "publishYear": "2024"
+  },
+  {
+    "id": 5,
+    "title": "كتاب الكيمياء - الصف الثاني الثانوي",
+    "titleEn": "Chemistry - Grade 11",
+    "category": "thanawi",
+    "subject": "الكيمياء",
+    "grade": "الصف الثاني الثانوي",
+    "pdfUrl": " https://azharguideline.com/sixbook/rutinurdu.pdf",
+    "coverImage": "📗",
+    "author": "وزارة التربية والتعليم",
+    "pages": 280,
+    "publishYear": "2024"
+  },
+  {
+    "id": 6,
+    "title": "كتاب التاريخ - دراسة خاصة",
+    "titleEn": "History - Private Study",
+    "category": "dirasa-khassa",
+    "subject": "التاريخ",
+    "grade": "دراسة خاصة",
+    "pdfUrl": " https://azharguideline.com/sixbook/rutinurdu.pdf",
+    "coverImage": "📚",
+    "author": "وزارة التربية والتعليم",
+    "pages": 220,
+    "publishYear": "2024"
+  }
+]
