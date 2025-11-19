@@ -58,7 +58,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'ar_EG',
-    url: 'https://campusdirasah.com',
+    url: 'https://campusdirasa.com',
     title: 'Campus Dirasah - منصة خدمات الطلاب المتكاملة',
     description: 'منصة شاملة لخدمات طلاب الأزهر في مصر',
     siteName: 'Campus Dirasah',
@@ -82,17 +82,15 @@ export const metadata: Metadata = {
   
   // Verification
   verification: {
-    google: 'YOUR_GOOGLE_VERIFICATION_CODE', // Replace with your code
-    // yandex: 'YOUR_YANDEX_CODE',
-    // bing: 'YOUR_BING_CODE',
+    google: 'YOUR_GOOGLE_VERIFICATION_CODE',
   },
   
   // App Links
   alternates: {
-    canonical: 'https://campusdirasah.com',
+    canonical: 'https://campusdirasa.com',
     languages: {
-      'ar-EG': 'https://campusdirasah.com',
-      'en-US': 'https://campusdirasah.com/en',
+      'ar-EG': 'https://campusdirasa.com',
+      'en-US': 'https://campusdirasa.com/en',
     },
   },
   
@@ -119,13 +117,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Manifest */}
         <link rel="manifest" href="/manifest.json" />
         
-        {/* Preconnect to Google Fonts */}
+        {/* Preconnect to Google Fonts - Performance Optimization */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         
-        {/* Arabic Font - Tajawal */}
+        {/* Arabic Fonts - Cairo (Headings) + Tajawal (Body) */}
         <link 
-          href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" 
+          href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Tajawal:wght@400;500;600;700&display=swap" 
           rel="stylesheet"
         />
         
@@ -138,8 +136,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "@type": "EducationalOrganization",
               "name": "Campus Dirasah",
               "description": "منصة خدمات الطلاب المتكاملة",
-              "url": "https://campusdirasah.com",
-              "logo": "https://campusdirasah.com/logo.png",
+              "url": "https://campusdirasa.com",
+              "logo": "https://campusdirasa.com/logo.png",
               "sameAs": [
                 "https://facebook.com/campusdirasah",
                 "https://twitter.com/campusdirasah",
@@ -162,10 +160,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "@context": "https://schema.org",
               "@type": "WebSite",
               "name": "Campus Dirasah",
-              "url": "https://campusdirasah.com",
+              "url": "https://campusdirasa.com",
               "potentialAction": {
                 "@type": "SearchAction",
-                "target": "https://campusdirasah.com/search?q={search_term_string}",
+                "target": "https://campusdirasa.com/search?q={search_term_string}",
                 "query-input": "required name=search_term_string"
               }
             })
@@ -176,7 +174,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body 
         className="font-sans antialiased flex flex-col min-h-screen bg-gray-50" 
         suppressHydrationWarning
-        style={{ fontFamily: "'Tajawal', sans-serif" }}
+        style={{ fontFamily: "'Tajawal', -apple-system, sans-serif" }}
       >
         {/* Google AdSense Script */}
         <Script
