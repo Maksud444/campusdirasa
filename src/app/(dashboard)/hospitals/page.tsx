@@ -130,8 +130,8 @@ export default function HospitalsPage() {
           </div>
         </div>
 
-        {/* পরিসংখ্যান */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+        {/* Statistics - Rating REMOVED */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
           <div className="bg-white rounded-xl p-6 shadow-md text-center">
             <Hospital className="text-emerald-600 mx-auto mb-2" size={28} />
             <div className="text-3xl font-bold text-gray-800">{hospitals.length}</div>
@@ -143,11 +143,6 @@ export default function HospitalsPage() {
               {hospitals.reduce((sum, h) => sum + h.doctors, 0)}
             </div>
             <div className="text-gray-600 text-sm">طبيب</div>
-          </div>
-          <div className="bg-white rounded-xl p-6 shadow-md text-center">
-            <Star className="text-yellow-600 mx-auto mb-2" size={28} />
-            <div className="text-3xl font-bold text-gray-800">4.6</div>
-            <div className="text-gray-600 text-sm">متوسط التقييم</div>
           </div>
           <div className="bg-white rounded-xl p-6 shadow-md text-center">
             <Clock className="text-blue-600 mx-auto mb-2" size={28} />
@@ -178,7 +173,10 @@ export default function HospitalsPage() {
               <div className="p-6">
                 {/* রেটিং */}
                 <div className="flex items-center justify-between mb-4">
-                  
+                  <div className="flex items-center gap-1">
+                    <Star className="text-yellow-500 fill-yellow-500" size={18} />
+                    <span className="font-bold text-gray-800">{hospital.rating}</span>
+                  </div>
                   <div className={`bg-${hospital.color}-100 text-${hospital.color}-700 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1`}>
                     <Stethoscope size={14} />
                     <span>{hospital.doctors} طبيب</span>
@@ -258,7 +256,3 @@ export default function HospitalsPage() {
     </div>
   );
 }
-
-
-
-
