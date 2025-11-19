@@ -2,15 +2,13 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { BookOpen, GraduationCap, Users, Calendar, Clock } from 'lucide-react';
+import { BookOpen, Clock, Calendar } from 'lucide-react';
 
 export default function LibraryMainPage() {
   const [lastUpdate, setLastUpdate] = useState<string>('');
 
   // লাস্ট আপডেট তারিখ লোড করা
   useEffect(() => {
-    // এখানে আপনি API থেকে লাস্ট আপডেট তারিখ ফেচ করতে পারেন
-    // এখন ডেমো হিসাবে আজকের তারিখ দেখাচ্ছি
     const today = new Date();
     const formatted = today.toLocaleDateString('ar-EG', {
       year: 'numeric',
@@ -30,7 +28,7 @@ export default function LibraryMainPage() {
       icon: '📗',
       bgGradient: 'from-emerald-500 to-green-600',
       totalBooks: 15,
-      lastUpdate: '2025-01-10' // প্রতিটি ক্যাটাগরির জন্য আলাদা আপডেট তারিখ
+      lastUpdate: '2025-01-10'
     },
     {
       id: 2,
@@ -82,7 +80,7 @@ export default function LibraryMainPage() {
 
   return (
     <div className="min-h-screen bg-gray-50" dir="rtl">
-      {/* পেজ হেডার */}
+      {/* Page Header */}
       <div className="bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 py-16 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <div className="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-6 backdrop-blur-sm">
@@ -95,7 +93,7 @@ export default function LibraryMainPage() {
             جميع الكتب الدراسية متاحة للقراءة والتحميل
           </p>
           
-          {/* লাস্ট আপডেট তথ্য - নতুন */}
+          {/* Last Update Info */}
           <div className="inline-flex items-center gap-3 bg-white/20 backdrop-blur-md px-6 py-3 rounded-full border border-white/30">
             <Clock className="text-white" size={20} />
             <span className="text-white font-medium">آخر تحديث:</span>
@@ -104,9 +102,9 @@ export default function LibraryMainPage() {
         </div>
       </div>
 
-      {/* মূল কন্টেন্ট */}
+      {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 py-16">
-        {/* তথ্য ব্যানার */}
+        {/* Info Banner */}
         <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-12">
           <div className="flex items-start gap-4">
             <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
@@ -121,7 +119,7 @@ export default function LibraryMainPage() {
           </div>
         </div>
 
-        {/* ক্যাটাগরি গ্রিড */}
+        {/* Categories Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {categories.map((category) => (
             <Link
@@ -129,7 +127,7 @@ export default function LibraryMainPage() {
               href={category.href}
               className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 overflow-hidden border border-gray-100"
             >
-              {/* কার্ড হেডার */}
+              {/* Card Header */}
               <div className={`bg-gradient-to-br ${category.bgGradient} p-8 text-center relative overflow-hidden`}>
                 <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
                 <div className="text-6xl mb-4 relative z-10">{category.icon}</div>
@@ -138,7 +136,7 @@ export default function LibraryMainPage() {
                 </h2>
                 <p className="text-white/90 text-sm relative z-10">{category.titleEn}</p>
                 
-                {/* লাস্ট আপডেট ব্যাজ - নতুন */}
+                {/* Last Update Badge */}
                 <div className="absolute bottom-3 left-3 bg-white/30 backdrop-blur-sm px-3 py-1 rounded-full">
                   <div className="flex items-center gap-2">
                     <Calendar size={14} className="text-white" />
@@ -149,13 +147,13 @@ export default function LibraryMainPage() {
                 </div>
               </div>
 
-              {/* কার্ড বডি */}
+              {/* Card Body */}
               <div className="p-6">
                 <p className="text-gray-600 mb-4 min-h-[50px]">
                   {category.description}
                 </p>
 
-                {/* আপডেট তথ্য - নতুন */}
+                {/* Update Info */}
                 <div className="mb-4 p-3 bg-gray-50 rounded-lg">
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-600">آخر تحديث:</span>
@@ -179,34 +177,9 @@ export default function LibraryMainPage() {
           ))}
         </div>
 
-        {/* পরিসংখ্যান */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-white rounded-xl p-6 shadow-md text-center">
-            <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <BookOpen className="text-emerald-600" size={24} />
-            </div>
-            <div className="text-3xl font-bold text-gray-800 mb-1">45</div>
-            <div className="text-gray-600 text-sm">إجمالي الكتب</div>
-          </div>
+        {/* Statistics Section REMOVED */}
 
-          <div className="bg-white rounded-xl p-6 shadow-md text-center">
-            <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <GraduationCap className="text-blue-600" size={24} />
-            </div>
-            <div className="text-3xl font-bold text-gray-800 mb-1">3</div>
-            <div className="text-gray-600 text-sm">المراحل الدراسية</div>
-          </div>
-
-          <div className="bg-white rounded-xl p-6 shadow-md text-center">
-            <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Users className="text-purple-600" size={24} />
-            </div>
-            <div className="text-3xl font-bold text-gray-800 mb-1">1000+</div>
-            <div className="text-gray-600 text-sm">طالب مستفيد</div>
-          </div>
-        </div>
-
-        {/* হেল্প সেকশন */}
+        {/* Help Section */}
         <div className="mt-16 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-2xl p-10 text-center shadow-xl">
           <BookOpen className="text-white mx-auto mb-4" size={48} />
           <h2 className="text-3xl font-bold text-white mb-4">
@@ -226,7 +199,3 @@ export default function LibraryMainPage() {
     </div>
   );
 }
-
-
-
-
