@@ -123,9 +123,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         
         {/* Arabic Fonts - Cairo (Headings) + Tajawal (Body) */}
         <link 
-          href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Tajawal:wght@400;500;600;700&display=swap" 
-          rel="stylesheet"
-        />
+  href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" 
+  rel="stylesheet"
+/>
         
         {/* Structured Data - Organization */}
         <script
