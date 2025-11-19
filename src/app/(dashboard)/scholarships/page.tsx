@@ -133,34 +133,8 @@ export default function ScholarshipsPage() {
         </div>
       </div>
 
-      {/* Stats Banner */}
-      <div className="max-w-7xl mx-auto px-4 -mt-8 mb-8">
-        <div className="bg-white rounded-2xl shadow-xl p-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-            <div>
-              <div className="text-3xl font-bold text-blue-600">{scholarships.length}</div>
-              <div className="text-sm text-gray-600">منحة متاحة</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-emerald-600">
-                {scholarships.reduce((sum, s) => sum + s.spots, 0)}
-              </div>
-              <div className="text-sm text-gray-600">مقعد متاح</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-purple-600">100%</div>
-              <div className="text-sm text-gray-600">مجاني</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-orange-600">24/7</div>
-              <div className="text-sm text-gray-600">متاح للتقديم</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 py-8">
+      {/* Main Content - Statistics Section REMOVED */}
+      <div className="max-w-7xl mx-auto px-4 py-12">
         
         {/* Scholarships Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
