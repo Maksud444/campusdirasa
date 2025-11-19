@@ -178,10 +178,7 @@ export default function HospitalsPage() {
               <div className="p-6">
                 {/* রেটিং */}
                 <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-1">
-                    <Star className="text-yellow-500 fill-yellow-500" size={18} />
-                    <span className="font-bold text-gray-800">{hospital.rating}</span>
-                  </div>
+                  
                   <div className={`bg-${hospital.color}-100 text-${hospital.color}-700 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1`}>
                     <Stethoscope size={14} />
                     <span>{hospital.doctors} طبيب</span>
