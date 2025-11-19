@@ -244,7 +244,8 @@ export default function HomePage() {
       <div className="max-w-7xl mx-auto px-4 py-16">
         <div className="bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 rounded-3xl p-12 text-center shadow-2xl">
           <h2 className="text-4xl font-bold text-white mb-4 drop-shadow-lg">
-هل لديك أي نصائح لتحسين عملنا؟          </h2>
+هل لديك أي نصائح لتحسين عملنا؟          
+           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto drop-shadow-md">
             يمكنك إخبارنا برأيك حول النظام، المشاكل التي تواجهها، وكيفية تحسين الخدمات
           </p>
