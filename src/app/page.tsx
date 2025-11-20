@@ -50,10 +50,10 @@ export default function HomePage() {
     },
     { 
       id: 5, 
-      title: 'النماذج الرسمية', 
+      title: 'الاستمارات والتقديم الإلكتروني للإقامة والتدرس', 
       icon: FileText, 
       color: 'from-lime-500 to-lime-600',
-      desc: 'جميع النماذج المطلوبة',
+      desc: 'جميع الاستمارات',
       link: '/forms'
     },
     { 
@@ -69,7 +69,7 @@ export default function HomePage() {
   // 4 Quick Links
   const quickLinks = [
     { title: 'التحقق من طلب جديد', link: '/verification' },
-    { title: 'أرشيف متقدم ثاني', link: '/archive' },
+    { title: 'أنتائج السابقة لمتقدم ثاني', link: '/archive' },
     { title: 'الفيديوهات التعليمية', link: '/videos' },
     { title: 'المنح الدراسية', link: '/scholarships' },
   ];
