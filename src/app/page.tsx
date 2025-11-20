@@ -76,29 +76,15 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-gray-50" dir="rtl">
-      {/* Hero Section */}
+      {/* Hero Section - BUTTONS REMOVED */}
       <div className="bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-500 py-20 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 drop-shadow-lg">
             مرحباً بك في Campus Dirasah
           </h1>
-          <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
             منصتك الشاملة لجميع الخدمات الطلابية والمعلومات الأكاديمية
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <Link
-              href="/qawaaim"
-              className="bg-white text-emerald-600 px-8 py-4 rounded-xl font-bold hover:shadow-2xl transition-all transform hover:scale-105"
-            >
-              استكشف الخدمات
-            </Link>
-            <Link
-              href="/news"
-              className="bg-emerald-600 border-2 border-white text-white px-8 py-4 rounded-xl font-bold hover:bg-white hover:text-emerald-600 transition-all transform hover:scale-105"
-            >
-              آخر الأخبار
-            </Link>
-          </div>
         </div>
       </div>
 
@@ -106,8 +92,6 @@ export default function HomePage() {
       <div className="py-8 px-4">
         <AnnouncementSection />
       </div>
-
-
 
       {/* Main Features Grid */}
       <div className="max-w-7xl mx-auto px-4 py-16">
@@ -244,8 +228,8 @@ export default function HomePage() {
       <div className="max-w-7xl mx-auto px-4 py-16">
         <div className="bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 rounded-3xl p-12 text-center shadow-2xl">
           <h2 className="text-4xl font-bold text-white mb-4 drop-shadow-lg">
-هل لديك أي نصائح لتحسين عملنا؟          
-           </h2>
+            هل لديك أي اقتراحات؟
+          </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto drop-shadow-md">
             يمكنك إخبارنا برأيك حول النظام، المشاكل التي تواجهها، وكيفية تحسين الخدمات
           </p>
@@ -260,11 +244,3 @@ export default function HomePage() {
     </div>
   );
 }
-
-
-
-
-
-
-
-
