@@ -88,7 +88,7 @@ export default function FormsPage() {
             <FileText className="text-white" size={40} />
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">
-            النماذج الرسمية
+            جميع الاستمارات
           </h1>
           <p className="text-xl text-white/90 max-w-2xl mx-auto">
             جميع نماذج الطلبات متاحة هنا - املأ النموذج أو قم بتحميل النماذج القابلة للطباعة
