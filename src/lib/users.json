@@ -2,14 +2,14 @@
   {
     "id": "1",
     "email": "admin@example.com",
-    "password": "admin123",
+    "password": "$2a$10$rAj7N21oU8KXb7zlN.ZCp.kslfyeeBGSKBMFG3OipWU5tV.ygE3cy",
     "name": "مدير",
     "role": "admin"
   },
   {
     "id": "2",
     "email": "teacher@example.com",
-    "password": "teacher123",
+    "password": "$2a$10$ycIo6wY2Y1XBVgOygI3FF.wV4A4smM.iSRVUulx3XG4QULn6q3.lK",
     "name": "مدرّس",
     "role": "teacher"
   }

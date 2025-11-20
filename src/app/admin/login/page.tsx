@@ -1,123 +1,160 @@
 'use client';
 
 import { useState } from 'react';
-import { Lock, User, AlertCircle, Shield } from 'lucide-react';
+import { Shield } from 'lucide-react';
 
 export default function AdminLoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
 
-  const ADMIN_USERNAME = 'admin';
-  const ADMIN_PASSWORD = 'campus@admin2025';
-
-  const handleLogin = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
-    setLoading(true);
-
-    // Simple validation
-    setTimeout(() => {
-      if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
-        // Set cookie
-        document.cookie = 'admin-session=authenticated; path=/; max-age=86400'; // 24 hours
+    
+    // Check credentials
+    if (username === 'admin' && password === 'campus@admin2025') {
+      // Save to localStorage
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('adminAuth', 'true');
+        localStorage.setItem('adminUser', 'admin');
         
-        // Redirect
+        // Redirect using window.location
         window.location.href = '/admin';
-      } else {
-        setError('اسم المستخدم أو كلمة المرور غير صحيحة');
-        setLoading(false);
       }
-    }, 500);
+    } else {
+      setError('خطأ في اسم المستخدم أو كلمة المرور');
+    }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center px-4" dir="rtl">
-      <div className="max-w-md w-full">
-        <div className="bg-white rounded-2xl shadow-2xl p-8">
-          {/* Header */}
-          <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Shield className="text-emerald-600" size={32} />
-            </div>
-            <h1 className="text-3xl font-bold text-gray-800 mb-2">تسجيل دخول المشرف</h1>
-            <p className="text-gray-600">للوصول إلى لوحة التحكم</p>
+    <div style={{
+      minHeight: '100vh',
+      background: 'linear-gradient(to bottom right, #10b981, #14b8a6)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '1rem',
+      direction: 'rtl'
+    }}>
+      <div style={{
+        maxWidth: '400px',
+        width: '100%',
+        background: 'white',
+        borderRadius: '1rem',
+        padding: '2rem',
+        boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)'
+      }}>
+        {/* Header */}
+        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+          <div style={{
+            width: '60px',
+            height: '60px',
+            background: '#d1fae5',
+            borderRadius: '50%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '0 auto 1rem'
+          }}>
+            <Shield color="#10b981" size={32} />
           </div>
-
-          {/* Error */}
-          {error && (
-            <div className="mb-6 bg-red-50 border border-red-200 rounded-lg p-4 flex items-start gap-3">
-              <AlertCircle className="text-red-600 flex-shrink-0 mt-0.5" size={20} />
-              <p className="text-red-600 text-sm">{error}</p>
-            </div>
-          )}
-
-          {/* Form */}
-          <form onSubmit={handleLogin} className="space-y-6">
-            <div>
-              <label className="block text-gray-700 font-medium mb-2">اسم المستخدم</label>
-              <div className="relative">
-                <User className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
-                <input
-                  type="text"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  className="w-full pr-10 pl-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 bg-white text-gray-900 placeholder:text-gray-400 outline-none"
-                  placeholder="أدخل اسم المستخدم"
-                  required
-                  autoComplete="username"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-gray-700 font-medium mb-2">كلمة المرور</label>
-              <div className="relative">
-                <Lock className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pr-10 pl-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 bg-white text-gray-900 placeholder:text-gray-400 outline-none"
-                  placeholder="أدخل كلمة المرور"
-                  required
-                  autoComplete="current-password"
-                />
-              </div>
-            </div>
-
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full bg-emerald-500 text-white py-3 rounded-lg font-bold hover:bg-emerald-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
-            >
-              {loading ? 'جاري تسجيل الدخول...' : 'تسجيل الدخول'}
-            </button>
-          </form>
-
-          <div className="mt-6 text-center">
-            <p className="text-sm text-gray-500">
-              هذه الصفحة مخصصة للمشرفين فقط
-            </p>
-          </div>
+          <h1 style={{ fontSize: '2rem', fontWeight: 'bold', color: '#1f2937', marginBottom: '0.5rem' }}>
+            تسجيل دخول المشرف
+          </h1>
+          <p style={{ color: '#6b7280' }}>لوحة التحكم الإدارية</p>
         </div>
 
-        {/* Dev Credentials (REMOVE IN PRODUCTION) */}
-        <div className="mt-4 bg-white/10 backdrop-blur-sm rounded-lg p-4 text-white text-sm">
-          <p className="font-bold mb-2">🔐 معلومات الدخول:</p>
-          <p className="mb-1">اسم المستخدم: <span className="font-mono bg-white/20 px-2 py-1 rounded">admin</span></p>
-          <p>كلمة المرور: <span className="font-mono bg-white/20 px-2 py-1 rounded">campus@admin2025</span></p>
+        {/* Error Message */}
+        {error && (
+          <div style={{
+            background: '#fef2f2',
+            border: '1px solid #fecaca',
+            borderRadius: '0.5rem',
+            padding: '1rem',
+            marginBottom: '1rem',
+            color: '#dc2626'
+          }}>
+            {error}
+          </div>
+        )}
+
+        {/* Form */}
+        <form onSubmit={handleSubmit}>
+          <div style={{ marginBottom: '1.5rem' }}>
+            <label style={{ display: 'block', fontWeight: '500', color: '#374151', marginBottom: '0.5rem' }}>
+              اسم المستخدم
+            </label>
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="admin"
+              required
+              style={{
+                width: '100%',
+                padding: '0.75rem',
+                border: '2px solid #d1d5db',
+                borderRadius: '0.5rem',
+                fontSize: '1rem',
+                color: '#1f2937'
+              }}
+            />
+          </div>
+
+          <div style={{ marginBottom: '1.5rem' }}>
+            <label style={{ display: 'block', fontWeight: '500', color: '#374151', marginBottom: '0.5rem' }}>
+              كلمة المرور
+            </label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="••••••••"
+              required
+              style={{
+                width: '100%',
+                padding: '0.75rem',
+                border: '2px solid #d1d5db',
+                borderRadius: '0.5rem',
+                fontSize: '1rem',
+                color: '#1f2937'
+              }}
+            />
+          </div>
+
+          <button
+            type="submit"
+            style={{
+              width: '100%',
+              background: '#10b981',
+              color: 'white',
+              padding: '0.75rem',
+              borderRadius: '0.5rem',
+              fontWeight: 'bold',
+              fontSize: '1rem',
+              border: 'none',
+              cursor: 'pointer'
+            }}
+          >
+            تسجيل الدخول
+          </button>
+        </form>
+
+        {/* Credentials Info */}
+        <div style={{
+          marginTop: '1.5rem',
+          padding: '1rem',
+          background: '#f0fdf4',
+          border: '1px solid #bbf7d0',
+          borderRadius: '0.5rem'
+        }}>
+          <p style={{ fontWeight: 'bold', color: '#166534', marginBottom: '0.5rem' }}>
+            🔐 معلومات الدخول:
+          </p>
+          <p style={{ color: '#166534', fontSize: '0.875rem' }}>اسم المستخدم: admin</p>
+          <p style={{ color: '#166534', fontSize: '0.875rem' }}>كلمة المرور: campus@admin2025</p>
         </div>
       </div>
     </div>
   );
 }
-
-
-
-
-
-
-
-
