@@ -69,7 +69,7 @@ export default function HomePage() {
   // 4 Quick Links
   const quickLinks = [
     { title: 'التحقق من طلب جديد', link: '/verification' },
-    { title: 'أنتائج السابقة لمتقدم ثاني', link: '/archive' },
+    { title: 'نتائج السابقة لمتقدم ثاني', link: '/archive' },
     { title: 'الفيديوهات التعليمية', link: '/videos' },
     { title: 'المنح الدراسية', link: '/scholarships' },
   ];
