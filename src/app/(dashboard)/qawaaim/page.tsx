@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { FileText, Building2, BookOpen, UserX } from 'lucide-react';
+import { FileText, Building2, BookOpen, UserX, UserCheck } from 'lucide-react';
 
 export default function QawaimPage() {
   const lists = [
@@ -44,12 +44,21 @@ export default function QawaimPage() {
       description: 'قائمة المستبعدين',
       bgColor: 'bg-red-50',
       iconColor: 'text-red-600'
+    },
+    {
+      id: 5,
+      title: 'أسماء الطلاب الجدد',
+      href: '/qawaaim/new-students',
+      icon: UserCheck,
+      color: 'from-blue-500 to-indigo-600',
+      description: 'قائمة الطلاب المقبولين الجدد',
+      bgColor: 'bg-blue-50',
+      iconColor: 'text-blue-600'
     }
   ];
 
   return (
     <div className="min-h-screen bg-gray-50" dir="rtl">
-      {/* Page Header */}
       <div className="bg-gradient-to-r from-emerald-500 to-teal-500 py-16 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <div className="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-6 backdrop-blur-sm">
@@ -64,9 +73,7 @@ export default function QawaimPage() {
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 py-16">
-        {/* Info Banner */}
         <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-12">
           <div className="flex items-start gap-4">
             <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
@@ -81,30 +88,25 @@ export default function QawaimPage() {
           </div>
         </div>
 
-        {/* Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {lists.map((list) => (
             <Link
               key={list.id}
               href={list.href}
               className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 border border-gray-100"
             >
-              {/* Icon */}
               <div className={`w-16 h-16 bg-gradient-to-br ${list.color} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg`}>
                 <list.icon className="text-white" size={32} />
               </div>
 
-              {/* Title */}
               <h3 className="text-2xl font-bold text-gray-800 mb-3">
                 {list.title}
               </h3>
 
-              {/* Description */}
               <p className="text-gray-600 mb-6">
                 {list.description}
               </p>
 
-              {/* Action Button */}
               <div className={`${list.bgColor} ${list.iconColor} px-4 py-2 rounded-lg text-center font-medium group-hover:shadow-md transition-all`}>
                 عرض القائمة
               </div>
@@ -112,7 +114,6 @@ export default function QawaimPage() {
           ))}
         </div>
 
-        {/* Statistics Section */}
         <div className="mt-16 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl p-10 text-center shadow-xl">
           <h2 className="text-3xl font-bold text-white mb-4">
             هل لديك أي نصائح لتحسين عملنا؟

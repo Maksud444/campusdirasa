@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { BookOpen, Eye, Download, ChevronLeft } from 'lucide-react';
+import { UserCheck, ArrowRight, Eye, Download, ChevronLeft, Calendar, User, AlertCircle } from 'lucide-react';
 
 function PDFViewer({ pdfUrl, title, onClose }: { pdfUrl: string; title: string; onClose: () => void }) {
   return (
@@ -22,50 +22,28 @@ function PDFViewer({ pdfUrl, title, onClose }: { pdfUrl: string; title: string; 
 
 type PDF = {
   id: number;
-  className: string;
+  title: string;
+  titleEn: string;
+  date: string;
+  category: string;
+  students: number;
   pdfUrl: string;
   coverEmoji: string;
 };
 
-export default function ExamsPDFPage() {
+export default function NewStudentsPage() {
   const [selectedPDF, setSelectedPDF] = useState<PDF | null>(null);
 
   const pdfList: PDF[] = [
     {
       id: 1,
-      className: 'مبتدئ أول',
+      title: 'قائمة الطلاب المقبولين الجدد',
+      titleEn: 'New Accepted Students List',
+      date: '2025-01-20',
+      category: 'دراسة خاصة',
+      students: 150,
       pdfUrl: 'https://azharguideline.com/sixbook/rutinurdu.pdf',
-      coverEmoji: '📝'
-    },
-    {
-      id: 2,
-      className: 'مبتدئ ثاني',
-      pdfUrl: 'https://azharguideline.com/sixbook/rutinurdu.pdf',
-      coverEmoji: '📝'
-    },
-    {
-      id: 3,
-      className: 'متوسط أول',
-      pdfUrl: 'https://azharguideline.com/sixbook/rutinurdu.pdf',
-      coverEmoji: '📝'
-    },
-    {
-      id: 4,
-      className: 'متوسط ثاني',
-      pdfUrl: 'https://azharguideline.com/sixbook/rutinurdu.pdf',
-      coverEmoji: '📝'
-    },
-    {
-      id: 5,
-      className: 'متقدم أول',
-      pdfUrl: 'https://azharguideline.com/sixbook/rutinurdu.pdf',
-      coverEmoji: '📝'
-    },
-    {
-      id: 6,
-      className: 'متقدم ثاني',
-      pdfUrl: 'https://azharguideline.com/sixbook/rutinurdu.pdf',
-      coverEmoji: '📝'
+      coverEmoji: '✅'
     }
   ];
 
@@ -80,7 +58,7 @@ export default function ExamsPDFPage() {
   const handleDownload = (pdf: PDF) => {
     const link = document.createElement('a');
     link.href = pdf.pdfUrl;
-    link.download = `جدول-امتحانات-${pdf.className}.pdf`;
+    link.download = `${pdf.title}.pdf`;
     link.target = '_blank';
     document.body.appendChild(link);
     link.click();
@@ -93,17 +71,21 @@ export default function ExamsPDFPage() {
         <div className="max-w-7xl mx-auto flex items-center gap-2 text-sm">
           <Link href="/qawaaim" className="text-blue-600 hover:underline">القوائم</Link>
           <ChevronLeft size={16} className="text-gray-400" />
-          <span className="text-gray-600">جداول الامتحانات</span>
+          <span className="text-gray-600">الطلاب الجدد المقبولين</span>
         </div>
       </div>
 
-      <div className="bg-gradient-to-r from-blue-500 to-indigo-500 py-12 px-4">
+      <div className="bg-gradient-to-r from-blue-500 to-indigo-600 py-12 px-4">
         <div className="max-w-7xl mx-auto">
+          <Link href="/qawaaim" className="inline-flex items-center gap-2 text-white/90 hover:text-white mb-6 transition-colors">
+            <ArrowRight size={20} />
+            <span>العودة للقوائم</span>
+          </Link>
           <div className="flex items-center gap-4">
-            <div className="text-6xl">📝</div>
+            <div className="text-6xl">✅</div>
             <div>
-              <h1 className="text-4xl font-bold text-white mb-2">جداول الامتحانات</h1>
-              <p className="text-white/90 text-lg">جميع جداول الامتحانات لجميع المستويات</p>
+              <h1 className="text-4xl font-bold text-white mb-2">أسماء الطلاب الجدد المقبولين</h1>
+              <p className="text-white/90 text-lg">قائمة الطلاب الذين تم قبولهم في دراسة خاصة</p>
             </div>
           </div>
         </div>
@@ -113,11 +95,11 @@ export default function ExamsPDFPage() {
         <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-8">
           <div className="flex items-start gap-4">
             <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
-              <span className="text-white text-lg">ℹ</span>
+              <AlertCircle className="text-white" size={20} />
             </div>
             <div>
-              <h3 className="font-bold text-blue-900 text-lg mb-2">معلومات الامتحانات</h3>
-              <p className="text-blue-800 text-sm">تأكد من مراجعة جدول الامتحانات والالتزام بالمواعيد المحددة. في حالة وجود استفسار، تواصل مع مكتب الامتحانات.</p>
+              <h3 className="font-bold text-blue-900 text-lg mb-2">معلومات القائمة</h3>
+              <p className="text-blue-800 text-sm">يمكنك عرض قائمة الطلاب المقبولين مباشرة في المتصفح أو تحميلها. إذا لم تجد اسمك، يرجى التواصل مع الإدارة.</p>
             </div>
           </div>
         </div>
@@ -125,14 +107,27 @@ export default function ExamsPDFPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {pdfList.map((pdf) => (
             <div key={pdf.id} className="bg-white rounded-xl shadow-md hover:shadow-2xl transition-all border border-gray-100 group overflow-hidden">
-              <div className="bg-gradient-to-br from-blue-500 to-indigo-500 p-8 text-center relative overflow-hidden">
+              <div className="bg-gradient-to-br from-blue-500 to-indigo-600 p-6 text-center relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full" style={{ marginRight: '-3rem', marginTop: '-3rem' }}></div>
-                <div className="text-6xl mb-4 relative z-10">{pdf.coverEmoji}</div>
-                <h3 className="text-2xl font-bold text-white relative z-10 drop-shadow-lg mb-2">{pdf.className}</h3>
-                <p className="text-lg text-white/90 relative z-10">جدول الامتحانات</p>
+                <div className="text-6xl mb-3 relative z-10">{pdf.coverEmoji}</div>
+                <h3 className="text-lg font-bold text-white relative z-10 drop-shadow-lg">{pdf.category}</h3>
               </div>
 
               <div className="p-6">
+                <h4 className="text-lg font-bold text-gray-800 mb-3 line-clamp-2">{pdf.title}</h4>
+                <p className="text-sm text-gray-500 mb-4">{pdf.titleEn}</p>
+
+                <div className="grid grid-cols-2 gap-3 mb-4">
+                  <div className="flex items-center gap-2 text-sm">
+                    <Calendar size={16} className="text-blue-600" />
+                    <span className="text-gray-600">{new Date(pdf.date).toLocaleDateString('ar-EG')}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <User size={16} className="text-blue-600" />
+                    <span className="text-gray-600">{pdf.students} طالب</span>
+                  </div>
+                </div>
+
                 <div className="flex gap-2">
                   <button onClick={() => handleViewPDF(pdf)} className="flex-1 flex items-center justify-center gap-2 bg-blue-500 text-white px-4 py-3 rounded-lg hover:bg-blue-600 transition-colors font-medium">
                     <Eye size={18} />
@@ -147,15 +142,15 @@ export default function ExamsPDFPage() {
           ))}
         </div>
 
-        <div className="mt-16 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-2xl p-10 text-center shadow-xl">
-          <BookOpen className="text-white mx-auto mb-4" size={48} />
-          <h2 className="text-3xl font-bold text-white mb-4">لديك استفسار عن الامتحانات؟</h2>
-          <p className="text-white/90 text-lg mb-6 max-w-2xl mx-auto">تواصل مع مكتب الامتحانات للحصول على المعلومات أو الإجابة على أي استفسار</p>
+        <div className="mt-16 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl p-10 text-center shadow-xl">
+          <UserCheck className="text-white mx-auto mb-4" size={48} />
+          <h2 className="text-3xl font-bold text-white mb-4">لم تجد اسمك في القائمة؟</h2>
+          <p className="text-white/90 text-lg mb-6 max-w-2xl mx-auto">إذا لم تجد اسمك أو كان لديك أي استفسار، تواصل معنا</p>
           <Link href="/feedback" className="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg font-bold hover:shadow-xl transition-all transform hover:scale-105">تواصل معنا</Link>
         </div>
       </div>
 
-      {selectedPDF && <PDFViewer pdfUrl={selectedPDF.pdfUrl} title={`جدول امتحانات ${selectedPDF.className}`} onClose={handleCloseViewer} />}
+      {selectedPDF && <PDFViewer pdfUrl={selectedPDF.pdfUrl} title={selectedPDF.title} onClose={handleCloseViewer} />}
     </div>
   );
 }
