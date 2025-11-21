@@ -7,12 +7,10 @@ import { FileText, ExternalLink, ArrowRight, CheckCircle, Clock, ChevronLeft, Ca
 export default function IqamaVerificationPage() {
   const [currentDate, setCurrentDate] = useState(new Date());
 
-  // Update current date every minute
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentDate(new Date());
     }, 60000);
-
     return () => clearInterval(timer);
   }, []);
 
@@ -23,12 +21,11 @@ export default function IqamaVerificationPage() {
       classEn: 'Advanced Level 2',
       formLink: 'https://forms.google.com/iqama-mutaqadim-2',
       description: 'نموذج تصديق الإقامة للمستوى المتقدم الثاني',
-      colorClass: 'emerald',
-      bgGradient: 'bg-gradient-to-r from-emerald-500 to-emerald-600',
-      bgLight: 'bg-emerald-50',
-      textColor: 'text-emerald-700',
-      borderColor: 'border-emerald-300',
-      ringColor: 'ring-emerald-500',
+      bgGradient: 'bg-gradient-to-r from-[#00d2ff] to-[#3a7bd5]',
+      bgLight: 'bg-cyan-50',
+      textColor: 'text-[#00d2ff]',
+      borderColor: 'border-cyan-300',
+      ringColor: 'ring-cyan-500',
       allowedDays: ['الأحد', 'الاثنين'],
       dayNumbers: [0, 1],
       startTime: '09:00',
@@ -41,12 +38,11 @@ export default function IqamaVerificationPage() {
       classEn: 'Advanced Level 1',
       formLink: 'https://forms.google.com/iqama-mutaqadim-1',
       description: 'نموذج تصديق الإقامة للمستوى المتقدم الأول',
-      colorClass: 'green',
-      bgGradient: 'bg-gradient-to-r from-green-500 to-green-600',
-      bgLight: 'bg-green-50',
-      textColor: 'text-green-700',
-      borderColor: 'border-green-300',
-      ringColor: 'ring-green-500',
+      bgGradient: 'bg-gradient-to-r from-[#1e3a8a] to-[#3b82f6]',
+      bgLight: 'bg-blue-50',
+      textColor: 'text-blue-700',
+      borderColor: 'border-blue-300',
+      ringColor: 'ring-blue-500',
       allowedDays: ['الثلاثاء', 'الأربعاء'],
       dayNumbers: [2, 3],
       startTime: '09:00',
@@ -59,12 +55,11 @@ export default function IqamaVerificationPage() {
       classEn: 'Intermediate Level 2',
       formLink: 'https://forms.google.com/iqama-mutawasit-2',
       description: 'نموذج تصديق الإقامة للمستوى المتوسط الثاني',
-      colorClass: 'teal',
-      bgGradient: 'bg-gradient-to-r from-teal-500 to-teal-600',
-      bgLight: 'bg-teal-50',
-      textColor: 'text-teal-700',
-      borderColor: 'border-teal-300',
-      ringColor: 'ring-teal-500',
+      bgGradient: 'bg-gradient-to-r from-[#0891b2] to-[#06b6d4]',
+      bgLight: 'bg-cyan-50',
+      textColor: 'text-cyan-700',
+      borderColor: 'border-cyan-300',
+      ringColor: 'ring-cyan-500',
       allowedDays: ['الخميس', 'الجمعة'],
       dayNumbers: [4, 5],
       startTime: '09:00',
@@ -77,8 +72,7 @@ export default function IqamaVerificationPage() {
       classEn: 'Intermediate Level 1',
       formLink: 'https://forms.google.com/iqama-mutawasit-1',
       description: 'نموذج تصديق الإقامة للمستوى المتوسط الأول',
-      colorClass: 'blue',
-      bgGradient: 'bg-gradient-to-r from-blue-500 to-blue-600',
+      bgGradient: 'bg-gradient-to-r from-[#1e40af] to-[#2563eb]',
       bgLight: 'bg-blue-50',
       textColor: 'text-blue-700',
       borderColor: 'border-blue-300',
@@ -95,12 +89,11 @@ export default function IqamaVerificationPage() {
       classEn: 'Beginner Level 2',
       formLink: 'https://forms.google.com/iqama-mubtadi-2',
       description: 'نموذج تصديق الإقامة للمستوى المبتدئ الثاني',
-      colorClass: 'indigo',
-      bgGradient: 'bg-gradient-to-r from-indigo-500 to-indigo-600',
-      bgLight: 'bg-indigo-50',
-      textColor: 'text-indigo-700',
-      borderColor: 'border-indigo-300',
-      ringColor: 'ring-indigo-500',
+      bgGradient: 'bg-gradient-to-r from-[#0c4a6e] to-[#0369a1]',
+      bgLight: 'bg-sky-50',
+      textColor: 'text-sky-700',
+      borderColor: 'border-sky-300',
+      ringColor: 'ring-sky-500',
       allowedDays: ['الاثنين', 'الثلاثاء'],
       dayNumbers: [1, 2],
       startTime: '09:00',
@@ -113,12 +106,11 @@ export default function IqamaVerificationPage() {
       classEn: 'Beginner Level 1',
       formLink: 'https://forms.google.com/iqama-mubtadi-1',
       description: 'نموذج تصديق الإقامة للمستوى المبتدئ الأول',
-      colorClass: 'purple',
-      bgGradient: 'bg-gradient-to-r from-purple-500 to-purple-600',
-      bgLight: 'bg-purple-50',
-      textColor: 'text-purple-700',
-      borderColor: 'border-purple-300',
-      ringColor: 'ring-purple-500',
+      bgGradient: 'bg-gradient-to-r from-[#164e63] to-[#0891b2]',
+      bgLight: 'bg-cyan-50',
+      textColor: 'text-cyan-700',
+      borderColor: 'border-cyan-300',
+      ringColor: 'ring-cyan-500',
       allowedDays: ['الأربعاء', 'الخميس'],
       dayNumbers: [3, 4],
       startTime: '09:00',
@@ -153,24 +145,17 @@ export default function IqamaVerificationPage() {
 
   return (
     <div className="min-h-screen bg-gray-50" dir="rtl">
-      {/* Breadcrumb */}
       <div className="bg-white border-b border-gray-200 py-4 px-4">
         <div className="max-w-7xl mx-auto flex items-center gap-2 text-sm">
-          <Link href="/forms" className="text-emerald-600 hover:underline">
-            النماذج
-          </Link>
+          <Link href="/forms" className="text-[#00d2ff] hover:underline">النماذج</Link>
           <ChevronLeft size={16} className="text-gray-400" />
           <span className="text-gray-600">تصديق الإقامة</span>
         </div>
       </div>
 
-      {/* Page Header */}
-      <div className="bg-gradient-to-r from-emerald-500 to-teal-500 py-12 px-4">
+      <div className="bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] py-12 px-4">
         <div className="max-w-7xl mx-auto">
-          <Link
-            href="/forms"
-            className="inline-flex items-center gap-2 text-white/90 hover:text-white mb-6 transition-colors"
-          >
+          <Link href="/forms" className="inline-flex items-center gap-2 text-white/90 hover:text-white mb-6 transition-colors">
             <ArrowRight size={20} />
             <span>العودة للنماذج</span>
           </Link>
@@ -179,23 +164,16 @@ export default function IqamaVerificationPage() {
             <div className="flex items-center gap-4">
               <div className="text-6xl">📄</div>
               <div>
-                <h1 className="text-4xl font-bold text-white mb-2">
-                  تصديق الإقامة
-                </h1>
-                <p className="text-white/90 text-lg">
-                  نماذج تصديق الإقامة حسب المستوى الدراسي - متاح في أيام محددة
-                </p>
+                <h1 className="text-4xl font-bold text-white mb-2">تصديق الإقامة</h1>
+                <p className="text-white/90 text-lg">نماذج تصديق الإقامة حسب المستوى الدراسي - متاح في أيام محددة</p>
               </div>
             </div>
 
-            {/* Current Date & Time Display */}
             <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4 border border-white/30">
               <div className="text-white text-center">
                 <div className="text-sm opacity-90 mb-1">اليوم والتاريخ</div>
                 <div className="text-lg font-bold">{currentDayName}</div>
-                <div className="text-sm font-mono">
-                  {currentDate.toLocaleDateString('ar-EG')}
-                </div>
+                <div className="text-sm font-mono">{currentDate.toLocaleDateString('ar-EG')}</div>
                 <div className="text-2xl font-bold font-mono mt-2">
                   {currentDate.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' })}
                 </div>
@@ -205,35 +183,32 @@ export default function IqamaVerificationPage() {
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 py-12">
-        {/* Instructions Card */}
-        <div className="bg-gradient-to-r from-blue-50 to-cyan-50 border border-blue-200 rounded-xl p-8 mb-12">
-          <h2 className="text-2xl font-bold text-blue-900 mb-4 flex items-center gap-3">
-            <AlertCircle className="text-blue-600" size={28} />
+        <div className="bg-blue-50 border border-blue-200 rounded-xl p-8 mb-12">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
+            <AlertCircle className="text-[#00d2ff]" size={28} />
             تعليمات مهمة
           </h2>
-          <div className="space-y-3 text-blue-900">
+          <div className="space-y-3 text-gray-700">
             <div className="flex items-start gap-3">
-              <CheckCircle className="text-blue-600 flex-shrink-0 mt-1" size={20} />
+              <CheckCircle className="text-[#00d2ff] flex-shrink-0 mt-1" size={20} />
               <p>كل صف له أيام محددة للتقديم - يرجى التحقق من الأيام المتاحة أسفله</p>
             </div>
             <div className="flex items-start gap-3">
-              <CheckCircle className="text-blue-600 flex-shrink-0 mt-1" size={20} />
+              <CheckCircle className="text-[#00d2ff] flex-shrink-0 mt-1" size={20} />
               <p>النموذج يفتح فقط في الأيام والأوقات المحددة (من 9 صباحاً إلى 5 مساءً)</p>
             </div>
             <div className="flex items-start gap-3">
-              <CheckCircle className="text-blue-600 flex-shrink-0 mt-1" size={20} />
+              <CheckCircle className="text-[#00d2ff] flex-shrink-0 mt-1" size={20} />
               <p>يجب إدخال: <strong>رقم الجواز + الاسم الكامل + اسم الصف</strong></p>
             </div>
             <div className="flex items-start gap-3">
-              <CheckCircle className="text-blue-600 flex-shrink-0 mt-1" size={20} />
+              <CheckCircle className="text-[#00d2ff] flex-shrink-0 mt-1" size={20} />
               <p>تأكد من صحة البيانات قبل الإرسال - لا يمكن التعديل بعد الإرسال</p>
             </div>
           </div>
         </div>
 
-        {/* Forms Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {iqamaForms.map((form) => {
             const isAvailable = isFormAvailable(form);
@@ -242,24 +217,20 @@ export default function IqamaVerificationPage() {
               <div
                 key={form.id}
                 className={`bg-white rounded-xl shadow-lg transition-all border-2 overflow-hidden ${
-                  isAvailable 
-                    ? 'border-green-400 shadow-green-200' 
-                    : 'border-gray-200 opacity-80'
+                  isAvailable ? 'border-[#00d2ff] shadow-cyan-200' : 'border-gray-200 opacity-80'
                 }`}
               >
-                {/* Card Header */}
                 <div className={`${form.bgGradient} p-6 text-center relative overflow-hidden`}>
                   <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full -mr-10 -mt-10"></div>
                   
-                  {/* Availability Badge */}
                   <div className="absolute top-3 left-3">
                     {isAvailable ? (
-                      <div className="flex items-center gap-1 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold animate-pulse shadow-lg">
+                      <div className="flex items-center gap-1 bg-[#00d2ff] text-white px-3 py-1 rounded-full text-xs font-bold animate-pulse shadow-lg">
                         <Unlock size={14} />
                         <span>متاح الآن</span>
                       </div>
                     ) : (
-                      <div className="flex items-center gap-1 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                      <div className="flex items-center gap-1 bg-gray-400 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
                         <Lock size={14} />
                         <span>مغلق</span>
                       </div>
@@ -267,20 +238,16 @@ export default function IqamaVerificationPage() {
                   </div>
 
                   <div className="relative z-10 mt-6">
-                    <h3 className="text-2xl font-bold text-white mb-1">
-                      {form.class}
-                    </h3>
+                    <h3 className="text-2xl font-bold text-white mb-1">{form.class}</h3>
                     <p className="text-white/90 text-sm">{form.classEn}</p>
                   </div>
                 </div>
 
-                {/* Card Body */}
                 <div className="p-6">
                   <p className="text-gray-600 mb-4 text-sm leading-relaxed min-h-[50px]">
                     {form.description}
                   </p>
 
-                  {/* Allowed Days */}
                   <div className={`mb-4 p-4 ${form.bgLight} rounded-lg border ${form.borderColor}`}>
                     <div className="flex items-center gap-2 mb-3">
                       <Calendar className={form.textColor} size={18} />
@@ -309,7 +276,6 @@ export default function IqamaVerificationPage() {
                     </div>
                   </div>
 
-                  {/* Required Info */}
                   <div className="mb-4 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
                     <h4 className="font-bold text-yellow-900 text-sm mb-2">البيانات المطلوبة:</h4>
                     <ul className="space-y-1.5">
@@ -322,7 +288,6 @@ export default function IqamaVerificationPage() {
                     </ul>
                   </div>
 
-                  {/* Action Button */}
                   {isAvailable ? (
                     <a
                       href={form.formLink}
@@ -343,7 +308,6 @@ export default function IqamaVerificationPage() {
                     </button>
                   )}
 
-                  {/* Next Available Info */}
                   {!isAvailable && (
                     <div className="mt-3 text-center p-2 bg-gray-50 rounded">
                       <p className="text-xs text-gray-600 font-medium">
@@ -357,18 +321,15 @@ export default function IqamaVerificationPage() {
           })}
         </div>
 
-        {/* Help Section */}
-        <div className="mt-16 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-2xl p-10 text-center shadow-2xl">
+        <div className="mt-16 bg-gradient-to-r from-[#00d2ff] to-[#3a7bd5] rounded-2xl p-10 text-center shadow-2xl">
           <FileText className="text-white mx-auto mb-4" size={48} />
-          <h2 className="text-3xl font-bold text-white mb-4">
-            هل لديك أي نصائح لتحسين عملنا؟
-          </h2>
+          <h2 className="text-3xl font-bold text-white mb-4">هل لديك أي نصائح لتحسين عملنا؟</h2>
           <p className="text-white/90 text-lg mb-6 max-w-2xl mx-auto">
             إذا واجهت أي مشكلة في ملء النموذج أو لديك استفسار، تواصل معنا
           </p>
           <Link
             href="/feedback"
-            className="inline-block bg-white text-emerald-600 px-8 py-3 rounded-lg font-bold hover:shadow-xl transition-all transform hover:scale-105"
+            className="inline-block bg-white text-[#00d2ff] px-8 py-3 rounded-lg font-bold hover:shadow-xl transition-all transform hover:scale-105"
           >
             تواصل معنا
           </Link>

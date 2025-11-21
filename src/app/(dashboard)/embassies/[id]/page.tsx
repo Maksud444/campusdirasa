@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { ArrowRight, Globe, Phone, Mail, MapPin, Clock, ExternalLink, CheckCircle } from 'lucide-react';
 
-// Embassy data (same as list page)
 const embassiesData = [
   {
     id: 1,
@@ -85,7 +84,6 @@ const embassiesData = [
       'رسوم الخدمة'
     ]
   },
-  // Add other embassies similarly...
 ];
 
 export default function EmbassyDetailPage({ params }: { params: { id: string } }) {
@@ -99,7 +97,7 @@ export default function EmbassyDetailPage({ params }: { params: { id: string } }
           <h1 className="text-4xl font-bold text-gray-800 mb-4">السفارة غير موجودة</h1>
           <Link
             href="/embassies"
-            className="inline-flex items-center gap-2 text-emerald-600 hover:text-emerald-700"
+            className="inline-flex items-center gap-2 text-[#00d2ff] hover:text-[#00b8e6]"
           >
             <ArrowRight size={20} />
             <span>العودة إلى قائمة السفارات</span>
@@ -110,13 +108,13 @@ export default function EmbassyDetailPage({ params }: { params: { id: string } }
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-teal-50" dir="rtl">
+    <div className="min-h-screen bg-gray-50" dir="rtl">
       {/* Back Button */}
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <Link
             href="/embassies"
-            className="inline-flex items-center gap-2 text-gray-600 hover:text-emerald-600 transition-colors"
+            className="inline-flex items-center gap-2 text-gray-600 hover:text-[#00d2ff] transition-colors"
           >
             <ArrowRight size={20} />
             <span>العودة إلى قائمة السفارات</span>
@@ -124,8 +122,8 @@ export default function EmbassyDetailPage({ params }: { params: { id: string } }
         </div>
       </div>
 
-      {/* Embassy Header */}
-      <div className="bg-gradient-to-br from-teal-600 to-emerald-600 py-16 px-4">
+      {/* Embassy Header - Same as Homepage Hero */}
+      <div className="bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row items-center gap-6">
             <div className="text-9xl">{embassy.flagEmoji}</div>
@@ -163,16 +161,16 @@ export default function EmbassyDetailPage({ params }: { params: { id: string } }
                 {embassy.services.map((service, idx) => (
                   <div
                     key={idx}
-                    className="flex items-center gap-3 p-4 bg-emerald-50 rounded-xl border border-emerald-100"
+                    className="flex items-center gap-3 p-4 bg-cyan-50 rounded-xl border border-cyan-100"
                   >
-                    <CheckCircle className="text-emerald-600 flex-shrink-0" size={24} />
+                    <CheckCircle className="text-[#00d2ff] flex-shrink-0" size={24} />
                     <span className="text-gray-800 font-medium">{service}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Service Fees - NEW */}
+            {/* Service Fees */}
             {embassy.serviceFees && (
               <div className="bg-white rounded-2xl shadow-lg p-8">
                 <h2 className="text-2xl font-bold text-gray-800 mb-6">رسوم الخدمات</h2>
@@ -183,13 +181,13 @@ export default function EmbassyDetailPage({ params }: { params: { id: string } }
                       className="flex items-center justify-between p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl border border-blue-100 hover:shadow-md transition-all"
                     >
                       <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                        <div className="w-8 h-8 bg-[#00d2ff] rounded-full flex items-center justify-center flex-shrink-0">
                           <span className="text-white text-sm font-bold">{idx + 1}</span>
                         </div>
                         <span className="text-gray-800 font-medium">{item.service}</span>
                       </div>
                       <div className="bg-white px-4 py-2 rounded-lg shadow-sm">
-                        <span className="text-emerald-600 font-bold text-lg">{item.fee}</span>
+                        <span className="text-[#00d2ff] font-bold text-lg">{item.fee}</span>
                       </div>
                     </div>
                   ))}
@@ -209,7 +207,7 @@ export default function EmbassyDetailPage({ params }: { params: { id: string } }
                 <ul className="space-y-3">
                   {embassy.requirements.map((req, idx) => (
                     <li key={idx} className="flex items-start gap-3">
-                      <div className="w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <div className="w-6 h-6 bg-[#00d2ff] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                         <span className="text-white text-sm font-bold">{idx + 1}</span>
                       </div>
                       <span className="text-gray-700 text-lg">{req}</span>
@@ -223,14 +221,13 @@ export default function EmbassyDetailPage({ params }: { params: { id: string } }
           {/* Contact Sidebar */}
           <div className="space-y-6">
             
-            {/* Working Days - No longer sticky */}
+            {/* Working Days */}
             {embassy.workingDays && (
               <div className="bg-white rounded-2xl shadow-lg p-6">
                 <h3 className="text-xl font-bold text-gray-800 mb-4">مواعيد العمل</h3>
                 
-                {/* Hours */}
-                <div className="flex items-center gap-3 p-4 bg-emerald-50 rounded-xl mb-4">
-                  <Clock className="text-emerald-600 flex-shrink-0" size={24} />
+                <div className="flex items-center gap-3 p-4 bg-cyan-50 rounded-xl mb-4">
+                  <Clock className="text-[#00d2ff] flex-shrink-0" size={24} />
                   <div>
                     <p className="text-sm text-gray-600 mb-1">ساعات العمل</p>
                     <p className="text-gray-800 font-bold text-lg">{embassy.hours}</p>
@@ -268,37 +265,34 @@ export default function EmbassyDetailPage({ params }: { params: { id: string } }
               <h2 className="text-xl font-bold text-gray-800 mb-6">معلومات الاتصال</h2>
               
               <div className="space-y-4">
-                {/* Address */}
                 <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
-                  <MapPin className="text-emerald-600 flex-shrink-0 mt-1" size={20} />
+                  <MapPin className="text-[#00d2ff] flex-shrink-0 mt-1" size={20} />
                   <div>
                     <p className="text-xs text-gray-500 mb-1">العنوان</p>
                     <p className="text-gray-800 font-medium">{embassy.address}</p>
                   </div>
                 </div>
 
-                {/* Phone */}
                 <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
-                  <Phone className="text-emerald-600 flex-shrink-0 mt-1" size={20} />
+                  <Phone className="text-[#00d2ff] flex-shrink-0 mt-1" size={20} />
                   <div className="flex-1">
                     <p className="text-xs text-gray-500 mb-1">رقم الهاتف</p>
                     <a 
                       href={`tel:${embassy.phone}`}
-                      className="text-gray-800 font-medium hover:text-emerald-600 transition-colors"
+                      className="text-gray-800 font-medium hover:text-[#00d2ff] transition-colors"
                     >
                       {embassy.phone}
                     </a>
                   </div>
                 </div>
 
-                {/* Email */}
                 <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
-                  <Mail className="text-emerald-600 flex-shrink-0 mt-1" size={20} />
+                  <Mail className="text-[#00d2ff] flex-shrink-0 mt-1" size={20} />
                   <div className="flex-1">
                     <p className="text-xs text-gray-500 mb-1">البريد الإلكتروني</p>
                     <a 
                       href={`mailto:${embassy.email}`}
-                      className="text-gray-800 font-medium hover:text-emerald-600 transition-colors break-all"
+                      className="text-gray-800 font-medium hover:text-[#00d2ff] transition-colors break-all"
                     >
                       {embassy.email}
                     </a>
@@ -306,11 +300,10 @@ export default function EmbassyDetailPage({ params }: { params: { id: string } }
                 </div>
               </div>
 
-              {/* Action Buttons */}
               <div className="mt-6 space-y-3">
                 <a
                   href={`tel:${embassy.phone}`}
-                  className="flex items-center justify-center gap-2 w-full bg-emerald-500 text-white py-3 rounded-xl font-bold hover:bg-emerald-600 transition-colors"
+                  className="flex items-center justify-center gap-2 w-full bg-[#00d2ff] text-white py-3 rounded-xl font-bold hover:bg-[#00b8e6] transition-colors"
                 >
                   <Phone size={20} />
                   <span>اتصل الآن</span>
@@ -320,7 +313,7 @@ export default function EmbassyDetailPage({ params }: { params: { id: string } }
                   href={embassy.mapUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full bg-blue-500 text-white py-3 rounded-xl font-bold hover:bg-blue-600 transition-colors"
+                  className="flex items-center justify-center gap-2 w-full bg-[#4facfe] text-white py-3 rounded-xl font-bold hover:bg-[#3a8ed8] transition-colors"
                 >
                   <MapPin size={20} />
                   <span>عرض على الخريطة</span>
@@ -334,4 +327,3 @@ export default function EmbassyDetailPage({ params }: { params: { id: string } }
     </div>
   );
 }
-

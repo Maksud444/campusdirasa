@@ -12,7 +12,7 @@ export default function FormsPage() {
       description: 'نماذج تصديق الإقامة - متاح قريباً',
       icon: FileText,
       href: '/forms/iqama',
-      bgGradient: 'from-emerald-500 to-teal-500',
+      bgGradient: 'from-[#1e3c72] to-[#2a5298]',
       totalForms: 0,
       image: '📄',
       classes: []
@@ -24,7 +24,7 @@ export default function FormsPage() {
       description: 'نماذج التقديم لبرنامج تدارس',
       icon: BookOpen,
       href: '/forms/tadarus',
-      bgGradient: 'from-blue-500 via-indigo-500 to-purple-500',
+      bgGradient: 'from-[#667eea] to-[#764ba2]',
       totalForms: 6,
       image: '📚',
       classes: []
@@ -36,7 +36,7 @@ export default function FormsPage() {
       description: 'تحقق من قبول طلبك للطلاب الجدد',
       icon: CheckCircle,
       href: '/forms/admission-check',
-      bgGradient: 'from-green-500 to-emerald-600',
+      bgGradient: 'from-[#00d2ff] to-[#3a7bd5]',
       totalForms: 1,
       image: '✅',
       classes: []
@@ -51,7 +51,7 @@ export default function FormsPage() {
       description: 'نموذج التقديم للقبول في المعهد - للطلاب الجدد',
       icon: FileDown,
       pdfLink: '/forms/pdfs/admission-form.pdf',
-      bgGradient: 'from-orange-500 to-red-500',
+      bgGradient: 'from-[#4facfe] to-[#00f2fe]',
       image: '📝',
       fileSize: '2 MB'
     },
@@ -62,7 +62,7 @@ export default function FormsPage() {
       description: 'استمارة تجديد الإقامة للطلاب الأجانب',
       icon: FileUser,
       pdfLink: '/forms/pdfs/iqama-renewal.pdf',
-      bgGradient: 'from-cyan-500 to-blue-600',
+      bgGradient: 'from-[#00d2ff] to-[#3a7bd5]',
       image: '🛂',
       fileSize: '1.5 MB'
     },
@@ -73,7 +73,7 @@ export default function FormsPage() {
       description: 'استمارة طلب إجازة أو غياب',
       icon: Calendar,
       pdfLink: '/forms/pdfs/leave-application.pdf',
-      bgGradient: 'from-purple-500 to-pink-500',
+      bgGradient: 'from-[#667eea] to-[#764ba2]',
       image: '📅',
       fileSize: '1 MB'
     }
@@ -90,7 +90,8 @@ export default function FormsPage() {
 
   return (
     <div className="min-h-screen bg-gray-50" dir="rtl">
-      <div className="bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 py-16 px-4">
+      {/* Hero - Same as Homepage */}
+      <div className="bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] py-16 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <div className="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-6 backdrop-blur-sm">
             <FileText className="text-white" size={40} />
@@ -101,9 +102,10 @@ export default function FormsPage() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 py-16">
+        {/* PDF Forms Section */}
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-8">
-            <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center shadow-lg">
+            <div className="w-12 h-12 bg-gradient-to-br from-[#4facfe] to-[#00f2fe] rounded-xl flex items-center justify-center shadow-lg">
               <Download className="text-white" size={24} />
             </div>
             <div>
@@ -116,10 +118,33 @@ export default function FormsPage() {
             {pdfForms.map((form) => {
               const Icon = form.icon;
               return (
-                <div key={form.id} className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all overflow-hidden border border-gray-100">
+                <div 
+                  key={form.id} 
+                  className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 card-3d-tilt"
+                  style={{
+                    transformStyle: 'preserve-3d',
+                    perspective: '1000px'
+                  }}
+                  onMouseMove={(e) => {
+                    const card = e.currentTarget;
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = (y - centerY) / 10;
+                    const rotateY = (centerX - x) / 10;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+                  }}
+                  onMouseLeave={(e) => {
+                    const card = e.currentTarget;
+                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+                  }}
+                >
                   <div className={`bg-gradient-to-br ${form.bgGradient} p-6 text-center relative overflow-hidden`}>
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full" style={{ marginRight: '-4rem', marginTop: '-4rem' }}></div>
-                    <div className="text-6xl mb-3 relative z-10">{form.image}</div>
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-all duration-700"></div>
+                    <div className="text-6xl mb-3 relative z-10 group-hover:scale-110 transition-transform duration-500">{form.image}</div>
                     <h3 className="text-xl font-bold text-white relative z-10 drop-shadow-lg">{form.title}</h3>
                   </div>
 
@@ -129,7 +154,10 @@ export default function FormsPage() {
                       <FileText size={16} />
                       <span>حجم الملف: {form.fileSize}</span>
                     </div>
-                    <button onClick={() => handleDownload(form.pdfLink, form.title)} className={`w-full flex items-center justify-center gap-2 bg-gradient-to-r ${form.bgGradient} text-white px-6 py-3 rounded-xl hover:shadow-xl transition-all font-bold group-hover:scale-105 transform`}>
+                    <button 
+                      onClick={() => handleDownload(form.pdfLink, form.title)} 
+                      className={`w-full flex items-center justify-center gap-2 bg-gradient-to-r ${form.bgGradient} text-white px-6 py-3 rounded-xl hover:shadow-xl transition-all font-bold`}
+                    >
                       <Download size={20} />
                       <span>تحميل النموذج</span>
                     </button>
@@ -142,9 +170,10 @@ export default function FormsPage() {
 
         <div className="my-16 border-t-2 border-gray-200"></div>
 
+        {/* Admission Check Section */}
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-8">
-            <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg">
+            <div className="w-12 h-12 bg-gradient-to-br from-[#00d2ff] to-[#3a7bd5] rounded-xl flex items-center justify-center shadow-lg">
               <CheckCircle className="text-white" size={24} />
             </div>
             <div>
@@ -153,10 +182,10 @@ export default function FormsPage() {
             </div>
           </div>
 
-          <a href="https://forms.google.com/your-form-link-here" target="_blank" rel="noopener noreferrer" className="block group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all overflow-hidden border-2 border-green-200 hover:border-green-400">
-            <div className="bg-gradient-to-r from-green-500 to-emerald-600 p-12 text-center relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full" style={{ marginRight: '-5rem', marginTop: '-5rem' }}></div>
-              <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/10 rounded-full" style={{ marginLeft: '-4rem', marginBottom: '-4rem' }}></div>
+          <a href="https://forms.google.com/your-form-link-here" target="_blank" rel="noopener noreferrer" className="block group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all overflow-hidden border-2 border-cyan-200 hover:border-cyan-400">
+            <div className="bg-gradient-to-r from-[#00d2ff] to-[#3a7bd5] p-12 text-center relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full -mr-20 -mt-20"></div>
+              <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/10 rounded-full -ml-16 -mb-16"></div>
               <div className="text-8xl mb-6 relative z-10">✅</div>
               <h3 className="text-4xl font-bold text-white mb-4 relative z-10 drop-shadow-lg">التحقق من قبول دراسة خاصة</h3>
               <p className="text-2xl text-white/95 mb-6 relative z-10 drop-shadow-md leading-relaxed max-w-3xl mx-auto">للتحقق من قبول اسمك في دراسة خاصة، قم بتعبئة النموذج بالاسم الكامل ورقم الجواز</p>
@@ -166,7 +195,7 @@ export default function FormsPage() {
               </div>
             </div>
 
-            <div className="p-8 bg-gradient-to-br from-green-50 to-emerald-50">
+            <div className="p-8 bg-gradient-to-br from-cyan-50 to-blue-50">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                 <div className="text-center p-4 bg-white rounded-xl shadow-sm">
                   <div className="text-3xl mb-2">📝</div>
@@ -184,9 +213,9 @@ export default function FormsPage() {
                   <p className="text-sm text-gray-600">اعرف نتيجة القبول</p>
                 </div>
               </div>
-              <div className="bg-green-100 border-2 border-green-300 rounded-xl p-6 text-center">
-                <p className="text-green-800 font-bold text-lg mb-2">ملاحظة مهمة</p>
-                <p className="text-green-700">يرجى التأكد من صحة البيانات المدخلة - الاسم الكامل ورقم الجواز كما هو في الوثائق الرسمية</p>
+              <div className="bg-cyan-100 border-2 border-cyan-300 rounded-xl p-6 text-center">
+                <p className="text-cyan-900 font-bold text-lg mb-2">ملاحظة مهمة</p>
+                <p className="text-cyan-800">يرجى التأكد من صحة البيانات المدخلة - الاسم الكامل ورقم الجواز كما هو في الوثائق الرسمية</p>
               </div>
             </div>
           </a>
@@ -194,9 +223,10 @@ export default function FormsPage() {
 
         <div className="my-16 border-t-2 border-gray-200"></div>
 
+        {/* Online Forms Section */}
         <div>
           <div className="flex items-center gap-3 mb-8">
-            <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center shadow-lg">
+            <div className="w-12 h-12 bg-gradient-to-br from-[#1e3c72] to-[#2a5298] rounded-xl flex items-center justify-center shadow-lg">
               <FileText className="text-white" size={24} />
             </div>
             <div>
@@ -209,10 +239,34 @@ export default function FormsPage() {
             {formCategories.map((category) => {
               const Icon = category.icon;
               return (
-                <Link key={category.id} href={category.href} className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all overflow-hidden border border-gray-100">
+                <Link 
+                  key={category.id} 
+                  href={category.href} 
+                  className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 card-3d-tilt"
+                  style={{
+                    transformStyle: 'preserve-3d',
+                    perspective: '1000px'
+                  }}
+                  onMouseMove={(e) => {
+                    const card = e.currentTarget;
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = (y - centerY) / 10;
+                    const rotateY = (centerX - x) / 10;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+                  }}
+                  onMouseLeave={(e) => {
+                    const card = e.currentTarget;
+                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+                  }}
+                >
                   <div className={`bg-gradient-to-r ${category.bgGradient} p-8 text-center relative overflow-hidden`}>
                     <div className="absolute inset-0 bg-black/5 group-hover:bg-black/10 transition-colors"></div>
-                    <div className="text-7xl mb-4 relative z-10">{category.image}</div>
+                    <div className="text-7xl mb-4 relative z-10 group-hover:scale-110 transition-transform duration-500">{category.image}</div>
                     <h3 className="text-3xl font-bold text-white mb-2 relative z-10 drop-shadow-lg">{category.title}</h3>
                     <p className="text-white/90 relative z-10 drop-shadow-md">{category.totalForms} نماذج متاحة</p>
                   </div>
@@ -230,11 +284,12 @@ export default function FormsPage() {
           </div>
         </div>
 
-        <div className="mt-16 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-2xl p-10 text-center shadow-2xl">
+        {/* CTA */}
+        <div className="mt-16 bg-gradient-to-r from-[#00d2ff] to-[#3a7bd5] rounded-2xl p-10 text-center shadow-2xl">
           <FileText className="text-white mx-auto mb-4" size={48} />
           <h2 className="text-3xl font-bold text-white mb-4">هل لديك أي نصائح لتحسين عملنا؟</h2>
           <p className="text-white/90 text-lg mb-6 max-w-2xl mx-auto">إذا واجهت أي مشكلة في ملء النماذج أو لديك استفسار، تواصل معنا</p>
-          <Link href="/feedback" className="inline-block bg-white text-emerald-600 px-8 py-3 rounded-lg font-bold hover:shadow-xl transition-all transform hover:scale-105">تواصل معنا</Link>
+          <Link href="/feedback" className="inline-block bg-white text-[#00d2ff] px-8 py-3 rounded-lg font-bold hover:shadow-xl transition-all transform hover:scale-105">تواصل معنا</Link>
         </div>
       </div>
     </div>
