@@ -55,13 +55,13 @@ export default function RemovedPDFPage() {
     <div className="min-h-screen bg-gray-50" dir="rtl">
       <div className="bg-white border-b border-gray-200 py-4 px-4">
         <div className="max-w-7xl mx-auto flex items-center gap-2 text-sm">
-          <Link href="/qawaaim" className="text-slate-600 hover:underline">القوائم</Link>
+          <Link href="/qawaaim" className="text-[#667eea] hover:underline">القوائم</Link>
           <ChevronLeft size={16} className="text-gray-400" />
           <span className="text-gray-600">المفصولات</span>
         </div>
       </div>
 
-      <div className="bg-gradient-to-r from-slate-600 to-slate-700 py-12 px-4">
+      <div className="bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] py-12 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-4">
             <div className="text-6xl">📋</div>
@@ -88,17 +88,40 @@ export default function RemovedPDFPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {pdfList.map((pdf) => (
-            <div key={pdf.id} className="bg-white rounded-xl shadow-md hover:shadow-2xl transition-all border border-gray-100 group overflow-hidden">
-              <div className="bg-gradient-to-br from-slate-500 to-slate-600 p-8 text-center relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full" style={{ marginRight: '-3rem', marginTop: '-3rem' }}></div>
-                <div className="text-6xl mb-4 relative z-10">{pdf.coverEmoji}</div>
+            <div 
+              key={pdf.id} 
+              className="bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-500 border border-gray-100 group overflow-hidden card-3d-tilt"
+              style={{
+                transformStyle: 'preserve-3d',
+                perspective: '1000px'
+              }}
+              onMouseMove={(e) => {
+                const card = e.currentTarget;
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+              }}
+              onMouseLeave={(e) => {
+                const card = e.currentTarget;
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+              }}
+            >
+              <div className="bg-gradient-to-br from-[#667eea] to-[#764ba2] p-8 text-center relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-all duration-700"></div>
+                <div className="text-6xl mb-4 relative z-10 group-hover:scale-110 transition-transform duration-500">{pdf.coverEmoji}</div>
                 <h3 className="text-2xl font-bold text-white relative z-10 drop-shadow-lg mb-2">{pdf.period}</h3>
                 <p className="text-lg text-white/90 relative z-10">قائمة المفصولات</p>
               </div>
 
               <div className="p-6">
                 <div className="flex gap-2">
-                  <button onClick={() => handleViewPDF(pdf)} className="flex-1 flex items-center justify-center gap-2 bg-slate-600 text-white px-4 py-3 rounded-lg hover:bg-slate-700 transition-colors font-medium">
+                  <button onClick={() => handleViewPDF(pdf)} className="flex-1 flex items-center justify-center gap-2 bg-[#667eea] text-white px-4 py-3 rounded-lg hover:bg-[#5568d3] transition-colors font-medium">
                     <Eye size={18} />
                     <span>عرض</span>
                   </button>
@@ -111,11 +134,11 @@ export default function RemovedPDFPage() {
           ))}
         </div>
 
-        <div className="mt-16 bg-gradient-to-r from-slate-600 to-slate-700 rounded-2xl p-10 text-center shadow-xl">
+        <div className="mt-16 bg-gradient-to-r from-[#667eea] to-[#764ba2] rounded-2xl p-10 text-center shadow-xl">
           <UserX className="text-white mx-auto mb-4" size={48} />
           <h2 className="text-3xl font-bold text-white mb-4">لديك استفسار أو اعتراض؟</h2>
           <p className="text-white/90 text-lg mb-6 max-w-2xl mx-auto">إذا كان لديك اعتراض على قرار الفصل أو تحتاج لمزيد من المعلومات، تواصل مع الإدارة</p>
-          <Link href="/feedback" className="inline-block bg-white text-slate-700 px-8 py-3 rounded-lg font-bold hover:shadow-xl transition-all transform hover:scale-105">تواصل مع الإدارة</Link>
+          <Link href="/feedback" className="inline-block bg-white text-[#667eea] px-8 py-3 rounded-lg font-bold hover:shadow-xl transition-all transform hover:scale-105">تواصل مع الإدارة</Link>
         </div>
       </div>
 

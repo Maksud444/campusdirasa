@@ -31,52 +31,16 @@ export default function ExamsPDFPage() {
   const [selectedPDF, setSelectedPDF] = useState<PDF | null>(null);
 
   const pdfList: PDF[] = [
-    {
-      id: 1,
-      className: 'مبتدئ أول',
-      pdfUrl: 'https://azharguideline.com/sixbook/rutinurdu.pdf',
-      coverEmoji: '📝'
-    },
-    {
-      id: 2,
-      className: 'مبتدئ ثاني',
-      pdfUrl: 'https://azharguideline.com/sixbook/rutinurdu.pdf',
-      coverEmoji: '📝'
-    },
-    {
-      id: 3,
-      className: 'متوسط أول',
-      pdfUrl: 'https://azharguideline.com/sixbook/rutinurdu.pdf',
-      coverEmoji: '📝'
-    },
-    {
-      id: 4,
-      className: 'متوسط ثاني',
-      pdfUrl: 'https://azharguideline.com/sixbook/rutinurdu.pdf',
-      coverEmoji: '📝'
-    },
-    {
-      id: 5,
-      className: 'متقدم أول',
-      pdfUrl: 'https://azharguideline.com/sixbook/rutinurdu.pdf',
-      coverEmoji: '📝'
-    },
-    {
-      id: 6,
-      className: 'متقدم ثاني',
-      pdfUrl: 'https://azharguideline.com/sixbook/rutinurdu.pdf',
-      coverEmoji: '📝'
-    }
+    { id: 1, className: 'مبتدئ أول', pdfUrl: 'https://azharguideline.com/sixbook/rutinurdu.pdf', coverEmoji: '📝' },
+    { id: 2, className: 'مبتدئ ثاني', pdfUrl: 'https://azharguideline.com/sixbook/rutinurdu.pdf', coverEmoji: '📝' },
+    { id: 3, className: 'متوسط أول', pdfUrl: 'https://azharguideline.com/sixbook/rutinurdu.pdf', coverEmoji: '📝' },
+    { id: 4, className: 'متوسط ثاني', pdfUrl: 'https://azharguideline.com/sixbook/rutinurdu.pdf', coverEmoji: '📝' },
+    { id: 5, className: 'متقدم أول', pdfUrl: 'https://azharguideline.com/sixbook/rutinurdu.pdf', coverEmoji: '📝' },
+    { id: 6, className: 'متقدم ثاني', pdfUrl: 'https://azharguideline.com/sixbook/rutinurdu.pdf', coverEmoji: '📝' }
   ];
 
-  const handleViewPDF = (pdf: PDF) => {
-    setSelectedPDF(pdf);
-  };
-
-  const handleCloseViewer = () => {
-    setSelectedPDF(null);
-  };
-
+  const handleViewPDF = (pdf: PDF) => setSelectedPDF(pdf);
+  const handleCloseViewer = () => setSelectedPDF(null);
   const handleDownload = (pdf: PDF) => {
     const link = document.createElement('a');
     link.href = pdf.pdfUrl;
@@ -91,13 +55,13 @@ export default function ExamsPDFPage() {
     <div className="min-h-screen bg-gray-50" dir="rtl">
       <div className="bg-white border-b border-gray-200 py-4 px-4">
         <div className="max-w-7xl mx-auto flex items-center gap-2 text-sm">
-          <Link href="/qawaaim" className="text-blue-600 hover:underline">القوائم</Link>
+          <Link href="/qawaaim" className="text-[#4facfe] hover:underline">القوائم</Link>
           <ChevronLeft size={16} className="text-gray-400" />
           <span className="text-gray-600">جداول الامتحانات</span>
         </div>
       </div>
 
-      <div className="bg-gradient-to-r from-blue-500 to-indigo-500 py-12 px-4">
+      <div className="bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] py-12 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-4">
             <div className="text-6xl">📝</div>
@@ -110,31 +74,54 @@ export default function ExamsPDFPage() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-8">
+        <div className="bg-cyan-50 border border-cyan-200 rounded-xl p-6 mb-8">
           <div className="flex items-start gap-4">
-            <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+            <div className="w-10 h-10 bg-[#4facfe] rounded-full flex items-center justify-center flex-shrink-0">
               <span className="text-white text-lg">ℹ</span>
             </div>
             <div>
-              <h3 className="font-bold text-blue-900 text-lg mb-2">معلومات الامتحانات</h3>
-              <p className="text-blue-800 text-sm">تأكد من مراجعة جدول الامتحانات والالتزام بالمواعيد المحددة. في حالة وجود استفسار، تواصل مع مكتب الامتحانات.</p>
+              <h3 className="font-bold text-gray-900 text-lg mb-2">معلومات الامتحانات</h3>
+              <p className="text-gray-700 text-sm">تأكد من مراجعة جدول الامتحانات والالتزام بالمواعيد المحددة. في حالة وجود استفسار، تواصل مع مكتب الامتحانات.</p>
             </div>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {pdfList.map((pdf) => (
-            <div key={pdf.id} className="bg-white rounded-xl shadow-md hover:shadow-2xl transition-all border border-gray-100 group overflow-hidden">
-              <div className="bg-gradient-to-br from-blue-500 to-indigo-500 p-8 text-center relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full" style={{ marginRight: '-3rem', marginTop: '-3rem' }}></div>
-                <div className="text-6xl mb-4 relative z-10">{pdf.coverEmoji}</div>
+            <div 
+              key={pdf.id} 
+              className="bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-500 border border-gray-100 group overflow-hidden card-3d-tilt"
+              style={{
+                transformStyle: 'preserve-3d',
+                perspective: '1000px'
+              }}
+              onMouseMove={(e) => {
+                const card = e.currentTarget;
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+              }}
+              onMouseLeave={(e) => {
+                const card = e.currentTarget;
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+              }}
+            >
+              <div className="bg-gradient-to-br from-[#4facfe] to-[#00f2fe] p-8 text-center relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-all duration-700"></div>
+                <div className="text-6xl mb-4 relative z-10 group-hover:scale-110 transition-transform duration-500">{pdf.coverEmoji}</div>
                 <h3 className="text-2xl font-bold text-white relative z-10 drop-shadow-lg mb-2">{pdf.className}</h3>
                 <p className="text-lg text-white/90 relative z-10">جدول الامتحانات</p>
               </div>
 
               <div className="p-6">
                 <div className="flex gap-2">
-                  <button onClick={() => handleViewPDF(pdf)} className="flex-1 flex items-center justify-center gap-2 bg-blue-500 text-white px-4 py-3 rounded-lg hover:bg-blue-600 transition-colors font-medium">
+                  <button onClick={() => handleViewPDF(pdf)} className="flex-1 flex items-center justify-center gap-2 bg-[#4facfe] text-white px-4 py-3 rounded-lg hover:bg-[#3a8ed8] transition-colors font-medium">
                     <Eye size={18} />
                     <span>عرض</span>
                   </button>
@@ -147,11 +134,11 @@ export default function ExamsPDFPage() {
           ))}
         </div>
 
-        <div className="mt-16 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-2xl p-10 text-center shadow-xl">
+        <div className="mt-16 bg-gradient-to-r from-[#4facfe] to-[#00f2fe] rounded-2xl p-10 text-center shadow-xl">
           <BookOpen className="text-white mx-auto mb-4" size={48} />
           <h2 className="text-3xl font-bold text-white mb-4">لديك استفسار عن الامتحانات؟</h2>
           <p className="text-white/90 text-lg mb-6 max-w-2xl mx-auto">تواصل مع مكتب الامتحانات للحصول على المعلومات أو الإجابة على أي استفسار</p>
-          <Link href="/feedback" className="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg font-bold hover:shadow-xl transition-all transform hover:scale-105">تواصل معنا</Link>
+          <Link href="/feedback" className="inline-block bg-white text-[#4facfe] px-8 py-3 rounded-lg font-bold hover:shadow-xl transition-all transform hover:scale-105">تواصل معنا</Link>
         </div>
       </div>
 

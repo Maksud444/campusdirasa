@@ -55,13 +55,13 @@ export default function IqamaPDFPage() {
     <div className="min-h-screen bg-gray-50" dir="rtl">
       <div className="bg-white border-b border-gray-200 py-4 px-4">
         <div className="max-w-7xl mx-auto flex items-center gap-2 text-sm">
-          <Link href="/qawaaim" className="text-emerald-600 hover:underline">القوائم</Link>
+          <Link href="/qawaaim" className="text-[#00d2ff] hover:underline">القوائم</Link>
           <ChevronLeft size={16} className="text-gray-400" />
           <span className="text-gray-600">قوائم الإقامة</span>
         </div>
       </div>
 
-      <div className="bg-gradient-to-r from-emerald-500 to-teal-500 py-12 px-4">
+      <div className="bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] py-12 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-4">
             <div className="text-6xl">📄</div>
@@ -74,31 +74,54 @@ export default function IqamaPDFPage() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-6 mb-8">
+        <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-8">
           <div className="flex items-start gap-4">
-            <div className="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center flex-shrink-0">
+            <div className="w-10 h-10 bg-[#00d2ff] rounded-full flex items-center justify-center flex-shrink-0">
               <span className="text-white text-lg">ℹ</span>
             </div>
             <div>
-              <h3 className="font-bold text-emerald-900 text-lg mb-2">معلومات القراءة</h3>
-              <p className="text-emerald-800 text-sm">يمكنك قراءة القوائم مباشرة في المتصفح أو تحميلها. إذا لم تجد اسمك، يرجى التواصل مع الإدارة.</p>
+              <h3 className="font-bold text-gray-900 text-lg mb-2">معلومات القراءة</h3>
+              <p className="text-gray-700 text-sm">يمكنك قراءة القوائم مباشرة في المتصفح أو تحميلها. إذا لم تجد اسمك، يرجى التواصل مع الإدارة.</p>
             </div>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {pdfList.map((pdf) => (
-            <div key={pdf.id} className="bg-white rounded-xl shadow-md hover:shadow-2xl transition-all border border-gray-100 group overflow-hidden">
-              <div className="bg-gradient-to-br from-emerald-500 to-teal-500 p-8 text-center relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full" style={{ marginRight: '-3rem', marginTop: '-3rem' }}></div>
-                <div className="text-6xl mb-4 relative z-10">{pdf.coverEmoji}</div>
+            <div 
+              key={pdf.id} 
+              className="bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-500 border border-gray-100 group overflow-hidden card-3d-tilt"
+              style={{
+                transformStyle: 'preserve-3d',
+                perspective: '1000px'
+              }}
+              onMouseMove={(e) => {
+                const card = e.currentTarget;
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+              }}
+              onMouseLeave={(e) => {
+                const card = e.currentTarget;
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+              }}
+            >
+              <div className="bg-gradient-to-br from-[#1e3c72] to-[#2a5298] p-8 text-center relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-all duration-700"></div>
+                <div className="text-6xl mb-4 relative z-10 group-hover:scale-110 transition-transform duration-500">{pdf.coverEmoji}</div>
                 <h3 className="text-2xl font-bold text-white relative z-10 drop-shadow-lg mb-2">{pdf.className}</h3>
                 <p className="text-lg text-white/90 relative z-10">قائمة الإقامة</p>
               </div>
 
               <div className="p-6">
                 <div className="flex gap-2">
-                  <button onClick={() => handleViewPDF(pdf)} className="flex-1 flex items-center justify-center gap-2 bg-emerald-500 text-white px-4 py-3 rounded-lg hover:bg-emerald-600 transition-colors font-medium">
+                  <button onClick={() => handleViewPDF(pdf)} className="flex-1 flex items-center justify-center gap-2 bg-[#00d2ff] text-white px-4 py-3 rounded-lg hover:bg-[#00b8e6] transition-colors font-medium">
                     <Eye size={18} />
                     <span>عرض</span>
                   </button>
@@ -111,11 +134,11 @@ export default function IqamaPDFPage() {
           ))}
         </div>
 
-        <div className="mt-16 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-2xl p-10 text-center shadow-xl">
+        <div className="mt-16 bg-gradient-to-r from-[#00d2ff] to-[#3a7bd5] rounded-2xl p-10 text-center shadow-xl">
           <FileText className="text-white mx-auto mb-4" size={48} />
           <h2 className="text-3xl font-bold text-white mb-4">لم تجد اسمك في القائمة؟</h2>
           <p className="text-white/90 text-lg mb-6 max-w-2xl mx-auto">تواصل مع الإدارة للحصول على المساعدة أو التأكد من بياناتك</p>
-          <Link href="/feedback" className="inline-block bg-white text-emerald-600 px-8 py-3 rounded-lg font-bold hover:shadow-xl transition-all transform hover:scale-105">تواصل معنا</Link>
+          <Link href="/feedback" className="inline-block bg-white text-[#00d2ff] px-8 py-3 rounded-lg font-bold hover:shadow-xl transition-all transform hover:scale-105">تواصل معنا</Link>
         </div>
       </div>
 

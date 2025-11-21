@@ -25,26 +25,26 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-gray-900 text-white py-12 mt-auto">
+    <footer className="bg-[#1F3942] text-white py-12 mt-auto">
       <div className="max-w-7xl mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* About Section */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 bg-[#00d2ff] rounded-lg flex items-center justify-center shadow-lg">
                 <BookOpen className="text-white" size={24} />
               </div>
               <span className="text-xl font-bold">كامبوس دراسة</span>
             </div>
-            <p className="text-gray-400 mb-4">
+            <p className="text-white/70 mb-4">
               منصة شاملة لخدمات الطلاب في مصر
             </p>
-            <div className="flex flex-col gap-2 text-gray-400 text-sm">
-              <a href="mailto:campusdirasa@gmail.com" className="flex items-center gap-2 hover:text-emerald-400 transition-colors">
+            <div className="flex flex-col gap-2 text-white/60 text-sm">
+              <a href="mailto:campusdirasa@gmail.com" className="flex items-center gap-2 hover:text-[#00d2ff] transition-colors">
                 <Mail size={16} />
                 <span>campusdirasa@gmail.com</span>
               </a>
-              <a href="tel:+201234567890" className="flex items-center gap-2 hover:text-emerald-400 transition-colors">
+              <a href="tel:+201234567890" className="flex items-center gap-2 hover:text-[#00d2ff] transition-colors">
                 <Phone size={16} />
                 <span dir="ltr">+20 123 456 7890</span>
               </a>
@@ -57,15 +57,15 @@ export default function Footer() {
           
           {/* PDF Lists */}
           <div>
-            <h3 className="text-lg font-bold mb-4">قوائم PDF</h3>
+            <h3 className="text-lg font-bold mb-4 text-[#00d2ff]">قوائم PDF</h3>
             <ul className="space-y-2">
               {pdfCategories.map((item) => (
                 <li key={item.id}>
                   <Link 
                     href={item.href} 
-                    className="text-gray-400 hover:text-emerald-400 transition-colors flex items-center gap-2"
+                    className="text-white/70 hover:text-[#00d2ff] transition-colors flex items-center gap-2 group"
                   >
-                    <item.icon size={16} />
+                    <item.icon size={16} className="group-hover:scale-110 transition-transform" />
                     <span>{item.title}</span>
                   </Link>
                 </li>
@@ -75,15 +75,15 @@ export default function Footer() {
           
           {/* Services */}
           <div>
-            <h3 className="text-lg font-bold mb-4">الخدمات</h3>
+            <h3 className="text-lg font-bold mb-4 text-[#00d2ff]">الخدمات</h3>
             <ul className="space-y-2">
               {services.map((item) => (
                 <li key={item.id}>
                   <Link 
                     href={item.href} 
-                    className="text-gray-400 hover:text-emerald-400 transition-colors flex items-center gap-2"
+                    className="text-white/70 hover:text-[#00d2ff] transition-colors flex items-center gap-2 group"
                   >
-                    <item.icon size={16} />
+                    <item.icon size={16} className="group-hover:scale-110 transition-transform" />
                     <span>{item.title}</span>
                   </Link>
                 </li>
@@ -93,13 +93,13 @@ export default function Footer() {
           
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-bold mb-4">روابط سريعة</h3>
+            <h3 className="text-lg font-bold mb-4 text-[#00d2ff]">روابط سريعة</h3>
             <ul className="space-y-2">
               {quickLinks.map((link, idx) => (
                 <li key={idx}>
                   <Link 
                     href={link.href} 
-                    className="text-gray-400 hover:text-emerald-400 transition-colors"
+                    className="text-white/70 hover:text-[#00d2ff] transition-colors inline-block hover:translate-x-[-4px] transition-all"
                   >
                     {link.title}
                   </Link>
@@ -110,16 +110,17 @@ export default function Footer() {
         </div>
         
         {/* Bottom Bar */}
-        <div className="border-t border-gray-800 pt-8">
+        <div className="border-t border-white/10 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-400 text-sm">
+            <p className="text-white/60 text-sm">
               © 2025 كامبوس دراسة. جميع الحقوق محفوظة.
             </p>
             <div className="flex gap-4 text-sm">
-              <Link href="/privacy" className="text-gray-400 hover:text-emerald-400 transition-colors">
+              <Link href="/privacy" className="text-white/60 hover:text-[#00d2ff] transition-colors">
                 سياسة الخصوصية
               </Link>
-              <Link href="/terms" className="text-gray-400 hover:text-emerald-400 transition-colors">
+              <span className="text-white/30">•</span>
+              <Link href="/terms" className="text-white/60 hover:text-[#00d2ff] transition-colors">
                 الشروط والأحكام
               </Link>
             </div>

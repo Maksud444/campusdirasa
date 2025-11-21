@@ -51,15 +51,16 @@ export default function TopNav() {
 
   return (
     <>
-      <header className="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-200">
+      {/* Solid Dark Blue Navbar - Color #1F3942 */}
+      <header className="bg-[#1F3942] shadow-lg sticky top-0 z-50 border-b border-white/10">
         <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo Section */}
             <Link href="/" className="flex items-center gap-3 flex-shrink-0">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center shadow-lg">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#00d2ff] rounded-lg flex items-center justify-center shadow-lg">
                 <BookOpen className="text-white" size={24} />
               </div>
-              <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent drop-shadow-sm">
+              <span className="text-xl sm:text-2xl font-bold text-white drop-shadow-md">
                 كامبوس دراسة
               </span>
             </Link>
@@ -69,10 +70,10 @@ export default function TopNav() {
               {/* Home */}
               <Link
                 href="/"
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
                   isActive('/') 
-                    ? 'bg-emerald-50 text-emerald-600' 
-                    : 'text-gray-700 hover:text-emerald-600 hover:bg-emerald-50'
+                    ? 'bg-[#00d2ff] text-white shadow-lg' 
+                    : 'text-white/80 hover:text-white hover:bg-white/10'
                 }`}
               >
                 <Home size={18} />
@@ -82,10 +83,10 @@ export default function TopNav() {
               {/* News */}
               <Link
                 href="/news"
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
                   isActive('/news') 
-                    ? 'bg-emerald-50 text-emerald-600' 
-                    : 'text-gray-700 hover:text-emerald-600 hover:bg-emerald-50'
+                    ? 'bg-[#00d2ff] text-white shadow-lg' 
+                    : 'text-white/80 hover:text-white hover:bg-white/10'
                 }`}
               >
                 <Newspaper size={18} />
@@ -95,10 +96,10 @@ export default function TopNav() {
               {/* PDF Lists */}
               <Link
                 href="/qawaaim"
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
                   isActive('/qawaaim') || isActive('/pdf') 
-                    ? 'bg-emerald-50 text-emerald-600' 
-                    : 'text-gray-700 hover:text-emerald-600 hover:bg-emerald-50'
+                    ? 'bg-[#00d2ff] text-white shadow-lg' 
+                    : 'text-white/80 hover:text-white hover:bg-white/10'
                 }`}
               >
                 <FileText size={18} />
@@ -107,18 +108,18 @@ export default function TopNav() {
 
               {/* Services Dropdown */}
               <div className="relative group">
-                <button className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors">
+                <button className="flex items-center gap-2 px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-all">
                   <Hospital size={18} />
                   <span className="font-medium">الخدمات</span>
                 </button>
-                <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
-                  <Link href="/hospitals" className="block px-4 py-3 text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 rounded-t-lg">
+                <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-2xl border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                  <Link href="/hospitals" className="block px-4 py-3 text-gray-700 hover:bg-cyan-50 hover:text-[#00d2ff] rounded-t-lg">
                     المستشفيات
                   </Link>
-                  <Link href="/embassies" className="block px-4 py-3 text-gray-700 hover:bg-emerald-50 hover:text-emerald-600">
+                  <Link href="/embassies" className="block px-4 py-3 text-gray-700 hover:bg-cyan-50 hover:text-[#00d2ff]">
                     السفارات
                   </Link>
-                  <Link href="/library" className="block px-4 py-3 text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 rounded-b-lg">
+                  <Link href="/library" className="block px-4 py-3 text-gray-700 hover:bg-cyan-50 hover:text-[#00d2ff] rounded-b-lg">
                     المكتبة
                   </Link>
                 </div>
@@ -127,10 +128,10 @@ export default function TopNav() {
               {/* Contact */}
               <Link
                 href="/feedback"
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
                   isActive('/feedback') 
-                    ? 'bg-emerald-50 text-emerald-600' 
-                    : 'text-gray-700 hover:text-emerald-600 hover:bg-emerald-50'
+                    ? 'bg-[#00d2ff] text-white shadow-lg' 
+                    : 'text-white/80 hover:text-white hover:bg-white/10'
                 }`}
               >
                 <MessageSquare size={18} />
@@ -144,14 +145,14 @@ export default function TopNav() {
                 <>
                   <Link
                     href="/admin"
-                    className="flex items-center gap-2 px-4 py-2 bg-emerald-100 text-emerald-700 rounded-lg hover:bg-emerald-200 transition-colors"
+                    className="flex items-center gap-2 px-4 py-2 bg-[#00d2ff] text-white rounded-lg hover:bg-[#00b8e6] transition-all shadow-lg"
                   >
                     <Shield size={18} />
                     <span className="font-medium">لوحة التحكم</span>
                   </Link>
                   <button
                     onClick={handleLogout}
-                    className="px-4 py-2 text-gray-700 hover:text-red-600 rounded-lg transition-colors"
+                    className="px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-all"
                   >
                     تسجيل الخروج
                   </button>
@@ -159,7 +160,7 @@ export default function TopNav() {
               ) : (
                 <Link
                   href="/admin/login"
-                  className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-emerald-600 rounded-lg transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-all"
                 >
                   <Shield size={18} />
                   <span className="font-medium">دخول المشرف</span>
@@ -170,7 +171,7 @@ export default function TopNav() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+              className="lg:hidden p-2 text-white hover:bg-white/10 rounded-lg"
             >
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -179,7 +180,7 @@ export default function TopNav() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden border-t border-gray-200 bg-white">
+          <div className="lg:hidden border-t border-white/10 bg-[#1F3942]">
             <nav className="px-4 py-4 space-y-2">
               {navItems.map((item) => {
                 const Icon = item.icon;
@@ -188,10 +189,10 @@ export default function TopNav() {
                     key={item.href}
                     href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+                    className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
                       isActive(item.href)
-                        ? 'bg-emerald-50 text-emerald-600'
-                        : 'text-gray-700 hover:bg-gray-50'
+                        ? 'bg-[#00d2ff] text-white'
+                        : 'text-white/80 hover:bg-white/10'
                     }`}
                   >
                     <Icon size={20} />
@@ -201,13 +202,13 @@ export default function TopNav() {
               })}
               
               {/* Mobile Admin Section */}
-              <div className="pt-4 border-t border-gray-200">
+              <div className="pt-4 border-t border-white/10">
                 {isAdmin ? (
                   <>
                     <Link
                       href="/admin"
                       onClick={() => setMobileMenuOpen(false)}
-                      className="flex items-center gap-3 px-4 py-3 bg-emerald-100 text-emerald-700 rounded-lg mb-2"
+                      className="flex items-center gap-3 px-4 py-3 bg-[#00d2ff] text-white rounded-lg mb-2"
                     >
                       <Shield size={20} />
                       <span className="font-medium">لوحة التحكم</span>
@@ -217,7 +218,7 @@ export default function TopNav() {
                         handleLogout();
                         setMobileMenuOpen(false);
                       }}
-                      className="w-full flex items-center gap-3 px-4 py-3 text-red-600 hover:bg-red-50 rounded-lg"
+                      className="w-full flex items-center gap-3 px-4 py-3 text-red-300 hover:bg-red-500/20 rounded-lg"
                     >
                       <span className="font-medium">تسجيل الخروج</span>
                     </button>
@@ -226,7 +227,7 @@ export default function TopNav() {
                   <Link
                     href="/admin/login"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg"
+                    className="flex items-center gap-3 px-4 py-3 text-white/80 hover:bg-white/10 rounded-lg"
                   >
                     <Shield size={20} />
                     <span className="font-medium">دخول المشرف</span>
@@ -240,11 +241,3 @@ export default function TopNav() {
     </>
   );
 }
-
-
-
-
-
-
-
-

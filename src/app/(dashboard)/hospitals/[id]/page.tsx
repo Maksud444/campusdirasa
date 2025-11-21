@@ -17,7 +17,7 @@ const hospitalsData = [
     rating: 4.5,
     totalReviews: 150,
     image: '🏥',
-    color: 'emerald',
+    color: 'from-[#1e3c72] to-[#2a5298]',
     description: 'أحد أعرق المستشفيات الجامعية في مصر، يقدم خدمات طبية متميزة في جميع التخصصات',
     facilities: [
       'قسم طوارئ على مدار الساعة',
@@ -84,7 +84,7 @@ const hospitalsData = [
     rating: 4.3,
     totalReviews: 120,
     image: '🏥',
-    color: 'green',
+    color: 'from-[#00d2ff] to-[#3a7bd5]',
     description: 'مستشفى تخصصي يقدم خدمات طبية متقدمة في التخصصات الدقيقة',
     facilities: [
       'قسم قلب متخصص',
@@ -141,7 +141,7 @@ const hospitalsData = [
     rating: 4.7,
     totalReviews: 200,
     image: '🏥',
-    color: 'teal',
+    color: 'from-[#4facfe] to-[#00f2fe]',
     description: 'مستشفى جامعي متميز بخدماته الشاملة ورعايته الطبية الممتازة',
     facilities: [
       'وحدة جراحة متقدمة',
@@ -198,7 +198,7 @@ const hospitalsData = [
     rating: 4.6,
     totalReviews: 180,
     image: '🏥',
-    color: 'blue',
+    color: 'from-[#667eea] to-[#764ba2]',
     description: 'مستشفى عسكري بمعايير عالمية يقدم أفضل الخدمات الطبية',
     facilities: [
       'وحدة جراحة قلب متطورة',
@@ -245,7 +245,7 @@ const hospitalsData = [
     rating: 4.4,
     totalReviews: 140,
     image: '🏥',
-    color: 'purple',
+    color: 'from-[#1e3c72] to-[#2a5298]',
     description: 'متخصص في رعاية الأمومة والطفولة بأعلى معايير الجودة',
     facilities: [
       'وحدة نساء وولادة',
@@ -292,7 +292,7 @@ const hospitalsData = [
     rating: 4.8,
     totalReviews: 220,
     image: '🏥',
-    color: 'indigo',
+    color: 'from-[#00d2ff] to-[#3a7bd5]',
     description: 'مستشفى دولي بأحدث التقنيات الطبية والتجميلية',
     facilities: [
       'مركز جراحة تجميل',
@@ -327,23 +327,17 @@ const hospitalsData = [
   }
 ];
 
-// Props type - Next.js 15+ এর জন্য
 type Props = {
   params: Promise<{
     id: string;
   }>;
 };
 
-// Main component - async করা হয়েছে
 export default async function HospitalDetailsPage({ params }: Props) {
-  // params await করতে হবে Next.js 15+ এ
   const { id } = await params;
-  
-  // ID থেকে hospital খুঁজে বের করা
   const hospitalId = parseInt(id);
   const hospital = hospitalsData.find(h => h.id === hospitalId);
 
-  // যদি hospital না পাওয়া যায়
   if (!hospital) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center" dir="rtl">
@@ -353,7 +347,7 @@ export default async function HospitalDetailsPage({ params }: Props) {
           <p className="text-gray-600 mb-6">عذراً، لم نتمكن من العثور على هذا المستشفى</p>
           <Link
             href="/hospitals"
-            className="inline-block bg-emerald-500 text-white px-6 py-3 rounded-lg hover:bg-emerald-600 transition-colors"
+            className="inline-block bg-[#00d2ff] text-white px-6 py-3 rounded-lg hover:bg-[#00b8e6] transition-colors"
           >
             العودة إلى قائمة المستشفيات
           </Link>
@@ -364,10 +358,9 @@ export default async function HospitalDetailsPage({ params }: Props) {
 
   return (
     <div className="min-h-screen bg-gray-50" dir="rtl">
-      {/* হেডার */}
-      <div className={`bg-gradient-to-br from-${hospital.color}-500 to-${hospital.color}-600 py-12 px-4`}>
+      {/* Hero - Same as Homepage */}
+      <div className="bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] py-12 px-4">
         <div className="max-w-7xl mx-auto">
-          {/* Back Button */}
           <Link
             href="/hospitals"
             className="inline-flex items-center gap-2 text-white/90 hover:text-white mb-6 transition-colors"
@@ -377,7 +370,7 @@ export default async function HospitalDetailsPage({ params }: Props) {
           </Link>
 
           <div className="flex items-start gap-6">
-            <div className={`w-24 h-24 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm text-5xl`}>
+            <div className="w-24 h-24 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm text-5xl">
               {hospital.image}
             </div>
             <div className="flex-1">
@@ -402,12 +395,12 @@ export default async function HospitalDetailsPage({ params }: Props) {
 
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Main Content - 2 columns */}
+          {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">
-            {/* বিবরণ */}
+            {/* Description */}
             <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100">
               <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-3">
-                <Hospital className={`text-${hospital.color}-600`} size={28} />
+                <Hospital className="text-[#00d2ff]" size={28} />
                 <span>نبذة عن المستشفى</span>
               </h2>
               <p className="text-gray-700 leading-relaxed text-lg">
@@ -415,14 +408,14 @@ export default async function HospitalDetailsPage({ params }: Props) {
               </p>
             </div>
 
-            {/* সুবিধাসমূহ */}
+            {/* Facilities */}
             <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100">
               <h2 className="text-2xl font-bold text-gray-800 mb-4">الخدمات والمرافق</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {hospital.facilities.map((facility, idx) => (
                   <div key={idx} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                    <div className={`w-10 h-10 bg-${hospital.color}-100 rounded-lg flex items-center justify-center flex-shrink-0`}>
-                      <ChevronRight className={`text-${hospital.color}-600`} size={20} />
+                    <div className="w-10 h-10 bg-cyan-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <ChevronRight className="text-[#00d2ff]" size={20} />
                     </div>
                     <span className="text-gray-700 font-medium">{facility}</span>
                   </div>
@@ -430,10 +423,10 @@ export default async function HospitalDetailsPage({ params }: Props) {
               </div>
             </div>
 
-            {/* ডাক্তারদের তালিকা */}
+            {/* Doctors */}
             <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100">
               <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
-                <Stethoscope className={`text-${hospital.color}-600`} size={28} />
+                <Stethoscope className="text-[#00d2ff]" size={28} />
                 <span>الأطباء المتخصصون</span>
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -443,7 +436,7 @@ export default async function HospitalDetailsPage({ params }: Props) {
                       <div className="text-4xl">{doctor.image}</div>
                       <div className="flex-1">
                         <h3 className="font-bold text-gray-800 text-lg mb-1">{doctor.name}</h3>
-                        <p className={`text-${hospital.color}-600 font-medium mb-2`}>{doctor.specialty}</p>
+                        <p className="text-[#00d2ff] font-medium mb-2">{doctor.specialty}</p>
                         <div className="flex items-center gap-2 text-sm text-gray-600">
                           <User size={14} />
                           <span>خبرة: {doctor.experience}</span>
@@ -462,7 +455,7 @@ export default async function HospitalDetailsPage({ params }: Props) {
                       </div>
                       <div className="flex items-center gap-2 text-gray-700">
                         <Phone size={16} className="text-gray-400" />
-                        <a href={`tel:${doctor.phone}`} className={`text-${hospital.color}-600 font-medium hover:underline`}>
+                        <a href={`tel:${doctor.phone}`} className="text-[#00d2ff] font-medium hover:underline">
                           {doctor.phone}
                         </a>
                       </div>
@@ -473,16 +466,15 @@ export default async function HospitalDetailsPage({ params }: Props) {
             </div>
           </div>
 
-          {/* Sidebar - 1 column */}
+          {/* Sidebar */}
           <div className="space-y-6">
-            {/* যোগাযোগ */}
             <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100 sticky top-4">
               <h3 className="text-xl font-bold text-gray-800 mb-4">معلومات الاتصال</h3>
               
               <div className="space-y-4">
                 <div>
                   <div className="flex items-center gap-2 text-gray-600 mb-2">
-                    <MapPin size={18} className={`text-${hospital.color}-600`} />
+                    <MapPin size={18} className="text-[#00d2ff]" />
                     <span className="font-semibold">العنوان:</span>
                   </div>
                   <p className="text-gray-700 pr-7">{hospital.address}</p>
@@ -490,10 +482,10 @@ export default async function HospitalDetailsPage({ params }: Props) {
 
                 <div>
                   <div className="flex items-center gap-2 text-gray-600 mb-2">
-                    <Phone size={18} className={`text-${hospital.color}-600`} />
+                    <Phone size={18} className="text-[#00d2ff]" />
                     <span className="font-semibold">الهاتف:</span>
                   </div>
-                  <a href={`tel:${hospital.phone}`} className={`text-${hospital.color}-600 font-medium pr-7 hover:underline block`}>
+                  <a href={`tel:${hospital.phone}`} className="text-[#00d2ff] font-medium pr-7 hover:underline block">
                     {hospital.phone}
                   </a>
                 </div>
@@ -510,37 +502,36 @@ export default async function HospitalDetailsPage({ params }: Props) {
 
                 <div>
                   <div className="flex items-center gap-2 text-gray-600 mb-2">
-                    <Mail size={18} className={`text-${hospital.color}-600`} />
+                    <Mail size={18} className="text-[#00d2ff]" />
                     <span className="font-semibold">البريد:</span>
                   </div>
-                  <a href={`mailto:${hospital.email}`} className={`text-${hospital.color}-600 pr-7 hover:underline block break-all`}>
+                  <a href={`mailto:${hospital.email}`} className="text-[#00d2ff] pr-7 hover:underline block break-all">
                     {hospital.email}
                   </a>
                 </div>
 
                 <div>
                   <div className="flex items-center gap-2 text-gray-600 mb-2">
-                    <Globe size={18} className={`text-${hospital.color}-600`} />
+                    <Globe size={18} className="text-[#00d2ff]" />
                     <span className="font-semibold">الموقع:</span>
                   </div>
-                  <a href={`https://${hospital.website}`} target="_blank" rel="noopener noreferrer" className={`text-${hospital.color}-600 pr-7 hover:underline block break-all`}>
+                  <a href={`https://${hospital.website}`} target="_blank" rel="noopener noreferrer" className="text-[#00d2ff] pr-7 hover:underline block break-all">
                     {hospital.website}
                   </a>
                 </div>
 
                 <div>
                   <div className="flex items-center gap-2 text-gray-600 mb-2">
-                    <Clock size={18} className={`text-${hospital.color}-600`} />
+                    <Clock size={18} className="text-[#00d2ff]" />
                     <span className="font-semibold">المواعيد:</span>
                   </div>
                   <p className="text-gray-700 pr-7 font-medium">{hospital.workingHours}</p>
                 </div>
               </div>
 
-              {/* কল বাটন */}
               <a
                 href={`tel:${hospital.phone}`}
-                className={`mt-6 w-full bg-gradient-to-r from-${hospital.color}-500 to-${hospital.color}-600 text-white py-3 rounded-lg font-bold text-center hover:shadow-lg transition-all flex items-center justify-center gap-2`}
+                className="mt-6 w-full bg-gradient-to-r from-[#00d2ff] to-[#3a7bd5] text-white py-3 rounded-lg font-bold text-center hover:shadow-lg transition-all flex items-center justify-center gap-2"
               >
                 <Phone size={20} />
                 <span>اتصل الآن</span>
@@ -552,7 +543,3 @@ export default async function HospitalDetailsPage({ params }: Props) {
     </div>
   );
 }
-
-
-
-

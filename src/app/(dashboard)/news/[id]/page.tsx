@@ -13,7 +13,7 @@ export default function NewsDetailPage({ params }: { params: { id: string } }) {
           <h1 className="text-4xl font-bold text-gray-800 mb-4">الخبر غير موجود</h1>
           <Link
             href="/news"
-            className="inline-flex items-center gap-2 text-emerald-600 hover:text-emerald-700"
+            className="inline-flex items-center gap-2 text-[#00d2ff] hover:text-[#00b8e6]"
           >
             <ArrowRight size={20} />
             <span>العودة إلى الأخبار</span>
@@ -25,22 +25,22 @@ export default function NewsDetailPage({ params }: { params: { id: string } }) {
 
   const categoryColors: Record<string, string> = {
     'تعليمي': 'bg-blue-100 text-blue-700',
-    'امتحانات': 'bg-red-100 text-red-700',
-    'فعاليات': 'bg-purple-100 text-purple-700',
-    'إعلانات': 'bg-yellow-100 text-yellow-700',
-    'منح': 'bg-green-100 text-green-700',
-    'إقامة': 'bg-cyan-100 text-cyan-700',
-    'رياضة': 'bg-orange-100 text-orange-700',
+    'امتحانات': 'bg-purple-100 text-purple-700',
+    'فعاليات': 'bg-cyan-100 text-cyan-700',
+    'إعلانات': 'bg-blue-100 text-blue-700',
+    'منح': 'bg-cyan-100 text-cyan-700',
+    'إقامة': 'bg-blue-100 text-blue-700',
+    'رياضة': 'bg-cyan-100 text-cyan-700',
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-emerald-50" dir="rtl">
+    <div className="min-h-screen bg-gray-50" dir="rtl">
       {/* Back Button */}
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-4xl mx-auto px-4 py-4">
           <Link
             href="/news"
-            className="inline-flex items-center gap-2 text-gray-600 hover:text-emerald-600 transition-colors"
+            className="inline-flex items-center gap-2 text-gray-600 hover:text-[#00d2ff] transition-colors"
           >
             <ArrowRight size={20} />
             <span>العودة إلى الأخبار</span>
@@ -48,8 +48,8 @@ export default function NewsDetailPage({ params }: { params: { id: string } }) {
         </div>
       </div>
 
-      {/* Article Header */}
-      <div className="bg-gradient-to-br from-emerald-600 to-teal-600 py-16 px-4">
+      {/* Article Header - Same as Homepage Hero */}
+      <div className="bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] py-16 px-4">
         <div className="max-w-4xl mx-auto">
           {/* Category Badge */}
           <div className="mb-6">
@@ -90,7 +90,7 @@ export default function NewsDetailPage({ params }: { params: { id: string } }) {
           </div>
 
           {/* Excerpt */}
-          <div className="bg-emerald-50 border-r-4 border-emerald-500 p-6 rounded-lg mb-8">
+          <div className="bg-gradient-to-r from-cyan-50 to-blue-50 border-r-4 border-[#00d2ff] p-6 rounded-lg mb-8">
             <p className="text-lg text-gray-700 leading-relaxed font-medium">
               {newsItem.excerpt}
             </p>
@@ -111,7 +111,7 @@ export default function NewsDetailPage({ params }: { params: { id: string } }) {
                 {newsItem.tags.map((tag, idx) => (
                   <span
                     key={idx}
-                    className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium hover:bg-emerald-100 hover:text-emerald-700 transition-colors cursor-pointer"
+                    className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium hover:bg-cyan-100 hover:text-[#00d2ff] transition-colors cursor-pointer"
                   >
                     {tag}
                   </span>
@@ -124,7 +124,7 @@ export default function NewsDetailPage({ params }: { params: { id: string } }) {
           <div className="mt-8 pt-8 border-t border-gray-200">
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-bold text-gray-800">شارك هذا الخبر</h3>
-              <button className="flex items-center gap-2 px-6 py-3 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 transition-colors">
+              <button className="flex items-center gap-2 px-6 py-3 bg-[#00d2ff] text-white rounded-lg hover:bg-[#00b8e6] transition-colors shadow-lg hover:shadow-xl transform hover:scale-105">
                 <Share2 size={20} />
                 <span>مشاركة</span>
               </button>
@@ -143,7 +143,7 @@ export default function NewsDetailPage({ params }: { params: { id: string } }) {
                 <Link
                   key={relatedNews.id}
                   href={`/news/${relatedNews.id}`}
-                  className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all p-6 border border-gray-100"
+                  className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-6 border border-gray-100 transform hover:-translate-y-1"
                 >
                   <div className="flex items-center gap-4 mb-3">
                     <div className="text-4xl">{relatedNews.image}</div>
@@ -151,7 +151,7 @@ export default function NewsDetailPage({ params }: { params: { id: string } }) {
                       {relatedNews.category}
                     </span>
                   </div>
-                  <h3 className="text-lg font-bold text-gray-800 mb-2 group-hover:text-emerald-600 transition-colors">
+                  <h3 className="text-lg font-bold text-gray-800 mb-2 group-hover:text-[#00d2ff] transition-colors">
                     {relatedNews.title}
                   </h3>
                   <p className="text-gray-600 text-sm line-clamp-2">
@@ -169,11 +169,3 @@ export default function NewsDetailPage({ params }: { params: { id: string } }) {
     </div>
   );
 }
-
-
-
-
-
-
-
-
