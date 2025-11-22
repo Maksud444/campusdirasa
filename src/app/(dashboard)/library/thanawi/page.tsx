@@ -20,11 +20,10 @@ type Book = {
   publishYear: string;
 };
 
-export default function IedadiBooksPage() {
+export default function ThanawiBooksPage() {
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
 
-  // Filter books for Iedadi category
-  const iedadiBooks = booksData.filter((book: Book) => book.category === 'iedadi');
+  const thanawiBooks = booksData.filter((book: Book) => book.category === 'thanawi');
 
   const handleViewBook = (book: Book) => {
     setSelectedBook(book);
@@ -46,59 +45,66 @@ export default function IedadiBooksPage() {
 
   return (
     <div className="min-h-screen bg-gray-50" dir="rtl">
-      {/* Breadcrumb */}
       <div className="bg-white border-b border-gray-200 py-4 px-4">
         <div className="max-w-7xl mx-auto flex items-center gap-2 text-sm">
-          <Link href="/library" className="text-emerald-600 hover:underline">
+          <Link href="/library" className="text-[#00d2ff] hover:underline">
             كتب
           </Link>
           <ChevronLeft size={16} className="text-gray-400" />
-          <span className="text-gray-600">كتب الإعدادي</span>
+          <span className="text-gray-600">كتب الثانوي</span>
         </div>
       </div>
 
-      {/* Page Header */}
-      <div className="bg-gradient-to-r from-emerald-500 to-green-600 py-12 px-4">
+      <div className="bg-gradient-to-r from-[#1e3a8a] to-[#3b82f6] py-12 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-4">
-            <div className="text-6xl">📗</div>
+            <div className="text-6xl">📘</div>
             <div>
               <h1 className="text-4xl font-bold text-white mb-2">
-                كتب الإعدادي
+                كتب الثانوي
               </h1>
               <p className="text-white/90 text-lg">
-                جميع الكتب الدراسية للمرحلة الإعدادية
+                جميع الكتب الدراسية للمرحلة الثانوية
               </p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 py-12">
-        {/* Books Grid */}
+        <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-8">
+          <div className="flex items-start gap-4">
+            <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+              <span className="text-white text-lg">ℹ</span>
+            </div>
+            <div>
+              <h3 className="font-bold text-gray-900 text-lg mb-2">معلومات القراءة</h3>
+              <p className="text-gray-700 text-sm">
+                يمكنك قراءة الكتب مباشرة في المتصفح. استخدم أزرار التكبير/التصغير للتحكم في العرض.
+              </p>
+            </div>
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {iedadiBooks.map((book: Book) => (
+          {thanawiBooks.map((book: Book) => (
             <div
               key={book.id}
               className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all border border-gray-100 overflow-hidden group"
             >
-              {/* Book Cover */}
-              <div className="bg-gradient-to-br from-emerald-500 to-green-600 p-8 text-center">
+              <div className="bg-gradient-to-br from-[#1e3a8a] to-[#3b82f6] p-8 text-center">
                 <div className="text-7xl mb-3">{book.coverImage}</div>
                 <div className="bg-white/20 backdrop-blur-sm rounded-lg px-3 py-1 inline-block">
                   <span className="text-white text-sm font-medium">{book.subject}</span>
                 </div>
               </div>
 
-              {/* Book Info */}
               <div className="p-6">
                 <h3 className="text-lg font-bold text-gray-800 mb-2 line-clamp-2 min-h-[56px]">
                   {book.title}
                 </h3>
                 <p className="text-gray-500 text-sm mb-4">{book.titleEn}</p>
 
-                {/* Details */}
                 <div className="space-y-2 mb-4">
                   <div className="flex items-center gap-2 text-sm text-gray-600">
                     <User size={16} />
@@ -114,18 +120,16 @@ export default function IedadiBooksPage() {
                   </div>
                 </div>
 
-                {/* Grade Badge */}
                 <div className="mb-4">
-                  <span className="bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full text-xs font-medium">
+                  <span className="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-medium">
                     {book.grade}
                   </span>
                 </div>
 
-                {/* Action Buttons */}
                 <div className="flex gap-2">
                   <button
                     onClick={() => handleViewBook(book)}
-                    className="flex-1 flex items-center justify-center gap-2 bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition-colors font-medium"
+                    className="flex-1 flex items-center justify-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium"
                   >
                     <Eye size={18} />
                     <span>قراءة</span>
@@ -142,8 +146,7 @@ export default function IedadiBooksPage() {
           ))}
         </div>
 
-        {/* No Books Message */}
-        {iedadiBooks.length === 0 && (
+        {thanawiBooks.length === 0 && (
           <div className="text-center py-16">
             <BookOpen className="text-gray-400 mx-auto mb-4" size={64} />
             <h3 className="text-xl font-bold text-gray-700 mb-2">لا توجد كتب متاحة حالياً</h3>
@@ -151,8 +154,7 @@ export default function IedadiBooksPage() {
           </div>
         )}
 
-        {/* Help Section */}
-        <div className="mt-16 bg-gradient-to-r from-emerald-500 to-green-600 rounded-2xl p-10 text-center shadow-xl">
+        <div className="mt-16 bg-gradient-to-r from-[#1e3a8a] to-[#3b82f6] rounded-2xl p-10 text-center shadow-xl">
           <BookOpen className="text-white mx-auto mb-4" size={48} />
           <h2 className="text-3xl font-bold text-white mb-4">
             هل تواجه مشكلة في القراءة؟
@@ -162,14 +164,13 @@ export default function IedadiBooksPage() {
           </p>
           <Link
             href="/feedback"
-            className="inline-block bg-white text-emerald-600 px-8 py-3 rounded-lg font-bold hover:shadow-xl transition-all transform hover:scale-105"
+            className="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg font-bold hover:shadow-xl transition-all transform hover:scale-105"
           >
             تواصل معنا
           </Link>
         </div>
       </div>
 
-      {/* PDF Viewer Modal */}
       {selectedBook && (
         <PDFViewer
           pdfUrl={selectedBook.pdfUrl}

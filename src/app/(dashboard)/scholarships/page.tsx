@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { GraduationCap, Calendar, Users, MapPin, Award, Clock, ArrowLeft, TrendingUp } from 'lucide-react';
 
 export default function ScholarshipsPage() {
-  // Scholarship data
   const scholarships = [
     {
       id: 1,
@@ -20,7 +19,7 @@ export default function ScholarshipsPage() {
       level: 'بكالوريوس',
       eligibleFor: ['الطلاب المتفوقون', 'معدل 85% فأعلى', 'جميع التخصصات'],
       description: 'منحة مخصصة للطلاب المتفوقين أكاديمياً في جميع التخصصات',
-      bgGradient: 'from-blue-500 to-indigo-600',
+      bgGradient: 'from-[#00d2ff] to-[#3a7bd5]',
       spots: 50,
       requirements: ['معدل 85% فأعلى', 'شهادة حسن سير وسلوك', 'رسالة تحفيزية']
     },
@@ -38,7 +37,7 @@ export default function ScholarshipsPage() {
       level: 'ماجستير / دكتوراه',
       eligibleFor: ['طلاب الدراسات العليا', 'الباحثون', 'تخصصات علمية'],
       description: 'منحة مقدمة للباحثين في مجالات العلوم والتكنولوجيا',
-      bgGradient: 'from-emerald-500 to-teal-600',
+      bgGradient: 'from-[#1e3a8a] to-[#3b82f6]',
       spots: 30,
       requirements: ['مشروع بحثي معتمد', 'معدل 80% فأعلى', 'خطاب توصية']
     },
@@ -56,7 +55,7 @@ export default function ScholarshipsPage() {
       level: 'بكالوريوس',
       eligibleFor: ['الطلاب الوافدون', 'من خارج مصر', 'جميع الجنسيات'],
       description: 'منحة دراسية للطلاب الدوليين القادمين للدراسة في مصر',
-      bgGradient: 'from-purple-500 to-pink-600',
+      bgGradient: 'from-[#0891b2] to-[#06b6d4]',
       spots: 100,
       requirements: ['جواز سفر ساري', 'شهادة الثانوية العامة', 'إثبات إتقان اللغة العربية']
     },
@@ -74,7 +73,7 @@ export default function ScholarshipsPage() {
       level: 'جميع المراحل',
       eligibleFor: ['الطلاب الأيتام', 'الأسر المحتاجة', 'ذوي الدخل المحدود'],
       description: 'منحة اجتماعية لدعم الطلاب من الفئات المحتاجة',
-      bgGradient: 'from-orange-500 to-red-600',
+      bgGradient: 'from-[#1e40af] to-[#2563eb]',
       spots: 200,
       requirements: ['شهادة يتم', 'بحث اجتماعي', 'إثبات الحالة المادية']
     },
@@ -92,7 +91,7 @@ export default function ScholarshipsPage() {
       level: 'بكالوريوس',
       eligibleFor: ['الرياضيون المتميزون', 'حاملو الميداليات', 'أعضاء المنتخبات'],
       description: 'منحة للرياضيين المتميزين في مختلف الألعاب الرياضية',
-      bgGradient: 'from-green-500 to-lime-600',
+      bgGradient: 'from-[#0c4a6e] to-[#0369a1]',
       spots: 40,
       requirements: ['شهادة رياضية معتمدة', 'إنجازات رياضية موثقة', 'لياقة بدنية']
     },
@@ -110,7 +109,7 @@ export default function ScholarshipsPage() {
       level: 'بكالوريوس / ماجستير',
       eligibleFor: ['المخترعون', 'المبدعون', 'أصحاب المشاريع'],
       description: 'منحة لدعم الطلاب المبدعين وأصحاب الأفكار الابتكارية',
-      bgGradient: 'from-cyan-500 to-blue-600',
+      bgGradient: 'from-[#164e63] to-[#0891b2]',
       spots: 25,
       requirements: ['مشروع ابتكاري', 'براءة اختراع أو فكرة مميزة', 'عرض تقديمي']
     },
@@ -119,7 +118,7 @@ export default function ScholarshipsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50" dir="rtl">
       {/* Page Header */}
-      <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 py-16 px-4">
+      <div className="bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] py-16 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <div className="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-6 backdrop-blur-sm">
             <GraduationCap className="text-white" size={40} />
@@ -133,16 +132,14 @@ export default function ScholarshipsPage() {
         </div>
       </div>
 
-      {/* Main Content - Statistics Section REMOVED */}
+      {/* Scholarships Grid */}
       <div className="max-w-7xl mx-auto px-4 py-12">
-        
-        {/* Scholarships Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {scholarships.map((scholarship) => (
             <Link
               key={scholarship.id}
               href={`/scholarships/${scholarship.id}`}
-              className="group bg-white border-2 border-gray-200 rounded-2xl overflow-hidden hover:shadow-2xl transition-all transform hover:-translate-y-2"
+              className="group bg-white border-2 border-gray-200 hover:border-[#00d2ff] rounded-2xl overflow-hidden hover:shadow-2xl transition-all transform hover:-translate-y-2"
             >
               {/* Card Header */}
               <div className={`bg-gradient-to-br ${scholarship.bgGradient} p-6 text-white relative overflow-hidden`}>
@@ -163,17 +160,15 @@ export default function ScholarshipsPage() {
 
               {/* Card Content */}
               <div className="p-6">
-                {/* Provider */}
                 <div className="flex items-center gap-2 mb-4 pb-4 border-b border-gray-200">
-                  <GraduationCap size={18} className="text-blue-600" />
+                  <GraduationCap size={18} className="text-[#00d2ff]" />
                   <span className="text-gray-700 font-medium text-sm">{scholarship.provider}</span>
                 </div>
 
-                {/* Key Info */}
                 <div className="space-y-3 mb-4">
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-600">المبلغ:</span>
-                    <span className="font-bold text-emerald-600">{scholarship.amount}</span>
+                    <span className="font-bold text-[#00d2ff]">{scholarship.amount}</span>
                   </div>
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-600">المقاعد:</span>
@@ -185,7 +180,6 @@ export default function ScholarshipsPage() {
                   </div>
                 </div>
 
-                {/* Deadline Badge */}
                 <div className="bg-red-50 border border-red-200 rounded-xl p-3 mb-4">
                   <div className="flex items-center gap-2">
                     <Clock size={16} className="text-red-600" />
@@ -202,13 +196,12 @@ export default function ScholarshipsPage() {
                   </div>
                 </div>
 
-                {/* Eligible Tags */}
                 <div className="mb-4">
                   <div className="flex flex-wrap gap-2">
                     {scholarship.eligibleFor.slice(0, 2).map((item, idx) => (
                       <span
                         key={idx}
-                        className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-medium"
+                        className="px-3 py-1 bg-cyan-50 text-cyan-700 rounded-full text-xs font-medium"
                       >
                         {item}
                       </span>
@@ -221,13 +214,12 @@ export default function ScholarshipsPage() {
                   </div>
                 </div>
 
-                {/* View Details Button */}
                 <div className="flex items-center justify-between pt-4 border-t border-gray-200">
-                  <span className="text-blue-600 font-bold group-hover:gap-2 flex items-center gap-1 transition-all">
+                  <span className="text-[#00d2ff] font-bold group-hover:gap-2 flex items-center gap-1 transition-all">
                     <span>التفاصيل الكاملة</span>
                     <ArrowLeft size={18} className="group-hover:translate-x-[-4px] transition-transform" />
                   </span>
-                  <TrendingUp size={20} className="text-emerald-600" />
+                  <TrendingUp size={20} className="text-[#00d2ff]" />
                 </div>
               </div>
             </Link>

@@ -7,7 +7,6 @@ import { BookOpen, Clock, Calendar } from 'lucide-react';
 export default function LibraryMainPage() {
   const [lastUpdate, setLastUpdate] = useState<string>('');
 
-  // লাস্ট আপডেট তারিখ লোড করা
   useEffect(() => {
     const today = new Date();
     const formatted = today.toLocaleDateString('ar-EG', {
@@ -26,7 +25,7 @@ export default function LibraryMainPage() {
       description: 'جميع الكتب الدراسية للمرحلة الإعدادية',
       href: '/library/iedadi',
       icon: '📗',
-      bgGradient: 'from-emerald-500 to-green-600',
+      bgGradient: 'from-[#00d2ff] to-[#3a7bd5]',
       totalBooks: 15,
       lastUpdate: '2025-01-10'
     },
@@ -37,7 +36,7 @@ export default function LibraryMainPage() {
       description: 'جميع الكتب الدراسية للمرحلة الثانوية',
       href: '/library/thanawi',
       icon: '📘',
-      bgGradient: 'from-blue-500 to-indigo-600',
+      bgGradient: 'from-[#1e3a8a] to-[#3b82f6]',
       totalBooks: 20,
       lastUpdate: '2025-01-08'
     },
@@ -48,13 +47,12 @@ export default function LibraryMainPage() {
       description: 'كتب ومراجع الدراسة الخاصة',
       href: '/library/dirasa-khassa',
       icon: '📚',
-      bgGradient: 'from-purple-500 to-pink-600',
+      bgGradient: 'from-[#0891b2] to-[#06b6d4]',
       totalBooks: 10,
       lastUpdate: '2025-01-12'
     }
   ];
 
-  // তারিখ ফরম্যাট করার ফাংশন
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('ar-EG', {
@@ -64,7 +62,6 @@ export default function LibraryMainPage() {
     });
   };
 
-  // কত দিন আগে আপডেট হয়েছে তা হিসাব করা
   const getDaysAgo = (dateString: string) => {
     const date = new Date(dateString);
     const today = new Date();
@@ -80,8 +77,7 @@ export default function LibraryMainPage() {
 
   return (
     <div className="min-h-screen bg-gray-50" dir="rtl">
-      {/* Page Header */}
-      <div className="bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 py-16 px-4">
+      <div className="bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] py-16 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <div className="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-6 backdrop-blur-sm">
             <BookOpen className="text-white" size={40} />
@@ -93,7 +89,6 @@ export default function LibraryMainPage() {
             جميع الكتب الدراسية متاحة للقراءة والتحميل
           </p>
           
-          {/* Last Update Info */}
           <div className="inline-flex items-center gap-3 bg-white/20 backdrop-blur-md px-6 py-3 rounded-full border border-white/30">
             <Clock className="text-white" size={20} />
             <span className="text-white font-medium">آخر تحديث:</span>
@@ -102,24 +97,21 @@ export default function LibraryMainPage() {
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 py-16">
-        {/* Info Banner */}
         <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-12">
           <div className="flex items-start gap-4">
-            <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+            <div className="w-10 h-10 bg-[#00d2ff] rounded-full flex items-center justify-center flex-shrink-0">
               <span className="text-white text-lg">ℹ</span>
             </div>
             <div>
-              <h3 className="font-bold text-blue-900 text-lg mb-2">معلومات مهمة</h3>
-              <p className="text-blue-800 text-sm">
+              <h3 className="font-bold text-gray-900 text-lg mb-2">معلومات مهمة</h3>
+              <p className="text-gray-700 text-sm">
                 يمكنك قراءة الكتب مباشرة أو تحميلها على جهازك. جميع الكتب متوفرة بصيغة PDF عالية الجودة.
               </p>
             </div>
           </div>
         </div>
 
-        {/* Categories Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {categories.map((category) => (
             <Link
@@ -127,7 +119,6 @@ export default function LibraryMainPage() {
               href={category.href}
               className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 overflow-hidden border border-gray-100"
             >
-              {/* Card Header */}
               <div className={`bg-gradient-to-br ${category.bgGradient} p-8 text-center relative overflow-hidden`}>
                 <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
                 <div className="text-6xl mb-4 relative z-10">{category.icon}</div>
@@ -136,7 +127,6 @@ export default function LibraryMainPage() {
                 </h2>
                 <p className="text-white/90 text-sm relative z-10">{category.titleEn}</p>
                 
-                {/* Last Update Badge */}
                 <div className="absolute bottom-3 left-3 bg-white/30 backdrop-blur-sm px-3 py-1 rounded-full">
                   <div className="flex items-center gap-2">
                     <Calendar size={14} className="text-white" />
@@ -147,13 +137,11 @@ export default function LibraryMainPage() {
                 </div>
               </div>
 
-              {/* Card Body */}
               <div className="p-6">
                 <p className="text-gray-600 mb-4 min-h-[50px]">
                   {category.description}
                 </p>
 
-                {/* Update Info */}
                 <div className="mb-4 p-3 bg-gray-50 rounded-lg">
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-600">آخر تحديث:</span>
@@ -163,12 +151,12 @@ export default function LibraryMainPage() {
 
                 <div className="flex items-center justify-between pt-4 border-t border-gray-200">
                   <div className="flex items-center gap-2">
-                    <BookOpen className="text-emerald-600" size={20} />
+                    <BookOpen className="text-[#00d2ff]" size={20} />
                     <span className="text-gray-700 font-medium">
                       {category.totalBooks} كتاب
                     </span>
                   </div>
-                  <div className="text-emerald-600 font-bold group-hover:translate-x-[-4px] transition-transform">
+                  <div className="text-[#00d2ff] font-bold group-hover:translate-x-[-4px] transition-transform">
                     عرض الكتب ←
                   </div>
                 </div>
@@ -177,10 +165,7 @@ export default function LibraryMainPage() {
           ))}
         </div>
 
-        {/* Statistics Section REMOVED */}
-
-        {/* Help Section */}
-        <div className="mt-16 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-2xl p-10 text-center shadow-xl">
+        <div className="mt-16 bg-gradient-to-r from-[#00d2ff] to-[#3a7bd5] rounded-2xl p-10 text-center shadow-xl">
           <BookOpen className="text-white mx-auto mb-4" size={48} />
           <h2 className="text-3xl font-bold text-white mb-4">
             هل لديك أي نصائح لتحسين عملنا؟
@@ -190,7 +175,7 @@ export default function LibraryMainPage() {
           </p>
           <Link
             href="/feedback"
-            className="inline-block bg-white text-emerald-600 px-8 py-3 rounded-lg font-bold hover:shadow-xl transition-all transform hover:scale-105"
+            className="inline-block bg-white text-[#00d2ff] px-8 py-3 rounded-lg font-bold hover:shadow-xl transition-all transform hover:scale-105"
           >
             تواصل معنا
           </Link>

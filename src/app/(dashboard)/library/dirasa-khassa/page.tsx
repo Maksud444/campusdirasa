@@ -2,36 +2,99 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { BookOpen, Eye, ChevronLeft, FileText, User, Calendar } from 'lucide-react';
+import { BookOpen, FileText, ChevronLeft, ArrowRight } from 'lucide-react';
 import PDFViewer from '@/components/features/PDFViewer';
-import booksData from '@/lib/books.json';
 
-type Book = {
+type ClassItem = {
   id: number;
-  title: string;
-  titleEn: string;
-  category: string;
-  subject: string;
-  grade: string;
+  className: string;
+  classNameEn: string;
+  icon: string;
   pdfUrl: string;
-  coverImage: string;
-  author: string;
-  pages: number;
-  publishYear: string;
+  bgGradient: string;
+  bgLight: string;
+  textColor: string;
+  borderColor: string;
 };
 
 export default function DirasaKhassaBooksPage() {
-  const [selectedBook, setSelectedBook] = useState<Book | null>(null);
+  const [selectedClass, setSelectedClass] = useState<ClassItem | null>(null);
 
-  // Filter books for Dirasa Khassa category
-  const dirasaKhassaBooks = booksData.filter((book: Book) => book.category === 'dirasa-khassa');
+  const classes: ClassItem[] = [
+    {
+      id: 1,
+      className: 'مبتدئ أول',
+      classNameEn: 'Beginner Level 1',
+      icon: '📗',
+      pdfUrl: '/pdfs/dirasa-khassa/mubtadi-1.pdf',
+      bgGradient: 'from-[#00d2ff] to-[#3a7bd5]',
+      bgLight: 'bg-cyan-50',
+      textColor: 'text-cyan-700',
+      borderColor: 'border-cyan-300'
+    },
+    {
+      id: 2,
+      className: 'مبتدئ ثاني',
+      classNameEn: 'Beginner Level 2',
+      icon: '📘',
+      pdfUrl: '/pdfs/dirasa-khassa/mubtadi-2.pdf',
+      bgGradient: 'from-[#1e3a8a] to-[#3b82f6]',
+      bgLight: 'bg-blue-50',
+      textColor: 'text-blue-700',
+      borderColor: 'border-blue-300'
+    },
+    {
+      id: 3,
+      className: 'متوسط أول',
+      classNameEn: 'Intermediate Level 1',
+      icon: '📙',
+      pdfUrl: '/pdfs/dirasa-khassa/mutawasit-1.pdf',
+      bgGradient: 'from-[#0891b2] to-[#06b6d4]',
+      bgLight: 'bg-cyan-50',
+      textColor: 'text-cyan-700',
+      borderColor: 'border-cyan-300'
+    },
+    {
+      id: 4,
+      className: 'متوسط ثاني',
+      classNameEn: 'Intermediate Level 2',
+      icon: '📕',
+      pdfUrl: '/pdfs/dirasa-khassa/mutawasit-2.pdf',
+      bgGradient: 'from-[#1e40af] to-[#2563eb]',
+      bgLight: 'bg-blue-50',
+      textColor: 'text-blue-700',
+      borderColor: 'border-blue-300'
+    },
+    {
+      id: 5,
+      className: 'متقدم أول',
+      classNameEn: 'Advanced Level 1',
+      icon: '📔',
+      pdfUrl: '/pdfs/dirasa-khassa/mutaqadim-1.pdf',
+      bgGradient: 'from-[#0c4a6e] to-[#0369a1]',
+      bgLight: 'bg-sky-50',
+      textColor: 'text-sky-700',
+      borderColor: 'border-sky-300'
+    },
+    {
+      id: 6,
+      className: 'متقدم ثاني',
+      classNameEn: 'Advanced Level 2',
+      icon: '📓',
+      pdfUrl: '/pdfs/dirasa-khassa/mutaqadim-2.pdf',
+      bgGradient: 'from-[#164e63] to-[#0891b2]',
+      bgLight: 'bg-cyan-50',
+      textColor: 'text-cyan-700',
+      borderColor: 'border-cyan-300'
+    }
+  ];
 
-  const handleViewBook = (book: Book) => {
-    setSelectedBook(book);
+  const handleViewPDF = (classItem: ClassItem) => {
+    setSelectedClass(classItem);
   };
 
   const handleCloseViewer = () => {
-    setSelectedBook(null);
+    setSelectedClass(null);
   };
 
   return (
@@ -39,7 +102,7 @@ export default function DirasaKhassaBooksPage() {
       {/* Breadcrumb */}
       <div className="bg-white border-b border-gray-200 py-4 px-4">
         <div className="max-w-7xl mx-auto flex items-center gap-2 text-sm">
-          <Link href="/library" className="text-purple-600 hover:underline">
+          <Link href="/library" className="text-[#00d2ff] hover:underline">
             الكتب
           </Link>
           <ChevronLeft size={16} className="text-gray-400" />
@@ -48,8 +111,16 @@ export default function DirasaKhassaBooksPage() {
       </div>
 
       {/* Page Header */}
-      <div className="bg-gradient-to-r from-purple-500 to-pink-600 py-12 px-4">
+      <div className="bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] py-12 px-4">
         <div className="max-w-7xl mx-auto">
+          <Link
+            href="/library"
+            className="inline-flex items-center gap-2 text-white/90 hover:text-white mb-6 transition-colors"
+          >
+            <ArrowRight size={20} />
+            <span>العودة للكتب</span>
+          </Link>
+
           <div className="flex items-center gap-4">
             <div className="text-6xl">📚</div>
             <div>
@@ -57,7 +128,7 @@ export default function DirasaKhassaBooksPage() {
                 كتب دراسة خاصة
               </h1>
               <p className="text-white/90 text-lg">
-                كتب ومراجع الدراسة الخاصة
+                اختر الصف للوصول إلى الكتب
               </p>
             </div>
           </div>
@@ -67,99 +138,74 @@ export default function DirasaKhassaBooksPage() {
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 py-12">
         {/* Info Banner */}
-        <div className="bg-purple-50 border border-purple-200 rounded-xl p-6 mb-8">
+        <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-12">
           <div className="flex items-start gap-4">
-            <div className="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0">
+            <div className="w-10 h-10 bg-[#00d2ff] rounded-full flex items-center justify-center flex-shrink-0">
               <span className="text-white text-lg">ℹ</span>
             </div>
             <div>
-              <h3 className="font-bold text-purple-900 text-lg mb-2">معلومات القراءة</h3>
-              <p className="text-purple-800 text-sm">
-                يمكنك قراءة الكتب مباشرة في المتصفح. استخدم أزرار التكبير/التصغير للتحكم في العرض.
+              <h3 className="font-bold text-gray-900 text-lg mb-2">معلومات مهمة</h3>
+              <p className="text-gray-700 text-sm">
+                اضغط على البطاقة لعرض الكتب المتاحة للصف. يمكنك قراءة الكتب مباشرة في المتصفح.
               </p>
             </div>
           </div>
         </div>
 
-        {/* Books Grid */}
+        {/* Classes Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {dirasaKhassaBooks.map((book: Book) => (
+          {classes.map((classItem) => (
             <div
-              key={book.id}
-              className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all border border-gray-100 overflow-hidden group"
+              key={classItem.id}
+              onClick={() => handleViewPDF(classItem)}
+              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 overflow-hidden border-2 border-gray-100 hover:border-[#00d2ff] cursor-pointer"
             >
-              {/* Book Cover */}
-              <div className="bg-gradient-to-br from-purple-500 to-pink-600 p-8 text-center">
-                <div className="text-7xl mb-3">{book.coverImage}</div>
-                <div className="bg-white/20 backdrop-blur-sm rounded-lg px-3 py-1 inline-block">
-                  <span className="text-white text-sm font-medium">{book.subject}</span>
+              {/* Card Header */}
+              <div className={`bg-gradient-to-br ${classItem.bgGradient} p-8 text-center relative overflow-hidden`}>
+                <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
+                <div className="absolute bottom-0 left-0 w-20 h-20 bg-white/10 rounded-full -ml-10 -mb-10"></div>
+                
+                <div className="relative z-10">
+                  <div className="text-7xl mb-4">{classItem.icon}</div>
+                  <h2 className="text-3xl font-bold text-white mb-2">
+                    {classItem.className}
+                  </h2>
+                  <p className="text-white/90 text-sm">{classItem.classNameEn}</p>
                 </div>
               </div>
 
-              {/* Book Info */}
+              {/* Card Body */}
               <div className="p-6">
-                <h3 className="text-lg font-bold text-gray-800 mb-2 line-clamp-2 min-h-[56px]">
-                  {book.title}
-                </h3>
-                <p className="text-gray-500 text-sm mb-4">{book.titleEn}</p>
-
-                {/* Details */}
-                <div className="space-y-2 mb-4">
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <User size={16} />
-                    <span>{book.author}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <FileText size={16} />
-                    <span>{book.pages} صفحة</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <Calendar size={16} />
-                    <span>{book.publishYear}</span>
+                <div className={`p-4 ${classItem.bgLight} rounded-xl border-2 ${classItem.borderColor} mb-4`}>
+                  <div className="flex items-center justify-center gap-3">
+                    <FileText className={classItem.textColor} size={24} />
+                    <span className={`font-bold ${classItem.textColor} text-lg`}>
+                      عرض الكتب
+                    </span>
                   </div>
                 </div>
 
-                {/* Grade Badge */}
-                <div className="mb-4">
-                  <span className="bg-purple-50 text-purple-700 px-3 py-1 rounded-full text-xs font-medium">
-                    {book.grade}
-                  </span>
+                <div className="flex items-center justify-center text-[#00d2ff] font-bold group-hover:gap-3 gap-2 transition-all">
+                  <span>اضغط للعرض</span>
+                  <ArrowRight className="group-hover:translate-x-[-4px] transition-transform" size={20} />
                 </div>
-
-                {/* View Button Only */}
-                <button
-                  onClick={() => handleViewBook(book)}
-                  className="w-full flex items-center justify-center gap-2 bg-purple-600 text-white px-4 py-3 rounded-lg hover:bg-purple-700 transition-colors font-medium"
-                >
-                  <Eye size={18} />
-                  <span>قراءة الكتاب</span>
-                </button>
               </div>
             </div>
           ))}
         </div>
 
-        {/* No Books Message */}
-        {dirasaKhassaBooks.length === 0 && (
-          <div className="text-center py-16">
-            <BookOpen className="text-gray-400 mx-auto mb-4" size={64} />
-            <h3 className="text-xl font-bold text-gray-700 mb-2">لا توجد كتب متاحة حالياً</h3>
-            <p className="text-gray-500">سيتم إضافة الكتب قريباً</p>
-          </div>
-        )}
-
         {/* Help Section */}
-        <div className="mt-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-2xl p-10 text-center shadow-xl">
+        <div className="mt-16 bg-gradient-to-r from-[#00d2ff] to-[#3a7bd5] rounded-2xl p-10 text-center shadow-2xl">
           <BookOpen className="text-white mx-auto mb-4" size={48} />
           <h2 className="text-3xl font-bold text-white mb-4">
-            هل تواجه مشكلة في القراءة؟
+            هل لديك أي نصائح لتحسين عملنا؟
           </h2>
           <p className="text-white/90 text-lg mb-6 max-w-2xl mx-auto">
-            تأكد من تفعيل JavaScript في متصفحك، أو قم بتحديث الصفحة
+            إذا واجهت أي مشكلة في الوصول إلى الكتب، تواصل معنا
           </p>
           <Link
             href="/feedback"
-            className="inline-block bg-white text-purple-600 px-8 py-3 rounded-lg font-bold hover:shadow-xl transition-all transform hover:scale-105"
+            className="inline-block bg-white text-[#00d2ff] px-8 py-3 rounded-lg font-bold hover:shadow-xl transition-all transform hover:scale-105"
           >
             تواصل معنا
           </Link>
@@ -167,10 +213,10 @@ export default function DirasaKhassaBooksPage() {
       </div>
 
       {/* PDF Viewer Modal */}
-      {selectedBook && (
+      {selectedClass && (
         <PDFViewer
-          pdfUrl={selectedBook.pdfUrl}
-          title={selectedBook.title}
+          pdfUrl={selectedClass.pdfUrl}
+          title={selectedClass.className}
           onClose={handleCloseViewer}
         />
       )}
