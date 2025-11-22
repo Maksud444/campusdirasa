@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Clock, BookOpen, GraduationCap, Building2, ArrowRight, MapPin } from 'lucide-react';
+import { Clock, BookOpen, GraduationCap, Building2, ArrowRight } from 'lucide-react';
 
 export default function AzharHistoryPage() {
   const timeline = [
@@ -30,63 +30,6 @@ export default function AzharHistoryPage() {
       description: 'أصبحت جامعة الأزهر في السنوات الأخيرة من أهم الجامعات في العالم الإسلامي، وقد شهدت تطورًا في مجالات البحث العلمي، بالإضافة إلى إنشاء العديد من الأقسام التكنولوجية والعلمية.',
       icon: Clock,
       color: 'from-[#1e40af] to-[#2563eb]'
-    }
-  ];
-
-  const historicalPlaces = [
-    {
-      id: 1,
-      name: 'الجامع الأزهر',
-      nameEn: 'Al-Azhar Mosque',
-      description: 'أول جامع بُني في مدينة القاهرة وأحد أهم المساجد في مصر والعالم الإسلامي. تأسس عام 970م ويعتبر القلب النابض للعلم والتعليم الديني.',
-      year: '970م',
-      icon: '🕌',
-      color: 'from-[#00d2ff] to-[#3a7bd5]'
-    },
-    {
-      id: 2,
-      name: 'قلعة صلاح الدين',
-      nameEn: 'Saladin Citadel',
-      description: 'قلعة تاريخية محصنة بناها صلاح الدين الأيوبي عام 1176م على تل المقطم. كانت مقر الحكم في مصر لأكثر من 700 عام.',
-      year: '1176م',
-      icon: '🏰',
-      color: 'from-[#1e3a8a] to-[#3b82f6]'
-    },
-    {
-      id: 3,
-      name: 'أهرامات الجيزة',
-      nameEn: 'Pyramids of Giza',
-      description: 'من عجائب الدنيا السبع القديمة والوحيدة الباقية حتى الآن. بُنيت قبل حوالي 4500 عام كمقابر للفراعنة.',
-      year: '2560 ق.م',
-      icon: '🔺',
-      color: 'from-[#0891b2] to-[#06b6d4]'
-    },
-    {
-      id: 4,
-      name: 'المتحف المصري',
-      nameEn: 'Egyptian Museum',
-      description: 'يضم أكبر مجموعة من الآثار المصرية القديمة في العالم. افتتح عام 1902م ويحتوي على أكثر من 120 ألف قطعة أثرية.',
-      year: '1902م',
-      icon: '🏛️',
-      color: 'from-[#1e40af] to-[#2563eb]'
-    },
-    {
-      id: 5,
-      name: 'مسجد محمد علي',
-      nameEn: 'Muhammad Ali Mosque',
-      description: 'يقع داخل قلعة صلاح الدين ويعرف بمسجد المرمر. بُني بين عامي 1830-1848م على الطراز العثماني.',
-      year: '1848م',
-      icon: '🕌',
-      color: 'from-[#00d2ff] to-[#3a7bd5]'
-    },
-    {
-      id: 6,
-      name: 'خان الخليلي',
-      nameEn: 'Khan el-Khalili',
-      description: 'سوق تاريخي في قلب القاهرة الإسلامية، تأسس عام 1382م. يعتبر من أشهر الأسواق السياحية والتجارية في مصر.',
-      year: '1382م',
-      icon: '🏪',
-      color: 'from-[#1e3a8a] to-[#3b82f6]'
     }
   ];
 
@@ -155,48 +98,6 @@ export default function AzharHistoryPage() {
                 </div>
               );
             })}
-          </div>
-        </div>
-      </div>
-
-      {/* Historical Places Section */}
-      <div className="bg-gradient-to-br from-gray-50 to-cyan-50 py-16 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <div className="inline-block bg-gradient-to-r from-[#00d2ff] to-[#3a7bd5] p-4 rounded-full mb-4">
-              <MapPin className="text-white" size={40} />
-            </div>
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">مواقع الأماكن الهامة</h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              اكتشف أهم المعالم التاريخية والثقافية في مصر
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {historicalPlaces.map((place) => (
-              <div
-                key={place.id}
-                className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 overflow-hidden border border-gray-100"
-              >
-                <div className={`bg-gradient-to-br ${place.color} p-8 text-center relative overflow-hidden`}>
-                  <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full -mr-10 -mt-10"></div>
-                  <div className="text-6xl mb-3 relative z-10">{place.icon}</div>
-                  <div className="bg-white/20 backdrop-blur-sm rounded-lg px-3 py-1 inline-block relative z-10">
-                    <span className="text-white text-sm font-bold">{place.year}</span>
-                  </div>
-                </div>
-
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-800 mb-2">
-                    {place.name}
-                  </h3>
-                  <p className="text-gray-500 text-sm mb-4 italic">{place.nameEn}</p>
-                  <p className="text-gray-700 leading-relaxed text-sm">
-                    {place.description}
-                  </p>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </div>

@@ -11,7 +11,8 @@ import {
   ChevronLeft,
   Star,
   Users,
-  ArrowLeft
+  ArrowLeft,
+  MapPin
 } from 'lucide-react';
 import AnnouncementSection from '@/components/AnnouncementSection';
 
@@ -21,15 +22,15 @@ export default function HomePage() {
       id: 1, 
       title: 'قوائم PDF', 
       icon: FileText, 
-      color: 'from-[#1e3c72] to-[#2a5298]', // Dark Blue
-      desc: 'إقامات، غرف، امتحانات، المفصولات، اسماء الطلب الجديد',
+      color: 'from-[#1e3c72] to-[#2a5298]',
+      desc: 'إقامات، غرف، امتحانات، المفصولات، اسماء الطلب الجديد',
       link: '/qawaaim'
     },
     { 
       id: 2, 
       title: 'الأخبار', 
       icon: Newspaper, 
-      color: 'from-[#00d2ff] to-[#3a7bd5]', // Cyan
+      color: 'from-[#00d2ff] to-[#3a7bd5]',
       desc: 'آخر الأخبار والإعلانات المهمة',
       link: '/news',
       priority: 1
@@ -38,7 +39,7 @@ export default function HomePage() {
       id: 3, 
       title: 'المستشفيات', 
       icon: Hospital, 
-      color: 'from-[#4facfe] to-[#00f2fe]', // Light Cyan
+      color: 'from-[#4facfe] to-[#00f2fe]',
       desc: 'دليل المستشفيات والأطباء',
       link: '/hospitals'
     },
@@ -46,7 +47,7 @@ export default function HomePage() {
       id: 4, 
       title: 'السفارات', 
       icon: Globe, 
-      color: 'from-[#667eea] to-[#764ba2]', // Purple
+      color: 'from-[#667eea] to-[#764ba2]',
       desc: 'معلومات الاتصال والمواعيد',
       link: '/embassies'
     },
@@ -54,7 +55,7 @@ export default function HomePage() {
       id: 5, 
       title: 'الاستمارات والتقديم الإلكتروني للإقامة والتدرس', 
       icon: FileText, 
-      color: 'from-[#1e3c72] to-[#2a5298]', // Dark Blue
+      color: 'from-[#1e3c72] to-[#2a5298]',
       desc: 'جميع الاستمارات',
       link: '/forms'
     },
@@ -62,13 +63,12 @@ export default function HomePage() {
       id: 6, 
       title: 'الكتب', 
       icon: BookOpen, 
-      color: 'from-[#00d2ff] to-[#3a7bd5]', // Cyan
+      color: 'from-[#00d2ff] to-[#3a7bd5]',
       desc: 'كتب دراسية شاملة',
       link: '/library'
     },
   ];
 
-  // 4 Quick Links
   const quickLinks = [
     { title: 'كيف يلتحق الطالب الجديد؟', link: '/verification' },
     { title: 'نتائج السابقة لمتقدم ثاني', link: '/archive' },
@@ -78,7 +78,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-gray-50" dir="rtl">
-      {/* Hero Section - Dark Blue & Cyan Gradient */}
+      {/* Hero Section */}
       <div className="bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] py-20 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 drop-shadow-lg">
@@ -95,7 +95,7 @@ export default function HomePage() {
         <AnnouncementSection />
       </div>
 
-      {/* Main Features Grid - 3D Tilt Effect */}
+      {/* Main Features Grid */}
       <div className="max-w-7xl mx-auto px-4 py-16">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-800 mb-4">الخدمات المتاحة</h2>
@@ -132,18 +132,15 @@ export default function HomePage() {
                 }}
               >
                 <div className={`bg-gradient-to-br ${feature.color} p-8 text-center relative overflow-hidden transition-all duration-500`}>
-                  {/* Floating decorative elements */}
                   <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12 group-hover:scale-150 group-hover:rotate-45 transition-all duration-700"></div>
                   <div className="absolute bottom-0 left-0 w-20 h-20 bg-white/5 rounded-full -ml-10 -mb-10 group-hover:scale-125 group-hover:-rotate-45 transition-all duration-700"></div>
                   
-                  {/* Icon with animation */}
                   <Icon className="text-white mx-auto mb-4 relative z-10 transition-all duration-500 group-hover:scale-125 group-hover:rotate-12" size={48} />
                   
                   <h3 className="text-2xl font-bold text-white relative z-10 transition-all duration-300">
                     {feature.title}
                   </h3>
                   
-                  {/* Shine effect */}
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                 </div>
                 
@@ -160,7 +157,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Al-Azhar History Section */}
+      {/* Al-Azhar History & Important Places Section */}
       <div className="max-w-7xl mx-auto px-4 py-8">
         <Link
           href="/history"
@@ -181,13 +178,26 @@ export default function HomePage() {
         </Link>
 
         {/* Important Places Section */}
-        <div className="mt-8 bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-          <h3 className="text-2xl font-bold text-gray-800 mb-4 text-right">مواقع الأماكن الهامة</h3>
-          <p className="text-gray-600 text-right">قريباً: معلومات عن أهم الأماكن والمواقع</p>
-        </div>
+        <Link
+          href="/locations"
+          className="group block mt-8 bg-gradient-to-r from-cyan-50 to-blue-50 border-2 border-cyan-200 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all transform hover:scale-[1.02]"
+        >
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#00d2ff] to-[#3a7bd5] rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                <MapPin className="text-white" size={32} />
+              </div>
+              <div className="text-right">
+                <h3 className="text-2xl font-bold text-gray-800 mb-1">مواقع الأماكن الهامة</h3>
+                <p className="text-gray-600">اكتشف المواقع المهمة للطلاب في القاهرة</p>
+              </div>
+            </div>
+            <ChevronLeft className="text-[#00d2ff] group-hover:translate-x-[-8px] transition-transform" size={32} />
+          </div>
+        </Link>
       </div>
 
-      {/* Quick Links Section - 3D Tilt Effect */}
+      {/* Quick Links Section */}
       <div className="bg-gradient-to-br from-[#1e3c72] to-[#2a5298] py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
@@ -233,7 +243,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Features Highlight - 3D Tilt Effect */}
+      {/* Features Highlight */}
       <div className="bg-gradient-to-br from-cyan-50 to-blue-50 py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
