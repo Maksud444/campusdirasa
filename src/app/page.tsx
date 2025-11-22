@@ -12,7 +12,10 @@ import {
   Star,
   Users,
   ArrowLeft,
-  MapPin
+  MapPin,
+  Calendar,
+  Clock,
+  MapPinIcon
 } from 'lucide-react';
 import AnnouncementSection from '@/components/AnnouncementSection';
 
@@ -76,6 +79,21 @@ export default function HomePage() {
     { title: 'المنح الدراسية', link: '/scholarships' },
   ];
 
+  // Lectures Data
+  const lectures = [
+    {
+      id: 1,
+      sheikh: "أ.د. رفعت فوزي عبدالمطلب",
+      topic: "حديث – بلوغ المرام من أدلة الأحكام",
+      status: "free",
+      category: "محاضري",
+      date: "2025-11-25",
+      timeFrom: "بعد المغرب",
+      imageUrl: "https://azharguideline.com/mohadhara/maram.jpeg",
+      detailsLink: "/lectures/1"
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-gray-50" dir="rtl">
       {/* Hero Section */}
@@ -109,27 +127,7 @@ export default function HomePage() {
               <Link
                 key={feature.id}
                 href={feature.link}
-                className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 card-3d-tilt"
-                style={{
-                  transformStyle: 'preserve-3d',
-                  perspective: '1000px'
-                }}
-                onMouseMove={(e) => {
-                  const card = e.currentTarget;
-                  const rect = card.getBoundingClientRect();
-                  const x = e.clientX - rect.left;
-                  const y = e.clientY - rect.top;
-                  const centerX = rect.width / 2;
-                  const centerY = rect.height / 2;
-                  const rotateX = (y - centerY) / 10;
-                  const rotateY = (centerX - x) / 10;
-                  
-                  card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
-                }}
-                onMouseLeave={(e) => {
-                  const card = e.currentTarget;
-                  card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-                }}
+                className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100"
               >
                 <div className={`bg-gradient-to-br ${feature.color} p-8 text-center relative overflow-hidden transition-all duration-500`}>
                   <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12 group-hover:scale-150 group-hover:rotate-45 transition-all duration-700"></div>
@@ -197,6 +195,91 @@ export default function HomePage() {
         </Link>
       </div>
 
+      {/* Lectures Section - NEW */}
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold text-gray-800 mb-2">المحاضرات والدورات</h2>
+          <p className="text-gray-600">احضر المحاضرات والدورات العلمية</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {lectures.map((lecture) => (
+            <div
+              key={lecture.id}
+              className="bg-white rounded-2xl shadow-lg border-2 border-gray-100 overflow-hidden hover:shadow-xl transition-all"
+            >
+              {/* Image */}
+              <div className="relative h-48 bg-gradient-to-br from-[#0f2027] to-[#2c5364]">
+                <img 
+                  src={lecture.imageUrl} 
+                  alt={lecture.topic}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                  }}
+                />
+                
+                {/* Status Badge */}
+                <div className="absolute top-3 right-3">
+                  <span className="bg-gradient-to-r from-[#00d2ff] to-[#3a7bd5] text-white px-3 py-1.5 rounded-full text-sm font-bold shadow-lg">
+                    free
+                  </span>
+                </div>
+
+                {/* Category Badge */}
+                <div className="absolute top-3 left-3">
+                  <span className="bg-white/90 backdrop-blur-sm text-gray-800 px-3 py-1.5 rounded-full text-sm font-bold shadow-lg">
+                    {lecture.category}
+                  </span>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-5">
+                {/* Sheikh Name */}
+                <div className="flex items-start gap-2 mb-3">
+                  <div className="w-8 h-8 bg-gradient-to-br from-[#00d2ff] to-[#3a7bd5] rounded-full flex items-center justify-center flex-shrink-0">
+                    <Users className="text-white" size={16} />
+                  </div>
+                  <h3 className="font-bold text-gray-800 text-base leading-tight">
+                    {lecture.sheikh}
+                  </h3>
+                </div>
+
+                {/* Topic */}
+                <div className="flex items-start gap-2 mb-4">
+                  <BookOpen className="text-[#00d2ff] flex-shrink-0 mt-0.5" size={18} />
+                  <p className="text-gray-700 font-medium text-sm leading-relaxed">
+                    {lecture.topic}
+                  </p>
+                </div>
+
+                {/* Date & Time */}
+                <div className="flex items-center gap-4 mb-4 text-sm text-gray-600">
+                  <div className="flex items-center gap-1.5">
+                    <Calendar size={16} className="text-[#00d2ff]" />
+                    <span>{lecture.date}</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <Clock size={16} className="text-[#00d2ff]" />
+                    <span>{lecture.timeFrom}</span>
+                  </div>
+                </div>
+
+                {/* View Details Button */}
+                <Link
+                  href={lecture.detailsLink}
+                  className="flex items-center justify-center gap-2 bg-gradient-to-r from-[#00d2ff] to-[#3a7bd5] text-white px-6 py-3 rounded-xl font-bold hover:shadow-xl transition-all w-full"
+                >
+                  <MapPinIcon size={18} />
+                  <span>عرض التفاصيل ←</span>
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* Quick Links Section */}
       <div className="bg-gradient-to-br from-[#1e3c72] to-[#2a5298] py-16 px-4">
         <div className="max-w-7xl mx-auto">
@@ -210,30 +293,10 @@ export default function HomePage() {
               <Link
                 key={idx}
                 href={link.link}
-                className="group bg-white rounded-xl p-6 shadow-md hover:shadow-2xl transition-all duration-500 border-t-4 border-[#00d2ff] relative overflow-hidden card-3d-tilt"
-                style={{
-                  transformStyle: 'preserve-3d',
-                  perspective: '1000px'
-                }}
-                onMouseMove={(e) => {
-                  const card = e.currentTarget;
-                  const rect = card.getBoundingClientRect();
-                  const x = e.clientX - rect.left;
-                  const y = e.clientY - rect.top;
-                  const centerX = rect.width / 2;
-                  const centerY = rect.height / 2;
-                  const rotateX = (y - centerY) / 8;
-                  const rotateY = (centerX - x) / 8;
-                  
-                  card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.08, 1.08, 1.08)`;
-                }}
-                onMouseLeave={(e) => {
-                  const card = e.currentTarget;
-                  card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-                }}
+                className="group bg-white rounded-xl p-6 shadow-md hover:shadow-2xl transition-all duration-500 border-t-4 border-[#00d2ff]"
               >
-                <h3 className="text-lg font-bold text-gray-800 mb-2 relative z-10">{link.title}</h3>
-                <div className="flex items-center text-[#00d2ff] font-medium relative z-10">
+                <h3 className="text-lg font-bold text-gray-800 mb-2">{link.title}</h3>
+                <div className="flex items-center text-[#00d2ff] font-medium">
                   <span className="text-sm">انتقل</span>
                   <ArrowLeft size={16} className="mr-1 group-hover:animate-pulse" />
                 </div>
@@ -252,98 +315,32 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div 
-              className="group bg-white rounded-xl p-8 shadow-lg text-center hover:shadow-2xl transition-all duration-500 relative overflow-hidden card-3d-tilt"
-              style={{
-                transformStyle: 'preserve-3d',
-                perspective: '1000px'
-              }}
-              onMouseMove={(e) => {
-                const card = e.currentTarget;
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                const rotateX = (y - centerY) / 10;
-                const rotateY = (centerX - x) / 10;
-                
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
-              }}
-              onMouseLeave={(e) => {
-                const card = e.currentTarget;
-                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-              }}
-            >
-              <div className="w-16 h-16 bg-gradient-to-br from-[#00d2ff] to-[#3a7bd5] rounded-full flex items-center justify-center mx-auto mb-4 relative z-10 group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 shadow-lg">
+            <div className="bg-white rounded-xl p-8 shadow-lg text-center hover:shadow-2xl transition-all">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#00d2ff] to-[#3a7bd5] rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
                 <Star className="text-white" size={32} />
               </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-3 relative z-10">سهولة الوصول</h3>
-              <p className="text-gray-600 relative z-10">
+              <h3 className="text-xl font-bold text-gray-800 mb-3">سهولة الوصول</h3>
+              <p className="text-gray-600">
                 جميع الخدمات والمعلومات في مكان واحد سهل الاستخدام
               </p>
             </div>
 
-            <div 
-              className="group bg-white rounded-xl p-8 shadow-lg text-center hover:shadow-2xl transition-all duration-500 relative overflow-hidden card-3d-tilt"
-              style={{
-                transformStyle: 'preserve-3d',
-                perspective: '1000px'
-              }}
-              onMouseMove={(e) => {
-                const card = e.currentTarget;
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                const rotateX = (y - centerY) / 10;
-                const rotateY = (centerX - x) / 10;
-                
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
-              }}
-              onMouseLeave={(e) => {
-                const card = e.currentTarget;
-                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-              }}
-            >
-              <div className="w-16 h-16 bg-gradient-to-br from-[#4facfe] to-[#00f2fe] rounded-full flex items-center justify-center mx-auto mb-4 relative z-10 group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 shadow-lg">
+            <div className="bg-white rounded-xl p-8 shadow-lg text-center hover:shadow-2xl transition-all">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#4facfe] to-[#00f2fe] rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
                 <Users className="text-white" size={32} />
               </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-3 relative z-10">مجتمع طلابي</h3>
-              <p className="text-gray-600 relative z-10">
+              <h3 className="text-xl font-bold text-gray-800 mb-3">مجتمع طلابي</h3>
+              <p className="text-gray-600">
                 تواصل مع الطلاب من جميع أنحاء العالم
               </p>
             </div>
 
-            <div 
-              className="group bg-white rounded-xl p-8 shadow-lg text-center hover:shadow-2xl transition-all duration-500 relative overflow-hidden card-3d-tilt"
-              style={{
-                transformStyle: 'preserve-3d',
-                perspective: '1000px'
-              }}
-              onMouseMove={(e) => {
-                const card = e.currentTarget;
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                const rotateX = (y - centerY) / 10;
-                const rotateY = (centerX - x) / 10;
-                
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
-              }}
-              onMouseLeave={(e) => {
-                const card = e.currentTarget;
-                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-              }}
-            >
-              <div className="w-16 h-16 bg-gradient-to-br from-[#667eea] to-[#764ba2] rounded-full flex items-center justify-center mx-auto mb-4 relative z-10 group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 shadow-lg">
+            <div className="bg-white rounded-xl p-8 shadow-lg text-center hover:shadow-2xl transition-all">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#667eea] to-[#764ba2] rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
                 <Building2 className="text-white" size={32} />
               </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-3 relative z-10">خدمات شاملة</h3>
-              <p className="text-gray-600 relative z-10">
+              <h3 className="text-xl font-bold text-gray-800 mb-3">خدمات شاملة</h3>
+              <p className="text-gray-600">
                 من السكن إلى الدراسة، نوفر كل ما تحتاجه
               </p>
             </div>

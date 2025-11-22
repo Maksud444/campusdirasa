@@ -7,7 +7,7 @@ export default function FormsPage() {
   const formCategories = [
     {
       id: 1,
-      title: 'استمارة',
+      title: 'تصديق الإقامة',
       titleEn: 'Iqama Verification Form',
       description: 'نماذج تصديق الإقامة - متاح قريباً',
       icon: FileText,
