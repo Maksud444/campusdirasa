@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { CheckCircle, ArrowRight, ChevronLeft, ExternalLink, AlertCircle } from 'lucide-react';
 
 export default function AdmissionCheckPage() {
-  const googleFormLink = 'https://forms.google.com/your-form-link-here';
+  const googleFormLink = 'https://docs.google.com/forms/d/e/1FAIpQLScbAArCLIVp4NuX57PyxNjTIkUjE-dysQOz81RbPKUvFmO02Q/viewform?usp=header';
 
   return (
     <div className="min-h-screen bg-gray-50" dir="rtl">

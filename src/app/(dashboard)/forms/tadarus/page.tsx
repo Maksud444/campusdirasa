@@ -19,7 +19,7 @@ export default function TadarusFormsPage() {
     title: 'برنامج تدارس',
     titleEn: 'Tadarus Program',
     description: 'نموذج التقديم لبرنامج تدارس لجميع الصفوف - متاح يوم الخميس من 8 مساءً إلى 10 مساءً',
-    formLink: 'https://forms.google.com/your-tadarus-form-link-here',
+    formLink: 'https://docs.google.com/forms/d/e/1FAIpQLSd7Ic1msaYZN2YJGnl5o2LpeR9r4LUD_rUX20-xcSEEjx1ihQ/viewform?usp=header',
     bgGradient: 'bg-gradient-to-r from-[#00d2ff] to-[#3a7bd5]',
     allowedDay: 'الخميس', // Thursday
     dayNumber: 4, // Thursday (0=Sunday in JS)
@@ -30,6 +30,11 @@ export default function TadarusFormsPage() {
 
   // Check if form is available
   const isFormAvailable = () => {
+    // ⚠️ TESTING MODE - Form always available
+    return true;
+    
+    /* 
+    // 🔒 PRODUCTION MODE - Uncomment this for actual schedule
     const currentDay = currentDate.getDay();
     const currentHour = currentDate.getHours();
     const currentMinute = currentDate.getMinutes();
@@ -44,6 +49,7 @@ export default function TadarusFormsPage() {
     const isTimeAllowed = currentTimeInMinutes >= startTimeInMinutes && currentTimeInMinutes <= endTimeInMinutes;
 
     return isDayAllowed && isTimeAllowed;
+    */
   };
 
   const getArabicDayName = (dayNumber: number) => {

@@ -19,7 +19,7 @@ export default function IqamaVerificationPage() {
     title: 'تصديق الإقامة',
     titleEn: 'Residence Verification',
     description: 'نموذج تصديق الإقامة لجميع الصفوف - متاح يوم الخميس من 8 صباحاً إلى 10 صباحاً',
-    formLink: 'https://docs.google.com/forms/d/e/1FAIpQLSc-ZNVN8dpW4R3c9T-XppkfdSIXRL-Pfi_CAs3MHJfZwAQK9w/viewform',
+    formLink: 'https://docs.google.com/forms/d/e/1FAIpQLSc-ZNVN8dpW4R3c9T-XppkfdSIXRL-Pfi_CAs3MHJfZwAQK9w/viewform?usp=header',
     bgGradient: 'bg-gradient-to-r from-[#00d2ff] to-[#3a7bd5]',
     allowedDay: 'الخميس', // Thursday
     dayNumber: 4, // Thursday (0=Sunday in JS)
@@ -30,6 +30,11 @@ export default function IqamaVerificationPage() {
 
   // Check if form is available
   const isFormAvailable = () => {
+    // ⚠️ TESTING MODE - Form always available
+    return true;
+    
+    /* 
+    // 🔒 PRODUCTION MODE - Uncomment this for actual schedule
     const currentDay = currentDate.getDay();
     const currentHour = currentDate.getHours();
     const currentMinute = currentDate.getMinutes();
@@ -44,6 +49,7 @@ export default function IqamaVerificationPage() {
     const isTimeAllowed = currentTimeInMinutes >= startTimeInMinutes && currentTimeInMinutes <= endTimeInMinutes;
 
     return isDayAllowed && isTimeAllowed;
+    */
   };
 
   const getArabicDayName = (dayNumber: number) => {
