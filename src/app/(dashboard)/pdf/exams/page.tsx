@@ -31,12 +31,12 @@ export default function ExamsPDFPage() {
   const [selectedPDF, setSelectedPDF] = useState<PDF | null>(null);
 
   const pdfList: PDF[] = [
-    { id: 1, className: 'مبتدئ أول', pdfUrl: 'https://drive.google.com/file/d/1tBFUI4BvpmNVL0zBYWmC5DkKop6Jt5Sk/view?usp=sharing', coverEmoji: '📝' },
-    { id: 2, className: 'مبتدئ ثاني', pdfUrl: 'https://drive.google.com/file/d/1tBFUI4BvpmNVL0zBYWmC5DkKop6Jt5Sk/view?usp=sharing', coverEmoji: '📝' },
-    { id: 3, className: 'متوسط أول', pdfUrl: 'https://drive.google.com/file/d/1tBFUI4BvpmNVL0zBYWmC5DkKop6Jt5Sk/view?usp=sharing', coverEmoji: '📝' },
-    { id: 4, className: 'متوسط ثاني', pdfUrl: 'https://drive.google.com/file/d/1tBFUI4BvpmNVL0zBYWmC5DkKop6Jt5Sk/view?usp=sharing', coverEmoji: '📝' },
-    { id: 5, className: 'متقدم أول', pdfUrl: 'https://drive.google.com/file/d/1tBFUI4BvpmNVL0zBYWmC5DkKop6Jt5Sk/view?usp=sharing', coverEmoji: '📝' },
-    { id: 6, className: 'متقدم ثاني', pdfUrl: 'https://drive.google.com/file/d/1tBFUI4BvpmNVL0zBYWmC5DkKop6Jt5Sk/view?usp=sharing', coverEmoji: '📝' }
+    { id: 1, className: 'مبتدئ أول', pdfUrl: 'https://drive.google.com/file/d/1tBFUI4BvpmNVL0zBYWmC5DkKop6Jt5Sk/view?usp=drive_link', coverEmoji: '📝' },
+    { id: 2, className: 'مبتدئ ثاني', pdfUrl: 'https://drive.google.com/file/d/1tBFUI4BvpmNVL0zBYWmC5DkKop6Jt5Sk/view?usp=drive_link', coverEmoji: '📝' },
+    { id: 3, className: 'متوسط أول', pdfUrl: 'https://drive.google.com/file/d/1tBFUI4BvpmNVL0zBYWmC5DkKop6Jt5Sk/view?usp=drive_link', coverEmoji: '📝' },
+    { id: 4, className: 'متوسط ثاني', pdfUrl: 'https://drive.google.com/file/d/1tBFUI4BvpmNVL0zBYWmC5DkKop6Jt5Sk/view?usp=drive_link', coverEmoji: '📝' },
+    { id: 5, className: 'متقدم أول', pdfUrl: 'https://drive.google.com/file/d/1tBFUI4BvpmNVL0zBYWmC5DkKop6Jt5Sk/view?usp=drive_link', coverEmoji: '📝' },
+    { id: 6, className: 'متقدم ثاني', pdfUrl: 'https://drive.google.com/file/d/1tBFUI4BvpmNVL0zBYWmC5DkKop6Jt5Sk/view?usp=drive_link', coverEmoji: '📝' }
   ];
 
   const handleViewPDF = (pdf: PDF) => setSelectedPDF(pdf);
@@ -142,7 +142,7 @@ export default function ExamsPDFPage() {
         </div>
       </div>
 
-      {selectedPDF && <PDFViewer pdfUrl={selectedPDF.pdfUrl} title={`جدول امتحانات ${selectedPDF.className}`} onClose={handleCloseViewer} />}
+      {selectedPDF && <PDFViewer pdfUrl={selectedPDF.pdfUrl} title={`نتيجة مستويات ${selectedPDF.className}`} onClose={handleCloseViewer} />}
     </div>
   );
 }
