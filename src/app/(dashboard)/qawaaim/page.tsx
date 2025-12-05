@@ -27,7 +27,7 @@ export default function QawaimPage() {
     },
     {
       id: 3,
-      title: 'أسماء الامتحانات',
+      title: ' نتيجة مستويات',
       href: '/pdf/exams',
       icon: BookOpen,
       color: 'from-[#4facfe] to-[#00f2fe]', // Light Cyan

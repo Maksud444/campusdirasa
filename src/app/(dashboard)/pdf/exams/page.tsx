@@ -31,12 +31,12 @@ export default function ExamsPDFPage() {
   const [selectedPDF, setSelectedPDF] = useState<PDF | null>(null);
 
   const pdfList: PDF[] = [
-    { id: 1, className: 'مبتدئ أول', pdfUrl: 'https://azharguideline.com/sixbook/rutinurdu.pdf', coverEmoji: '📝' },
-    { id: 2, className: 'مبتدئ ثاني', pdfUrl: 'https://azharguideline.com/sixbook/rutinurdu.pdf', coverEmoji: '📝' },
-    { id: 3, className: 'متوسط أول', pdfUrl: 'https://azharguideline.com/sixbook/rutinurdu.pdf', coverEmoji: '📝' },
-    { id: 4, className: 'متوسط ثاني', pdfUrl: 'https://azharguideline.com/sixbook/rutinurdu.pdf', coverEmoji: '📝' },
-    { id: 5, className: 'متقدم أول', pdfUrl: 'https://azharguideline.com/sixbook/rutinurdu.pdf', coverEmoji: '📝' },
-    { id: 6, className: 'متقدم ثاني', pdfUrl: 'https://azharguideline.com/sixbook/rutinurdu.pdf', coverEmoji: '📝' }
+    { id: 1, className: 'مبتدئ أول', pdfUrl: 'https://drive.google.com/file/d/1tBFUI4BvpmNVL0zBYWmC5DkKop6Jt5Sk/view?usp=sharing', coverEmoji: '📝' },
+    { id: 2, className: 'مبتدئ ثاني', pdfUrl: 'https://drive.google.com/file/d/1tBFUI4BvpmNVL0zBYWmC5DkKop6Jt5Sk/view?usp=sharing', coverEmoji: '📝' },
+    { id: 3, className: 'متوسط أول', pdfUrl: 'https://drive.google.com/file/d/1tBFUI4BvpmNVL0zBYWmC5DkKop6Jt5Sk/view?usp=sharing', coverEmoji: '📝' },
+    { id: 4, className: 'متوسط ثاني', pdfUrl: 'https://drive.google.com/file/d/1tBFUI4BvpmNVL0zBYWmC5DkKop6Jt5Sk/view?usp=sharing', coverEmoji: '📝' },
+    { id: 5, className: 'متقدم أول', pdfUrl: 'https://drive.google.com/file/d/1tBFUI4BvpmNVL0zBYWmC5DkKop6Jt5Sk/view?usp=sharing', coverEmoji: '📝' },
+    { id: 6, className: 'متقدم ثاني', pdfUrl: 'https://drive.google.com/file/d/1tBFUI4BvpmNVL0zBYWmC5DkKop6Jt5Sk/view?usp=sharing', coverEmoji: '📝' }
   ];
 
   const handleViewPDF = (pdf: PDF) => setSelectedPDF(pdf);
@@ -44,7 +44,7 @@ export default function ExamsPDFPage() {
   const handleDownload = (pdf: PDF) => {
     const link = document.createElement('a');
     link.href = pdf.pdfUrl;
-    link.download = `جدول-امتحانات-${pdf.className}.pdf`;
+    link.download = `نتيجة مستويات${pdf.className}.pdf`;
     link.target = '_blank';
     document.body.appendChild(link);
     link.click();
