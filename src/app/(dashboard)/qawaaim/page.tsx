@@ -31,7 +31,7 @@ export default function QawaimPage() {
       href: '/pdf/exams',
       icon: BookOpen,
       color: 'from-[#4facfe] to-[#00f2fe]', // Light Cyan
-      description: 'جداول ومواعيد الامتحانات',
+      description: 'نتائج امتحانات المستويات',
       bgColor: 'bg-cyan-50',
       iconColor: 'text-[#4facfe]'
     },
