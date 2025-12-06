@@ -31,12 +31,13 @@ export default function ExamsPDFPage() {
   const [selectedPDF, setSelectedPDF] = useState<PDF | null>(null);
 
   const pdfList: PDF[] = [
-    { id: 1, className: 'مبتدئ أول', pdfUrl: '/pdfs/مبتدئ_أول.pdf', coverEmoji: '📝' },
-    { id: 2, className: 'مبتدئ ثاني', pdfUrl: '/pdfs/مبتدئ_ثاني.pdf', coverEmoji: '📝' },
-    { id: 3, className: 'متوسط أول', pdfUrl: '/pdfs/متوسط_أول.pdf', coverEmoji: '📝' },
-    { id: 4, className: 'متوسط ثاني', pdfUrl: '/pdfs/متوسط_ثاني.pdf', coverEmoji: '📝' },
-    { id: 5, className: 'متقدم أول', pdfUrl: '/pdfs/متقدم_أول.pdf', coverEmoji: '📝' },
-    { id: 6, className: 'متقدم ثاني', pdfUrl: '/pdfs/متقدم_ثاني.pdf', coverEmoji: '📝' }
+    { id: 1, className: 'مبتدئ أول', pdfUrl: '/pdfs/مبتدئ أول.pdf', coverEmoji: '📝' },
+    { id: 2, className: 'مبتدئ ثاني', pdfUrl: '/pdfs/مبتدئ ثاني.pdf', coverEmoji: '📝' },
+    { id: 3, className: 'متوسط أول', pdfUrl: '/pdfs/متوسط أول.pdf', coverEmoji: '📝' },
+    { id: 4, className: 'متوسط ثاني', pdfUrl: '/pdfs/متوسط ثاني.pdf', coverEmoji: '📝' },
+    { id: 5, className: 'متقدم أول', pdfUrl: '/pdfs/متقدم أول.pdf', coverEmoji: '📝' },
+    { id: 6, className: 'متقدم ثاني', pdfUrl: '/pdfs/متقدم ثاني.pdf', coverEmoji: '📝' },
+    { id: 7, className: 'كبار السن', pdfUrl: '/pdfs/كبار السن.pdf', coverEmoji: '📝' }  
   ];
 
   const handleViewPDF = (pdf: PDF) => setSelectedPDF(pdf);
@@ -44,7 +45,7 @@ export default function ExamsPDFPage() {
   const handleDownload = (pdf: PDF) => {
     const link = document.createElement('a');
     link.href = pdf.pdfUrl;
-    link.download = `نتيجة مستويات${pdf.className}.pdf`;
+    link.download = `نتيجة_${pdf.className}.pdf`;
     link.target = '_blank';
     document.body.appendChild(link);
     link.click();
@@ -53,6 +54,7 @@ export default function ExamsPDFPage() {
 
   return (
     <div className="min-h-screen bg-gray-50" dir="rtl">
+      {/* Breadcrumb */}
       <div className="bg-white border-b border-gray-200 py-4 px-4">
         <div className="max-w-7xl mx-auto flex items-center gap-2 text-sm">
           <Link href="/qawaaim" className="text-[#4facfe] hover:underline">القوائم</Link>
@@ -61,6 +63,7 @@ export default function ExamsPDFPage() {
         </div>
       </div>
 
+      {/* Hero Section */}
       <div className="bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] py-12 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-4">
@@ -73,7 +76,9 @@ export default function ExamsPDFPage() {
         </div>
       </div>
 
+      {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 py-12">
+        {/* Info Alert */}
         <div className="bg-cyan-50 border border-cyan-200 rounded-xl p-6 mb-8">
           <div className="flex items-start gap-4">
             <div className="w-10 h-10 bg-[#4facfe] rounded-full flex items-center justify-center flex-shrink-0">
@@ -86,11 +91,12 @@ export default function ExamsPDFPage() {
           </div>
         </div>
 
+        {/* PDF Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {pdfList.map((pdf) => (
             <div 
               key={pdf.id} 
-              className="bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-500 border border-gray-100 group overflow-hidden card-3d-tilt"
+              className="bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-500 border border-gray-100 group overflow-hidden"
               style={{
                 transformStyle: 'preserve-3d',
                 perspective: '1000px'
@@ -112,20 +118,28 @@ export default function ExamsPDFPage() {
                 card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
               }}
             >
+              {/* Card Header */}
               <div className="bg-gradient-to-br from-[#4facfe] to-[#00f2fe] p-8 text-center relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-all duration-700"></div>
                 <div className="text-6xl mb-4 relative z-10 group-hover:scale-110 transition-transform duration-500">{pdf.coverEmoji}</div>
                 <h3 className="text-2xl font-bold text-white relative z-10 drop-shadow-lg mb-2">{pdf.className}</h3>
-                <p className="text-lg text-white/90 relative z-10">جميع نتيجة الامتحانات راسب/متخلف/ناجح</p>
+                <p className="text-lg text-white/90 relative z-10">نتيجة الامتحانات</p>
               </div>
 
+              {/* Card Actions */}
               <div className="p-6">
                 <div className="flex gap-2">
-                  <button onClick={() => handleViewPDF(pdf)} className="flex-1 flex items-center justify-center gap-2 bg-[#4facfe] text-white px-4 py-3 rounded-lg hover:bg-[#3a8ed8] transition-colors font-medium">
+                  <button 
+                    onClick={() => handleViewPDF(pdf)} 
+                    className="flex-1 flex items-center justify-center gap-2 bg-[#4facfe] text-white px-4 py-3 rounded-lg hover:bg-[#3a8ed8] transition-colors font-medium"
+                  >
                     <Eye size={18} />
                     <span>عرض</span>
                   </button>
-                  <button onClick={() => handleDownload(pdf)} className="flex items-center justify-center gap-2 bg-gray-100 text-gray-700 px-4 py-3 rounded-lg hover:bg-gray-200 transition-colors">
+                  <button 
+                    onClick={() => handleDownload(pdf)} 
+                    className="flex items-center justify-center gap-2 bg-gray-100 text-gray-700 px-4 py-3 rounded-lg hover:bg-gray-200 transition-colors"
+                  >
                     <Download size={18} />
                   </button>
                 </div>
@@ -134,15 +148,25 @@ export default function ExamsPDFPage() {
           ))}
         </div>
 
+        {/* CTA Section */}
         <div className="mt-16 bg-gradient-to-r from-[#4facfe] to-[#00f2fe] rounded-2xl p-10 text-center shadow-xl">
           <BookOpen className="text-white mx-auto mb-4" size={48} />
           <h2 className="text-3xl font-bold text-white mb-4">لديك استفسار عن الامتحانات؟</h2>
           <p className="text-white/90 text-lg mb-6 max-w-2xl mx-auto">تواصل مع مكتب الامتحانات للحصول على المعلومات أو الإجابة على أي استفسار</p>
-          <Link href="/feedback" className="inline-block bg-white text-[#4facfe] px-8 py-3 rounded-lg font-bold hover:shadow-xl transition-all transform hover:scale-105">تواصل معنا</Link>
+          <Link href="/feedback" className="inline-block bg-white text-[#4facfe] px-8 py-3 rounded-lg font-bold hover:shadow-xl transition-all transform hover:scale-105">
+            تواصل معنا
+          </Link>
         </div>
       </div>
 
-      {selectedPDF && <PDFViewer pdfUrl={selectedPDF.pdfUrl} title={`نتيجة مستويات ${selectedPDF.className}`} onClose={handleCloseViewer} />}
+      {/* PDF Viewer Modal */}
+      {selectedPDF && (
+        <PDFViewer 
+          pdfUrl={selectedPDF.pdfUrl} 
+          title={`نتيجة ${selectedPDF.className}`} 
+          onClose={handleCloseViewer} 
+        />
+      )}
     </div>
   );
 }
