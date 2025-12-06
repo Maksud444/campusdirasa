@@ -31,12 +31,12 @@ export default function ExamsPDFPage() {
   const [selectedPDF, setSelectedPDF] = useState<PDF | null>(null);
 
   const pdfList: PDF[] = [
-    { id: 1, className: 'مبتدئ أول', pdfUrl: 'https://azharguideline.com/result.pdf', coverEmoji: '📝' },
-    { id: 2, className: 'مبتدئ ثاني', pdfUrl: 'https://azharguideline.com/result.pdf', coverEmoji: '📝' },
-    { id: 3, className: 'متوسط أول', pdfUrl: 'https://azharguideline.com/result.pdf', coverEmoji: '📝' },
-    { id: 4, className: 'متوسط ثاني', pdfUrl: 'https://azharguideline.com/result.pdf', coverEmoji: '📝' },
-    { id: 5, className: 'متقدم أول', pdfUrl: 'https://azharguideline.com/result.pdf', coverEmoji: '📝' },
-    { id: 6, className: 'متقدم ثاني', pdfUrl: 'https://azharguideline.com/result.pdf', coverEmoji: '📝' }
+    { id: 1, className: 'مبتدئ أول', pdfUrl: '/pdfs/مبتدئ_أول.pdf', coverEmoji: '📝' },
+    { id: 2, className: 'مبتدئ ثاني', pdfUrl: '/pdfs/مبتدئ_ثاني.pdf', coverEmoji: '📝' },
+    { id: 3, className: 'متوسط أول', pdfUrl: '/pdfs/متوسط_أول.pdf', coverEmoji: '📝' },
+    { id: 4, className: 'متوسط ثاني', pdfUrl: '/pdfs/متوسط_ثاني.pdf', coverEmoji: '📝' },
+    { id: 5, className: 'متقدم أول', pdfUrl: '/pdfs/متقدم_أول.pdf', coverEmoji: '📝' },
+    { id: 6, className: 'متقدم ثاني', pdfUrl: '/pdfs/متقدم_ثاني.pdf', coverEmoji: '📝' }
   ];
 
   const handleViewPDF = (pdf: PDF) => setSelectedPDF(pdf);
