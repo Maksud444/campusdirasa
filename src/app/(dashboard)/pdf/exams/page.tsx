@@ -123,7 +123,7 @@ export default function ExamsPDFPage() {
                 <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-all duration-700"></div>
                 <div className="text-6xl mb-4 relative z-10 group-hover:scale-110 transition-transform duration-500">{pdf.coverEmoji}</div>
                 <h3 className="text-2xl font-bold text-white relative z-10 drop-shadow-lg mb-2">{pdf.className}</h3>
-                <p className="text-lg text-white/90 relative z-10">نتيجة الامتحانات</p>
+                <p className="text-lg text-white/90 relative z-10">جميع نتيجة الامتحانات راسب/متخلف/ناجح</p>
               </div>
 
               {/* Card Actions */}
